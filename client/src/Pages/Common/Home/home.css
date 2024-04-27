@@ -1,0 +1,199 @@
+.hero-legend{
+color: #FFF;
+text-align: center;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 60.051px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+#btn1:hover{
+ color: #FFF;
+}
+#btn2:hover{
+    color: #FFF;
+   }
+#btn3{
+    color: #FFF;
+    margin-top: 20%;
+    height: 80px;
+    width: 400px;
+   }   
+.home-inner{
+color: #56D6FF;
+text-align: center;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 32.779px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.home-inner2{
+color: #1A728E;
+text-align: center;
+text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 45.032px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+background-color: #FFF;
+margin-top: 35%;
+}
+.home-inner3{
+color: #1A728E;
+text-align: center;
+text-shadow: 0px 0.762px 0.762px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 29.928px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+
+.home-banner{
+    background-image: url('../../../Assets/banner_3.png');
+    padding: 5%;
+    background-repeat: no-repeat;
+    background-size:cover;
+    /* width: 1440px; */
+    height: 517.063px;
+    flex-shrink: 0;
+}
+
+.home-banner-inner{
+border-radius: 20px;
+background-color: #FFF;
+}
+.home-banner-inner1{
+color: #1A728E;
+text-align: center;
+text-shadow: 0px 0.885px 0.885px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 34.774px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-inner2{
+color: #FFF;
+text-align: center;
+text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 45.032px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-targeted{
+    background-image: url('../../../Assets/banner2.png');
+    padding: 5%;
+}
+.home-targeted-search{
+color: #FFF;
+text-align: center;
+text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 45.032px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.home-targeted-search-body{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 0.885px 0.885px rgba(0, 0, 0, 0.25);
+    font-family: "Noto Sans";
+    font-size: 34.774px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.home-banner-secure{
+    background-image: url('../../../Assets/secure.png');
+    padding: 5%;
+}
+.home-banner-secure-inner{
+color: #FFF;
+text-align: center;
+text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 61.03px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-secure-inner1{
+color: #FFF;
+text-align: center;
+text-shadow: 0px 0.885px 0.885px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 34.774px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-community{
+color: #1A728E;
+text-align: center;
+text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 45.032px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-community-inner{
+color: #1A728E;
+text-align: center;
+text-shadow: 0px 0.74px 0.74px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 29.09px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-ipad{
+    background-image: url('../../../Assets/banner3.png');
+    padding: 5%;
+    background-repeat: no-repeat;
+    background-size:cover;
+    /* height: 50vh; */
+    background-attachment: fixed;
+    height: 520.181px;
+    flex-shrink: 0;
+    background-position: center;
+    
+}
+.home-banner-testimonial{
+color: #1A728E;
+text-align: center;
+text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
+font-family: "Noto Sans";
+font-size: 45.032px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+
+.home-banner-quoteblock{
+font-style: italic;
+color: #000;
+text-align: center;
+font-family: "Noto Sans";
+font-size: 31px;
+font-weight: 300;
+line-height: normal;
+}
+.home-banner-end{
+color: #000;
+text-align: center;
+font-family: "Noto Sans";
+font-size: 31px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
