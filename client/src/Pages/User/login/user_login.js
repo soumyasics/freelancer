@@ -11,8 +11,8 @@ function User_login() {
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
-    email: "user@gmail.com",
-    password: "12341234",
+    email: "",
+    password: "",
   });
 
   const navigateToUserRegister = () => {
