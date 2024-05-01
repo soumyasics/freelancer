@@ -28,6 +28,8 @@ import { ConsultancyLogin } from "./Pages/consultancy/login/consultancyLogin.jsx
 import Vacancy_request from "./Pages/consultancy/vacancy_request/Vacancy_request.jsx";
 import ViewAllVacancies from "./Pages/Freelancers/ViewAllVacancies/ViewAllVacancies.jsx";
 import {AdminViewAllConsultancy} from "./Pages/Admin/Admin_ViewAllConsultancy/Admin_ViewAllConsultancy.jsx";
+import { MyVacanccies } from "./Pages/consultancy/my_vacancies/my_vacancies.jsx";
+import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
 function App() {
   return (
     <div className="container-fluid bg-hero m-auto " style={{ padding: 0 }}>
@@ -65,6 +67,10 @@ function App() {
             path="/freelancer-register"
             element={<Freelancer_register />}
           />
+          <Route
+            path="/freelancer-my-works"
+            element={<MyWorks />}
+          />
           <Route path="/freelancer-profile" element={<Freelancer_Profile />} />
           <Route path="/view-request" element={<ViewAllUsersRequests />} />
           <Route path="/view-request/:id" element={<View_Request_Details />} />
@@ -75,6 +81,7 @@ function App() {
             element={<ConsultancyRegister />}
           />
           <Route path="/consultancy-login" element={<ConsultancyLogin />} />
+          <Route path="/consultancy-my-vacancies" element={<MyVacanccies />} />
           <Route path="/consultancy-vacancy-request" element={<Vacancy_request />}/>
 
           {/* Admin routes  */}
