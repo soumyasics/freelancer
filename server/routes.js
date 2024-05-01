@@ -6,6 +6,7 @@ const Payments = require("./Payments/paymentController");
 const workRequest = require("./userWorkRequest/workRequestController");
 const consultancy = require("./consultancy/consultancyController");
 const conWorkRequestRoutes = require("./conWorkRequest/conWorkRequestController");
+const appliedVacencyRoutes = require("./appliedVacencies/appliedVacenciesController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -98,8 +99,25 @@ router.post(
 router.post("/addPayment", Payments.addPayment);
 router.get("/viewAllPayments", Payments.viewAllPayments);
 router.get("/viewPaymentById/:id", Payments.viewPayment);
-router.get("/viewAllPaymentsByFreelancerId/:freelancerId", Payments.getAllPaymentsByFreelancerId);
+router.get(
+  "/viewAllPaymentsByFreelancerId/:freelancerId",
+  Payments.getAllPaymentsByFreelancerId
+);
 
+// applied vacencies
+router.post("/applyVacency", appliedVacencyRoutes.applyVacency);
+router.get(
+  "/viewAllAppliedVacancies",
+  appliedVacencyRoutes.viewAllAppliedVacancies
+);
+router.get(
+  "/viewAllAppliedVacencyByConsultancyId/:id",
+  appliedVacencyRoutes.viewAllAppliedVacencyByConsultancyId
+);
+router.get(
+  "/viewAllAppliedVacencyByFreelancerId/:id",
+  appliedVacencyRoutes.viewAllAppliedVacencyByFreelancerId
+);
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });
 });

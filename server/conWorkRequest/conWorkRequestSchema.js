@@ -5,7 +5,7 @@ const workRequestSchema = new Schema(
     conId: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "users",
+      ref: "consultancy",
     },
     deadline: {
       type: Date,

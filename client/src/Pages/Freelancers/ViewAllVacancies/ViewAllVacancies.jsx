@@ -5,8 +5,10 @@ import Footer from "../../Common/Footer/footer";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import "./ViewAllVacancies.css";
+import { useSelector } from "react-redux";
 
-function ViewAllVacancies() {
+export default function ViewAllVacancies() {
+  const { userId } = useSelector((state) => state.auth);
   const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
 
@@ -32,13 +34,42 @@ function ViewAllVacancies() {
     navigate(`/view-vacancy/${vacancy._id}`);
   };
 
+  const applyVacency = (vacencyId, consultancyId) => {
+    if (!userId) {
+      alert("Login again.");
+      navigate("../freelancer-login");
+      return;
+    }
+    let obj = {
+      vacencyId,
+      freelancerId: userId,
+      consultancyId,
+    };
+    if (obj.vacencyId && obj.freelancerId && obj.consultancyId) {
+      sendDataToServer(obj);
+    } else {
+      console.log("error on apply vacency", obj);
+    }
+  };
+  const sendDataToServer = async (data) => {
+    try {
+      let res = await axiosInstance.post("/applyVacency", data);
+      if (res.status === 200) {
+        alert("Applied successfully");
+        
+      }
+    } catch (error) {
+      console.log("Error on applying vacency", error);
+    }
+  };
+
   return (
     <>
       <Navbar />
       <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
-            Consultancies Vacancy 
+            Consultancies Vacancy
           </h1>
           <Table striped bordered hover>
             <thead className="text-center">
@@ -55,6 +86,7 @@ function ViewAllVacancies() {
             </thead>
             <tbody className="text-center">
               {requests.map((vacancy, index) => (
+                console.log("vaa", vacancy),
                 <tr key={vacancy._id}>
                   <td>{index + 1}</td>
                   <td>{vacancy.title}</td>
@@ -65,8 +97,9 @@ function ViewAllVacancies() {
                   <td>{vacancy.consultancyPhoneNumber}</td>
                   <td>
                     <Button
-                      onClick={() => viewVacancyStatus(vacancy)}
-                      variant="success"
+                      onClick={() => {
+                        applyVacency(vacancy._id, vacancy.conId);
+                      }}
                     >
                       Apply
                     </Button>
@@ -83,5 +116,3 @@ function ViewAllVacancies() {
     </>
   );
 }
-
-export default ViewAllVacancies;

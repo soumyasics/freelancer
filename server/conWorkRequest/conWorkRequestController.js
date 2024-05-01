@@ -36,7 +36,7 @@ const createWorkRequest = async (req, res) => {
       description,
       category,
       budget,
-      consultancyPhoneNumber
+      consultancyPhoneNumber,
     });
     await conWorkRequest.save();
     return res
@@ -69,9 +69,9 @@ const getWorkRequestByUserId = async (req, res) => {
 
 const getAllWorkRequest = async (req, res) => {
   try {
-    const workRequests = await ConsultancyVacencyRequestModel.find({}).populate(
-      "conId"
-    );
+    const workRequests = await ConsultancyVacencyRequestModel.find({})
+      .populate("conId")
+      .exec();
     return res
       .status(200)
       .json({ message: "All work requests", data: workRequests });
@@ -246,7 +246,10 @@ const workRequestUserReplay = async (req, res) => {
     await conWorkRequest.save();
     return res
       .status(200)
-      .json({ message: "User Replay added successfully", data: conWorkRequest });
+      .json({
+        message: "User Replay added successfully",
+        data: conWorkRequest,
+      });
   } catch (err) {
     console.log("Error on post work request replay", err);
     return res
