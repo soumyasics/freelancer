@@ -10,39 +10,33 @@ import { axiosMultipartInstance } from "../../../apis/axiosMultipart";
 import "./consultancyRegister.css";
 export function ConsultancyRegister() {
   const navigate = useNavigate();
-  const [freelancerData, setFreelancerData] = useState({
+  const [consultancyData, setConsultancyData] = useState({
     name: "",
+    contact: "",
     email: "",
     password: "",
-    contact: "",
-    qualification: "",
-    jobrole: "",
+    licenseId: "",
     profilepic: null,
+    address: "",
   });
   // For Testing
-  // const [freelancerData, setFreelancerData] = useState({
+  // const [consultancyData, setConsultancyData] = useState({
   //   name: "myname",
-  //   email: "freelancer@gmail.com",
-  //   password: "12341234",
   //   contact: "1234567890",
-  //   qualification: "bcom",
-  //   jobrole: "designer",
+  //   email: "co3@gmail.com",
+  //   password: "12341234",
+  //   licenseId: "bcom",
   //   profilepic: null,
+  //   address: "co address",
   // });
 
   const handleRegister = (e) => {
     e.preventDefault();
-    let { name, email, password, contact, qualification, jobrole, profilepic } =
-      freelancerData;
+    let { name, email, password, contact, licenseId, address, profilepic } =
+      consultancyData;
 
-    if (
-      !name ||
-      !email ||
-      !password ||
-      !contact ||
-      !qualification ||
-      !jobrole
-    ) {
+    console.log("consul data", consultancyData);
+    if (!name || !email || !password || !contact || !licenseId || !address) {
       alert("Please Fill All Details");
       return;
     }
@@ -61,13 +55,13 @@ export function ConsultancyRegister() {
   const sendDataToServer = async () => {
     try {
       let res = await axiosMultipartInstance.post(
-        "/freelancerRegistration",
-        freelancerData
+        "/consultancyRegistration",
+        consultancyData
       );
       if (res.status === 201) {
         alert("Registration Successfull");
         setTimeout(() => {
-          redirectFreelancerLogin();
+          redirectConsultancyLogin();
         }, 1500);
       }
     } catch (error) {
@@ -86,14 +80,14 @@ export function ConsultancyRegister() {
   };
   const handleChanges = (e) => {
     const { name, value } = e.target;
-    setFreelancerData((prevData) => ({
+    setConsultancyData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const redirectFreelancerLogin = () => {
-    navigate("/freelancer-login");
+  const redirectConsultancyLogin = () => {
+    navigate("/consultancy-login");
   };
 
   return (
@@ -123,7 +117,7 @@ export function ConsultancyRegister() {
                         required
                         name="name"
                         onChange={handleChanges}
-                        value={freelancerData.name}
+                        value={consultancyData.name}
                       />
                     </div>
                     <div className="mb-3">
@@ -143,7 +137,7 @@ export function ConsultancyRegister() {
                         required
                         name="contact"
                         onChange={handleChanges}
-                        value={freelancerData.contact}
+                        value={consultancyData.contact}
                       />
                     </div>
                     <div className="mb-3">
@@ -159,7 +153,7 @@ export function ConsultancyRegister() {
                         id="email"
                         aria-describedby="emailHelp"
                         required
-                        value={freelancerData.email}
+                        value={consultancyData.email}
                         onChange={handleChanges}
                         name="email"
                       />
@@ -180,7 +174,7 @@ export function ConsultancyRegister() {
                         id="password"
                         minLength="6"
                         required
-                        value={freelancerData.password}
+                        value={consultancyData.password}
                         onChange={handleChanges}
                         name="password"
                       />
@@ -192,15 +186,18 @@ export function ConsultancyRegister() {
                         className="form-label user-login-label"
                       >
                         {" "}
-                        Qualification
+                        License No (10 digits)
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="qualification"
-                        name="qualification"
+                        id="licenseId"
+                        name="licenseId"
+                        required
+                        minLength="10"
+                        maxLength="10"
                         onChange={handleChanges}
-                        value={freelancerData.qualification}
+                        value={consultancyData.licenseId}
                       />
                     </div>
                     <div className="mb-3">
@@ -209,16 +206,16 @@ export function ConsultancyRegister() {
                         className="form-label user-login-label"
                       >
                         {" "}
-                        Job Role
+                        Address
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="jobrole"
+                        id="address"
                         required
-                        name="jobrole"
+                        name="address"
                         onChange={handleChanges}
-                        value={freelancerData.jobrole}
+                        value={consultancyData.address}
                       />
                     </div>
 
@@ -236,7 +233,7 @@ export function ConsultancyRegister() {
                         id="profilepic"
                         name="profilepic"
                         onChange={(e) => {
-                          setFreelancerData((prevData) => {
+                          setConsultancyData((prevData) => {
                             return {
                               ...prevData,
                               profilepic: e.target.files[0],
@@ -259,7 +256,7 @@ export function ConsultancyRegister() {
                     Alread have an account?
                     <span
                       style={{ cursor: "pointer" }}
-                      onClick={redirectFreelancerLogin}
+                      onClick={redirectConsultancyLogin}
                       className="fw-bold ms-2 text-decoration-none text-primary"
                     >
                       Login

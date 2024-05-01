@@ -30,6 +30,10 @@ function Navbar() {
     navigate("/");
   };
 
+  const redirectConsultancyLogin = () => {
+    navigate("/consultancy-login");
+  };
+
   const handleLogout = () => {
     if (localStorage.getItem("freelancerData")) {
       localStorage.removeItem("freelancerData");
@@ -163,7 +167,13 @@ function Navbar() {
                       onClick={redirectFreelancerLogin}
                       style={{ cursor: "pointer" }}
                     >
-                      <p className="dropdown-item">Freelancer</p>
+                      <p className="m-0 dropdown-item">Freelancer</p>
+                    </li>
+                    <li
+                      onClick={redirectConsultancyLogin}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <p className="dropdown-item">Consultancy</p>
                     </li>
                     {/* <li>
                     <a className="dropdown-item" href="#">

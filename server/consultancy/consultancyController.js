@@ -1,6 +1,4 @@
-const express = require("express");
-const router = express.Router();
-const Freelancer = require("./freelancerSchema");
+const ConsultancyModel = require("./consultancySchema");
 
 const multer = require("multer");
 
@@ -14,62 +12,37 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage }).single("profilepic");
-const freelancerRegistration = async (req, res) => {
-  console.log("ff req.body", req.body)
+const consultancyRegistration = async (req, res) => {
   const { email } = req.body;
-  const existingFreelancer = await Freelancer.findOne({ email });
-  if (existingFreelancer) {
+  const existingConsultancy = await ConsultancyModel.findOne({ email });
+  if (existingConsultancy) {
     return res.status(400).json({ message: "Email id already taken" });
   }
   try {
-    const freelancer = await new Freelancer({
+    const consultancy = await new ConsultancyModel({
       name: req.body.name,
+      contact: req.body.contact,
       email: req.body.email,
       password: req.body.password,
-      contact: req.body.contact,
-      qualification: req.body.qualification,
+      licenseId: req.body.licenseId,
       profilepic: req.file,
-      age: req.body.age,
-      jobrole: req.body.jobrole,
+      address: req.body.address,
     });
-    await freelancer.save();
-    res.status(201).json({
-      message: "Freelancer registered successfully",
-      data: freelancer,
+    await consultancy.save();
+    return res.status(201).json({
+      message: "ConsultancyModel registered successfully",
+      data: consultancy,
     });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
 
-const getAllFreelancers = async (req, res) => {
-  try {
-    const freelancers = await Freelancer.find({});
-    res.status(200).json({ message: "All freelancers", data: freelancers });
-  } catch (error) {
-    res.status(500).json(error);
-  }
-};
-
-const getFreelancerById = async (req, res) => {
-  const _id = req.params.id;
-  try {
-    const freelancer = await Freelancer.findById(_id);
-    if (!freelancer) {
-      return res.status(404).json({ message: "Freelancer not found." });
-    }
-    res.status(200).send({ data: freelancer, message: "Freelancer found." });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-//Login Artist
-const loginFreelancer = (req, res) => {
+const consultanyLogin = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  Freelancer.findOne({ email: email })
+  ConsultancyModel.findOne({ email: email })
     .exec()
     .then((data) => {
       if (!data) {
@@ -99,11 +72,39 @@ const loginFreelancer = (req, res) => {
     });
 };
 
+const getAllConsultancy = async (req, res) => {
+  try {
+    const consultancies = await ConsultancyModel.find({});
+    return res
+      .status(200)
+      .json({ message: "All Consultancy", data: consultancies });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Server Error", error: error.message });
+  }
+};
+
+const getConsultancyById = async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const consultancy = await ConsultancyModel.findById(_id);
+    if (!consultancy) {
+      return res.status(404).json({ message: "ConsultancyModel not found." });
+    }
+    res
+      .status(200)
+      .send({ data: consultancy, message: "ConsultancyModel found." });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 //Login --finished
 
 //update  by id
 const editFreelancerById = (req, res) => {
-  Freelancer.findByIdAndUpdate(
+  ConsultancyModel.findByIdAndUpdate(
     { _id: req.params.id },
     {
       name: req.body.name,
@@ -132,7 +133,7 @@ const editFreelancerById = (req, res) => {
 };
 
 const deleteFreelancerById = (req, res) => {
-  Freelancer.findByIdAndDelete({ _id: req.params.id })
+  ConsultancyModel.findByIdAndDelete({ _id: req.params.id })
     .exec()
     .then((data) => {
       console.log(data);
@@ -153,7 +154,7 @@ const deleteFreelancerById = (req, res) => {
 };
 //forgotvPawd
 const forgotPwd = (req, res) => {
-  Freelancer.findOneAndUpdate(
+  ConsultancyModel.findOneAndUpdate(
     { email: req.body.email },
     {
       password: req.body.password,
@@ -183,11 +184,11 @@ const forgotPwd = (req, res) => {
 };
 
 module.exports = {
-  freelancerRegistration,
-  getAllFreelancers,
-  getFreelancerById,
+  getAllConsultancy,
+  getConsultancyById,
+  consultancyRegistration,
+  consultanyLogin,
   upload,
-  loginFreelancer,
   editFreelancerById,
   deleteFreelancerById,
   forgotPwd,
