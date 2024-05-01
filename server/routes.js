@@ -98,6 +98,7 @@ router.post(
 router.post("/addPayment", Payments.addPayment);
 router.get("/viewAllPayments", Payments.viewAllPayments);
 router.get("/viewPaymentById/:id", Payments.viewPayment);
+router.get("/viewAllPaymentsByFreelancerId/:freelancerId", Payments.getAllPaymentsByFreelancerId);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });

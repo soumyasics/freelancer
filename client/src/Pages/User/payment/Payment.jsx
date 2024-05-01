@@ -63,6 +63,7 @@ function Payment() {
     console.log("sdnd")
     try {
       let res = await axiosInstance.post("/addPayment", paymentDetails);
+      console.log("respon", res)
       if (res.status === 201) {
         alert("Payment added successfully");
         //TODO navigate to my acitivy page.

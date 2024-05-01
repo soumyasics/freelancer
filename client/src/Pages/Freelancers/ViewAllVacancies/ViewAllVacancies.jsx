@@ -38,7 +38,7 @@ function ViewAllVacancies() {
       <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
-            Consultancy Vacancy Requests
+            Consultancies Vacancy 
           </h1>
           <Table striped bordered hover>
             <thead className="text-center">
@@ -50,7 +50,7 @@ function ViewAllVacancies() {
                 <th>Budget</th>
                 <th>Deadline</th>
                 <th>Consultancy Phone Number</th>
-                <th>Action</th>
+                <th>Apply</th>
               </tr>
             </thead>
             <tbody className="text-center">
@@ -66,9 +66,9 @@ function ViewAllVacancies() {
                   <td>
                     <Button
                       onClick={() => viewVacancyStatus(vacancy)}
-                      variant="warning"
+                      variant="success"
                     >
-                      View Status
+                      Apply
                     </Button>
                   </td>
                 </tr>
