@@ -60,7 +60,7 @@ export  function ConsultancyLogin() {
         setTimeout(() => {
           // TODO
           // Redirect here to consultany  home page
-          navigate("/");
+          navigate("/consultancy-home");
         }, 1500);
       }
     } catch (error) {
