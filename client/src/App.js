@@ -27,6 +27,7 @@ import { ConsultancyRegister } from "./Pages/consultancy/register/consultancyReg
 import { ConsultancyLogin } from "./Pages/consultancy/login/consultancyLogin.jsx";
 import Vacancy_request from "./Pages/consultancy/vacancy_request/Vacancy_request.jsx";
 import ViewAllVacancies from "./Pages/Freelancers/ViewAllVacancies/ViewAllVacancies.jsx";
+import ConsultancyHome from "./Pages/consultancy/home/ConsultancyHome.jsx";
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
           />
           <Route path="/consultancy-login" element={<ConsultancyLogin />} />
           <Route path="/consultancy-vacancy-request" element={<Vacancy_request />}/>
+          <Route path="/consultancy-home" element={<ConsultancyHome />}/>
 
           {/* Admin routes  */}
           <Route path="/admin" element={<Admin_login />} />
