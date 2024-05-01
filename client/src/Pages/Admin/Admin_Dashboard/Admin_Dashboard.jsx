@@ -6,6 +6,7 @@ import { BsGrid, BsPeople, BsPerson, BsCollectionFill } from "react-icons/bs";
 import Admin_ViewAllFreelancers from "../Admin_ViewAllFreelancers/Admin_ViewAllFreelancers";
 import Admin_ViewAllUsers from "../Admin_ViewAllUsers/Admin_ViewAllUsers";
 import Admin_ViewAllRequests from "../Admin_ViewAllRequests/Admin_ViewAllRequests";
+import { AdminViewAllConsultancy } from "../Admin_ViewAllConsultancy/Admin_ViewAllConsultancy";
 
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -72,6 +73,19 @@ function Admin_Dashboard() {
                 Requests
               </Link>
             </li>
+            <li className="nav-item m-1 p-1">
+              <Link
+                onClick={() => {
+                  setShowSidebar(false);
+                  setActivePage("consultancies");
+                }}
+                className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                style={{ color: "inherit" }}
+              >
+                <BsCollectionFill className="me-2" />
+                Consultancies
+              </Link>
+            </li>
             {/* Add more menu items */}
           </ul>
         </Offcanvas.Body>
@@ -83,6 +97,7 @@ function Admin_Dashboard() {
         {activePage === "users" && <Admin_ViewAllUsers />}
         {activePage === "freelancers" && <Admin_ViewAllFreelancers />}
         {activePage === "requests" && <Admin_ViewAllRequests />}
+        {activePage === "consultancies" && <AdminViewAllConsultancy />}
       </main>
     </Container>
   );
