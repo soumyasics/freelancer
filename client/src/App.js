@@ -25,6 +25,7 @@ import View_Request_Details from "./Pages/Freelancers/View_Request_Details/View_
 import Payment_Details from "./Pages/User/Payment_Details/Payment_Details.jsx";
 import { ConsultancyRegister } from "./Pages/consultancy/register/consultancyRegister.jsx";
 import { ConsultancyLogin } from "./Pages/consultancy/login/consultancyLogin.jsx";
+import Vacancy_request from "./Pages/consultancy/vacancy_request/Vacancy_request.jsx";
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
             element={<ConsultancyRegister />}
           />
           <Route path="/consultancy-login" element={<ConsultancyLogin />} />
+          <Route path="/consultancy-vacancy-request" element={<Vacancy_request />}/>
 
           {/* Admin routes  */}
           <Route path="/admin" element={<Admin_login />} />
