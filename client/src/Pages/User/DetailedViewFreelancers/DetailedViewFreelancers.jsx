@@ -55,8 +55,7 @@ function DetailedViewFreelancers() {
                   <Card.Text>
                     Qualification: {freelancerData?.qualification}
                   </Card.Text>
-                  <Card.Text>Age: 26</Card.Text>
-                  <Card.Text>Job Role: Angular Developer</Card.Text>
+                  <Card.Text>Job Role: {freelancerData?.jobrole}</Card.Text>
                 </Card.Body>
               </Card>
             </Col>

@@ -27,7 +27,7 @@ import { ConsultancyRegister } from "./Pages/consultancy/register/consultancyReg
 import { ConsultancyLogin } from "./Pages/consultancy/login/consultancyLogin.jsx";
 import Vacancy_request from "./Pages/consultancy/vacancy_request/Vacancy_request.jsx";
 import ViewAllVacancies from "./Pages/Freelancers/ViewAllVacancies/ViewAllVacancies.jsx";
-
+import {AdminViewAllConsultancy} from "./Pages/Admin/Admin_ViewAllConsultancy/Admin_ViewAllConsultancy.jsx";
 function App() {
   return (
     <div className="container-fluid bg-hero m-auto " style={{ padding: 0 }}>
@@ -84,6 +84,7 @@ function App() {
             path="/admin-view-all-users"
             element={<Admin_ViewAllUsers />}
           />
+     
           <Route
             path="/admin-view-all-freelancers"
             element={<Admin_ViewAllFreelancers />}
@@ -91,6 +92,10 @@ function App() {
           <Route
             path="/admin-view-all-requests"
             element={<Admin_ViewAllRequests />}
+          />
+          <Route
+            path="/admin-view-all-consultancy"
+            element={<AdminViewAllConsultancy />}
           />
           <Route path="/testing" element={<Testing />} />
           <Route path="/*" element={<h1> Please re-check the Route </h1>} />

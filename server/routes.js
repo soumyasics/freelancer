@@ -1,10 +1,10 @@
-
 const express = require("express");
 const router = express.Router();
 const freelancer = require("./Freelancers/freelancerController");
 const user = require("./User/userController");
-const Payments = require('./Payments/paymentController');
+const Payments = require("./Payments/paymentController");
 const workRequest = require("./userWorkRequest/workRequestController");
+const consultancy = require("./consultancy/consultancyController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -17,7 +17,6 @@ router.get("/getAllFreelancers", freelancer.getAllFreelancers);
 router.post("/getFreelancerById/:id", freelancer.getFreelancerById);
 router.post("/deleteFreelancerById/:id", freelancer.deleteFreelancerById);
 router.post("/forgotPwd", freelancer.forgotPwd);
-
 
 // user routes
 router.post("/userRegistration", user.userRegistration);
@@ -48,15 +47,22 @@ router.post(
 );
 router.post("/workRequestUserReplay/:id", workRequest.workRequestUserReplay);
 
-
+// consultancy
+router.post(
+  "/consultancyRegistration",
+  consultancy.upload,
+  consultancy.consultancyRegistration
+);
+router.post("/consultancyLogin", consultancy.consultanyLogin);
+router.get("/getAllConsultancy", consultancy.getAllConsultancy);
+router.get("/getConsultancyById/:id", consultancy.getConsultancyById);
 
 //payments
-router.post('/addPayment',Payments.addPayment)
-router.get('/viewAllPayments',Payments.viewAllPayments)
-router.get('/viewPaymentById/:id',Payments.viewPayment)
+router.post("/addPayment", Payments.addPayment);
+router.get("/viewAllPayments", Payments.viewAllPayments);
+router.get("/viewPaymentById/:id", Payments.viewPayment);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });
 });
 module.exports = router;
-
