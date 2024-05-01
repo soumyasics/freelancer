@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import "./ConsultancyProfile.css";
 import defaultProfilePic from "../../../Assets/30-307416_profile-icon-png-image-free-download-searchpng-employee.png";
 import defaultIllustration from "../../../Assets/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector.jpg";
-import axios from "axios";
-
+import { axiosInstance } from "../../../apis/axiosInstance";
+import { BASE_URL } from "../../../apis/baseUrl";
 function ConsultancyProfile() {
   const [consultancyData, setConsultancyData] = useState(null);
   const navigate = useNavigate();
   const { userId } = useSelector((state) => state.auth);
 
+  const [proPic, setProPic] = useState(defaultProfilePic);
   useEffect(() => {
     if (!userId) {
       alert("Please login again..");
@@ -25,9 +26,15 @@ function ConsultancyProfile() {
     }
   }, []);
 
+  useEffect(() => {
+    if (consultancyData && consultancyData.profilepic) {
+      const imageUrl = BASE_URL + consultancyData.profilepic;
+      setProPic(imageUrl);
+    }
+  }, [])
   const getConsultancyProfile = async () => {
     try {
-      const res = await axios.get(`/getConsultancyById/${userId}`);
+      const res = await axiosInstance.get(`/getConsultancyById/${userId}`);
       if (res.status === 200) {
         setConsultancyData(res.data.data);
       } else {
@@ -48,7 +55,7 @@ function ConsultancyProfile() {
             <Col xs={12} md={6} className="mb-3 mb-md-0">
               <div className="d-flex align-items-center">
                 <Image
-                  src={consultancyData.profilepic || defaultProfilePic}
+                  src={proPic}
                   alt="Profile Picture"
                   roundedCircle
                   width={200}
