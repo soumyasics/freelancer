@@ -30,6 +30,10 @@ function Navbar() {
     navigate("/");
   };
 
+  const redirectConsultancyLogin = () => {
+    navigate("/consultancy-login");
+  };
+
   const handleLogout = () => {
     if (localStorage.getItem("freelancerData")) {
       localStorage.removeItem("freelancerData");
@@ -49,11 +53,18 @@ function Navbar() {
   };
   const redirectProfile = () => {
     if (userType === "user") {
-      navigate("/user-profile");
-    }else if (userType === "freelancer") {
-      navigate("/freelancer-profile");
+      navigate("../user-profile");
+    } else if (userType === "freelancer") {
+      navigate("../freelancer-profile");
     }
-  }
+  };
+  const redirectWorkVacancies = () => {
+    navigate("../consultancy-vacancy-request");
+  };
+  const redirectViewAllVacancies = () => {
+    navigate("../view-all-vacancies");
+  };
+
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
@@ -102,14 +113,32 @@ function Navbar() {
                   <p className="nav-link">Request Work</p>
                 </li>
               )}
-              {userType === "freelancer" && (
+              {userType === "consultancy" && (
                 <li
-                  className="nav-item m-3"
                   style={{ cursor: "pointer" }}
-                  onClick={redirectViewRequests}
+                  className="nav-item m-3"
+                  onClick={redirectWorkVacancies}
                 >
-                  <p className="nav-link">View Requests</p>
+                  <p className="nav-link">Add vacancies</p>
                 </li>
+              )}
+              {userType === "freelancer" && (
+                <>
+                  <li
+                    className="nav-item m-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={redirectViewRequests}
+                  >
+                    <p className="nav-link">View Requests</p>
+                  </li>
+                  <li
+                    className="nav-item m-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={redirectViewAllVacancies}
+                  >
+                    <p className="nav-link">View Vacancies</p>
+                  </li>
+                </>
               )}
               {userType === "user" && (
                 <li
@@ -122,9 +151,11 @@ function Navbar() {
               )}
               {isUserLoggedIn ? (
                 <>
-                  <li className="nav-item m-3" style={{cursor: "pointer"}}>
+                  <li className="nav-item m-3" style={{ cursor: "pointer" }}>
                     {/* <p className="nav-link">Profile</p> */}
-                    <p className="nav-link" onClick={redirectProfile}>Profile</p>
+                    <p className="nav-link" onClick={redirectProfile}>
+                      Profile
+                    </p>
                   </li>
                   <li className="nav-item m-3 ">
                     {/* <p className="nav-link">Profile</p> */}
@@ -163,7 +194,13 @@ function Navbar() {
                       onClick={redirectFreelancerLogin}
                       style={{ cursor: "pointer" }}
                     >
-                      <p className="dropdown-item">Freelancer</p>
+                      <p className="m-0 dropdown-item">Freelancer</p>
+                    </li>
+                    <li
+                      onClick={redirectConsultancyLogin}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <p className="dropdown-item">Consultancy</p>
                     </li>
                     {/* <li>
                     <a className="dropdown-item" href="#">

@@ -65,7 +65,9 @@ function Freelancer_Profile({ user }) {
                 </Button> */}
               </Col>
               <Col xs="auto">
-                <Button variant="info" size="sm">
+                <Button variant="info" size="sm" onClick={() => {
+                  navigate('/view-request')
+                }}>
                   <FaListAlt className="me-2" />
                   View All Request
                 </Button>

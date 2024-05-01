@@ -43,7 +43,7 @@ export  function ConsultancyLogin() {
 
   const sendDataToServer = async () => {
     try {
-      let res = await axiosInstance.post("/freelancerLogin", freelancerData);
+      let res = await axiosInstance.post("/consultancyLogin", freelancerData);
       if (res.status === 200) {
         alert("Login Successfull");
 
@@ -52,14 +52,14 @@ export  function ConsultancyLogin() {
           let obj = {
             userData: data,
             userId: data._id,
-            userType: "freelancer"
+            userType: "consultancy",
           }
           dispatch(loginSuccess(obj));
           localStorage.setItem("freelancerData",JSON.stringify(obj));
         }
         setTimeout(() => {
           // TODO
-          // Redirect here to freelancer home page
+          // Redirect here to consultany  home page
           navigate("/");
         }, 1500);
       }
@@ -78,8 +78,8 @@ export  function ConsultancyLogin() {
       console.log("Error on freelancer login ", error);
     }
   };
-  const redirectFreelancerRegister = () => {
-    navigate("/freelancer-register");
+  const redirectConsultancyRegister = () => {
+    navigate("/consultancy-register");
   };
   return (
     <div className="freelancer-login container-fluid">
@@ -152,9 +152,9 @@ export  function ConsultancyLogin() {
                       <p
                         style={{ cursor: "pointer" }}
                         className="fs-5 mb-0 fw-bold"
-                        onClick={redirectFreelancerRegister}
+                        onClick={redirectConsultancyRegister}
                       >
-                        Create an freelancer account
+                        Create an Consultancy account
                       </p>
                     </div>
                   </form>

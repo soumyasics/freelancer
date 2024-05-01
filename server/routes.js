@@ -1,10 +1,11 @@
-
 const express = require("express");
 const router = express.Router();
 const freelancer = require("./Freelancers/freelancerController");
 const user = require("./User/userController");
-const Payments = require('./Payments/paymentController');
+const Payments = require("./Payments/paymentController");
 const workRequest = require("./userWorkRequest/workRequestController");
+const consultancy = require("./consultancy/consultancyController");
+const conWorkRequestRoutes = require("./conWorkRequest/conWorkRequestController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -17,7 +18,6 @@ router.get("/getAllFreelancers", freelancer.getAllFreelancers);
 router.post("/getFreelancerById/:id", freelancer.getFreelancerById);
 router.post("/deleteFreelancerById/:id", freelancer.deleteFreelancerById);
 router.post("/forgotPwd", freelancer.forgotPwd);
-
 
 // user routes
 router.post("/userRegistration", user.userRegistration);
@@ -48,15 +48,58 @@ router.post(
 );
 router.post("/workRequestUserReplay/:id", workRequest.workRequestUserReplay);
 
+// consultancy
+router.post(
+  "/consultancyRegistration",
+  consultancy.upload,
+  consultancy.consultancyRegistration
+);
+router.post("/consultancyLogin", consultancy.consultanyLogin);
+router.get("/getAllConsultancy", consultancy.getAllConsultancy);
+router.get("/getConsultancyById/:id", consultancy.getConsultancyById);
 
+// consultancy work requst routs
+router.post("/con-createWorkRequest", conWorkRequestRoutes.createWorkRequest);
+router.get(
+  "/con-getWorkRequestsByUserid/:id",
+  conWorkRequestRoutes.getWorkRequestByUserId
+);
+router.get("/con-getAllWorkRequest", conWorkRequestRoutes.getAllWorkRequest);
+router.get(
+  "/con-getWorkRequestById/:id",
+  conWorkRequestRoutes.getWorkRequestById
+);
+router.patch(
+  "/con-makeWorkRequestPending/:id",
+  conWorkRequestRoutes.makeWorkRequestPending
+);
+router.patch(
+  "/con-makeWorkRequestProgress/:id",
+  conWorkRequestRoutes.makeWorkRequestProgress
+);
+router.patch(
+  "/con-makeWorkRequestCompleted/:id",
+  conWorkRequestRoutes.makeWorkRequestCompleted
+);
+router.patch(
+  "/con-makeWorkRequestCancelled/:id",
+  conWorkRequestRoutes.makeWorkRequestCancelled
+);
+router.post(
+  "/con-workRequestFreelancerResponse/:id",
+  conWorkRequestRoutes.workRequestFreelancerResponse
+);
+router.post(
+  "/con-workRequestUserReplay/:id",
+  conWorkRequestRoutes.workRequestUserReplay
+);
 
 //payments
-router.post('/addPayment',Payments.addPayment)
-router.get('/viewAllPayments',Payments.viewAllPayments)
-router.get('/viewPaymentById/:id',Payments.viewPayment)
+router.post("/addPayment", Payments.addPayment);
+router.get("/viewAllPayments", Payments.viewAllPayments);
+router.get("/viewPaymentById/:id", Payments.viewPayment);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });
 });
 module.exports = router;
-

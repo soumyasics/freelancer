@@ -13,10 +13,11 @@ import "./Vacancy_request.css";
 
 const Vacancy_request = () => {
   const [validated, setValidated] = useState(false);
+  
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState({
-    userId: "",
+    conId: "",
     title: "",
     description: "",
     budget: "",
@@ -27,7 +28,7 @@ const Vacancy_request = () => {
 
   useEffect(() => {
     if (userId) {
-      setRequestData({ ...requestData, userId });
+      setRequestData({ ...requestData, conId: userId });
     } else {
       alert("Please login again..");
       setTimeout(() => {
@@ -43,7 +44,7 @@ const Vacancy_request = () => {
     setValidated(true);
 
     if (
-      !requestData.userId ||
+      !requestData.conId ||
       !requestData.title ||
       !requestData.description ||
       !requestData.budget ||
@@ -60,11 +61,12 @@ const Vacancy_request = () => {
 
   const sendDataToServer = async () => {
     try {
-      let res = await axiosInstance.post("/createVacancyRequest", requestData); // Assuming this endpoint exists
+      let res = await axiosInstance.post("/con-createWorkRequest", requestData); // Assuming this endpoint exists
+      console.log("respo", res)
       if (res.status == 201) {
         alert("Request sent successfully.");
         setTimeout(() => {
-          navigate('/user-myrequests')
+          // navigate('/user-myrequests')
         }, 1000)
       }
     } catch (err) {
@@ -88,7 +90,6 @@ const Vacancy_request = () => {
     });
   };
 
-  console.log("req work", requestData);
 
   return (
     <>
@@ -191,6 +192,9 @@ const Vacancy_request = () => {
                 type="tel"
                 placeholder="Consultancy Phone Number"
                 name="consultancyPhoneNumber"
+                pattern="[0-9]{10}"
+                maxLength="10"
+                minLength="10"
                 value={requestData.consultancyPhoneNumber}
                 onChange={handleChanges}
                 required

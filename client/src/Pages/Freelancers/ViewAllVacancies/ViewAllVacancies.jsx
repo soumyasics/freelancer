@@ -16,7 +16,7 @@ function ViewAllVacancies() {
 
   const getVacanciesData = async () => {
     try {
-      const res = await axiosInstance.get("/getAllVacancyRequests");
+      const res = await axiosInstance.get("/con-getAllWorkRequest");
       if (res.status === 200) {
         let data = res.data?.data || [];
         setRequests(data);
