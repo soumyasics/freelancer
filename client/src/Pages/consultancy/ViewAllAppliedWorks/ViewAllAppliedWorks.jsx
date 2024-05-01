@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 function ViewAllAppliedWorks() {
   const [appliedWorks, setAppliedWorks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { userId } = useSelector((state) => state.auth);
 
@@ -25,7 +24,9 @@ function ViewAllAppliedWorks() {
 
   const getAppliedWorksData = async () => {
     try {
-      const res = await axiosInstance.get("/getAllAppliedWorks");
+      const res = await axiosInstance.get(
+        "/viewAllAppliedVacencyByConsultancyId/" + userId
+      );
       if (res.status === 200) {
         const data = res.data?.data || [];
         setAppliedWorks(data);
@@ -34,8 +35,6 @@ function ViewAllAppliedWorks() {
       }
     } catch (error) {
       console.log("Error fetching applied works", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -49,49 +48,35 @@ function ViewAllAppliedWorks() {
       <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
-            Applied Works
+            Freelancer Applied Works
           </h1>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : appliedWorks.length === 0 ? (
-            <p>No Applied Works</p>
-          ) : (
-            <Table striped bordered hover>
-              <thead className="text-center">
-                <tr>
-                  <th>No</th>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Category</th>
-                  <th>Budget</th>
-                  <th>Deadline</th>
-                  <th>Consultancy Phone Number</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody className="text-center">
-                {appliedWorks.map((work, index) => (
+
+          <Table striped bordered hover>
+            <thead className="text-center">
+              <tr>
+                <th>No</th>
+                <th>Freelancer Name</th>
+                <th>Freelancer Email</th>
+                <th>Freelancer Contact</th>
+                <th>Category</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody className="text-center">
+              {appliedWorks.map((work, index) => {
+                return (
                   <tr key={work._id}>
                     <td>{index + 1}</td>
-                    <td>{work.title}</td>
-                    <td>{work.description}</td>
-                    <td>{work.category}</td>
-                    <td>{work.budget}</td>
-                    <td>{work.deadline?.substring(0, 10)}</td>
-                    <td>{work.consultancyPhoneNumber}</td>
-                    <td>
-                      <Button
-                        onClick={() => viewWorkStatus(work)}
-                        variant="warning"
-                      >
-                        View Status
-                      </Button>
-                    </td>
+                    <td>{work?.freelancerId?.name}</td>
+                    <td>{work?.freelancerId?.email}</td>
+                    <td>{work?.freelancerId?.contact}</td>
+                    <td>{work?.vacencyId?.category}</td>
+                    <td>{work.vacencyId?.description}</td>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          )}
+                );
+              })}
+            </tbody>
+          </Table>
         </Container>
       </div>
       <div style={{ position: "relative", top: "400px" }}>
