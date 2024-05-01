@@ -13,6 +13,7 @@ import "./Vacancy_request.css";
 
 const Vacancy_request = () => {
   const [validated, setValidated] = useState(false);
+  
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState({
@@ -191,6 +192,9 @@ const Vacancy_request = () => {
                 type="tel"
                 placeholder="Consultancy Phone Number"
                 name="consultancyPhoneNumber"
+                pattern="[0-9]{10}"
+                maxLength="10"
+                minLength="10"
                 value={requestData.consultancyPhoneNumber}
                 onChange={handleChanges}
                 required
