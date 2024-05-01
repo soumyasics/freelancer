@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import "./freelancer_register.css";
+
 import { useNavigate } from "react-router-dom";
 import {
   isEmailValid,
   isPhoneNumberValid,
 } from "../../../utils/validations/emailValidation";
 import { axiosMultipartInstance } from "../../../apis/axiosMultipart";
-function Freelancer_register() {
-  
+import "./consultancyRegister.css";
+export function ConsultancyRegister() {
   const navigate = useNavigate();
   const [freelancerData, setFreelancerData] = useState({
     name: "",
@@ -44,7 +44,7 @@ function Freelancer_register() {
       !jobrole
     ) {
       alert("Please Fill All Details");
-      return; 
+      return;
     }
     if (!isEmailValid(email)) {
       alert("Please Enter Valid Email");
@@ -68,7 +68,7 @@ function Freelancer_register() {
         alert("Registration Successfull");
         setTimeout(() => {
           redirectFreelancerLogin();
-        }, 1500)
+        }, 1500);
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;
@@ -105,7 +105,7 @@ function Freelancer_register() {
               <div className="card mb-0 p-4">
                 <div className="card-body">
                   <h2 className="text-center freelancer-register-heading mb-3">
-                    Freelancer Registration
+                    Consultancy Registration
                   </h2>
                   <form onSubmit={handleRegister}>
                     <div className="mb-3">
@@ -274,5 +274,3 @@ function Freelancer_register() {
     </div>
   );
 }
-
-export default Freelancer_register;

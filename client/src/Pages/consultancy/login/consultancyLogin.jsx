@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { isEmailValid } from "../../../utils/validations/emailValidation";
-import "./freelancer_login.css";
 import {useDispatch} from 'react-redux';
 import { loginSuccess } from "../../../redux/slices/authSlice";
+import "./consultancyLogin.css";
 
-function Freelancer_login() {
+export  function ConsultancyLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -90,7 +90,7 @@ function Freelancer_login() {
               <div className="card mb-0 p-4">
                 <div className="card-body">
                   <h2 className="text-center freelancer-login-heading mb-2">
-                    Freelancer Login
+                    Consultancy Login
                   </h2>
                   <form onSubmit={handleLogin}>
                     <div className="mb-3">
@@ -168,4 +168,3 @@ function Freelancer_login() {
   );
 }
 
-export default Freelancer_login;

@@ -14,7 +14,7 @@ import MyRequests from "./Pages/User/my_request/my_request";
 import Testing from "./testing";
 import ViewAllUsersRequests from "./Pages/Freelancers/View_Request/view_request";
 import DetailedViewFreelancers from "./Pages/User/DetailedViewFreelancers/DetailedViewFreelancers";
-import {ViewResponseDetails} from "./Pages/User/responseDetails/responseDetails.jsx";
+import { ViewResponseDetails } from "./Pages/User/responseDetails/responseDetails.jsx";
 import User_Profile from "./Pages/User/User_Profile/User_Profile";
 import Admin_Dashboard from "./Pages/Admin/Admin_Dashboard/Admin_Dashboard.jsx";
 import Admin_ViewAllUsers from "./Pages/Admin/Admin_ViewAllUsers/Admin_ViewAllUsers.jsx";
@@ -23,6 +23,8 @@ import Admin_ViewAllRequests from "./Pages/Admin/Admin_ViewAllRequests/Admin_Vie
 import Freelancer_Profile from "./Pages/Freelancers/Freelancer_Profile/Freelancer_Profile.jsx";
 import View_Request_Details from "./Pages/Freelancers/View_Request_Details/View_Request_Details.jsx";
 import Payment_Details from "./Pages/User/Payment_Details/Payment_Details.jsx";
+import { ConsultancyRegister } from "./Pages/consultancy/register/consultancyRegister.jsx";
+import { ConsultancyLogin } from "./Pages/consultancy/login/consultancyLogin.jsx";
 
 function App() {
   return (
@@ -43,7 +45,10 @@ function App() {
           />
           <Route path="/user-profile" element={<User_Profile />} />
 
-          <Route path="/view-all-freelancers" element={<ViewAllFreelancers />} />
+          <Route
+            path="/view-all-freelancers"
+            element={<ViewAllFreelancers />}
+          />
           {/* <Route path='/detailed-view-freelancers' element={<DetailedViewFreelancers />} /> */}
           <Route path="/payment" element={<Payment />} />
           <Route path="/payment-details" element={<Payment_Details />} />
@@ -58,15 +63,31 @@ function App() {
             path="/freelancer-register"
             element={<Freelancer_register />}
           />
-          <Route path="/freelancer-profile" element={<Freelancer_Profile/>} />
+          <Route path="/freelancer-profile" element={<Freelancer_Profile />} />
           <Route path="/view-request" element={<ViewAllUsersRequests />} />
           <Route path="/view-request/:id" element={<View_Request_Details />} />
+          {/* consultancy routes  */}
+          <Route
+            path="/consultancy-register"
+            element={<ConsultancyRegister />}
+          />
+          <Route path="/consultancy-login" element={<ConsultancyLogin />} />
+
           {/* Admin routes  */}
           <Route path="/admin" element={<Admin_login />} />
-          <Route path="/admin-dashboard" element={<Admin_Dashboard  />}/>
-          <Route path="/admin-view-all-users" element={<Admin_ViewAllUsers />}/>
-          <Route path="/admin-view-all-freelancers" element={<Admin_ViewAllFreelancers />}/>
-          <Route path="/admin-view-all-requests" element={<Admin_ViewAllRequests />}/>
+          <Route path="/admin-dashboard" element={<Admin_Dashboard />} />
+          <Route
+            path="/admin-view-all-users"
+            element={<Admin_ViewAllUsers />}
+          />
+          <Route
+            path="/admin-view-all-freelancers"
+            element={<Admin_ViewAllFreelancers />}
+          />
+          <Route
+            path="/admin-view-all-requests"
+            element={<Admin_ViewAllRequests />}
+          />
           <Route path="/testing" element={<Testing />} />
           <Route path="/*" element={<h1> Please re-check the Route </h1>} />
         </Routes>
