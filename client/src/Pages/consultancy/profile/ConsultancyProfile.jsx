@@ -28,10 +28,12 @@ function ConsultancyProfile() {
 
   useEffect(() => {
     if (consultancyData && consultancyData.profilepic) {
-      const imageUrl = BASE_URL + consultancyData.profilepic;
+      let filename = consultancyData.profilepic.filename;
+      const imageUrl = BASE_URL + filename;
       setProPic(imageUrl);
     }
   }, [])
+  console.log("consultancyData", consultancyData);
   const getConsultancyProfile = async () => {
     try {
       const res = await axiosInstance.get(`/getConsultancyById/${userId}`);
