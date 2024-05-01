@@ -10,8 +10,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 function User_Profile() {
   const { userData } = useSelector((state) => state.auth);
-  console.log("user dat", userData);
   const navigate = useNavigate();
+  console.log("user data", userData);
   return (
     <>
       <Navbar />
@@ -29,7 +29,9 @@ function User_Profile() {
                 className="m-5"
               />
               <div className="m-5 fs-3">
-                <h3 className="m-4">Name: {userData?.name}</h3>
+                <h3 className="m-4">
+                  Name: {userData?.firstName + " " + userData?.lastName}
+                </h3>
                 <p className="m-4 fs-5">Email: {userData?.email}</p>
               </div>
             </div>
