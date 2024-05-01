@@ -46,7 +46,11 @@ const viewAllAppliedVacencyByConsultancyId = async (req, res) => {
     const consultancyId = req.params.id;
     const appliedVacencies = await AppliedVacencyModel.find({
       consultancyId,
-    });
+    })
+      .populate("vacencyId")
+      .populate("freelancerId")
+      .populate("consultancyId")
+      .exec();
     return res
       .status(200)
       .json({ message: "data obtained Successfully", data: appliedVacencies });

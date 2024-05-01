@@ -56,6 +56,8 @@ function Navbar() {
       navigate("../user-profile");
     } else if (userType === "freelancer") {
       navigate("../freelancer-profile");
+    }else if (userType === "consultancy") {
+      navigate("../view-profile");
     }
   };
   const redirectWorkVacancies = () => {
