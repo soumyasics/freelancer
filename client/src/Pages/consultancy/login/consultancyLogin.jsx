@@ -55,7 +55,7 @@ export  function ConsultancyLogin() {
             userType: "consultancy",
           }
           dispatch(loginSuccess(obj));
-          localStorage.setItem("consultancyData",JSON.stringify(obj));
+          localStorage.setItem("freelancerData",JSON.stringify(obj));
         }
         setTimeout(() => {
           // TODO

@@ -13,6 +13,9 @@ import "./userRequest.css";
 const UserRequest = () => {
   const [validated, setValidated] = useState(false);
   const { userId } = useSelector((state) => state.auth);
+  const state = useSelector((state) => state);
+  console.log("user state" , state)
+
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState({
     userId: "",
