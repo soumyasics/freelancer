@@ -38,6 +38,8 @@ import ViewAllAppliedWorks from "./Pages/consultancy/ViewAllAppliedWorks/ViewAll
 
 import { MyVacanccies } from "./Pages/consultancy/my_vacancies/my_vacancies.jsx";
 import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
+import MyOrders from "./Pages/User/MyOrders/MyOrders.jsx";
+import ConsultancyProfile from "./Pages/consultancy/profile/ConsultancyProfile.jsx";
 
 function App() {
   return (
@@ -57,7 +59,7 @@ function App() {
             element={<ViewAllFreelancers />}
           />
           <Route path="/user-profile" element={<User_Profile />} />
-
+          <Route path="/my-orders" element={<MyOrders />} />
           <Route
             path="/view-all-freelancers"
             element={<ViewAllFreelancers />}
@@ -94,6 +96,7 @@ function App() {
           <Route path="/consultancy-vacancy-request" element={<Vacancy_request />}/>
           <Route path="/consultancy-home" element={<ConsultancyHome />}/>
           <Route path="/view-all-applied-works" element={<ViewAllAppliedWorks />}/>
+          <Route path="/view-profile" element={<ConsultancyProfile />}/>
 
           {/* Admin routes  */}
           <Route path="/admin" element={<Admin_login />} />
