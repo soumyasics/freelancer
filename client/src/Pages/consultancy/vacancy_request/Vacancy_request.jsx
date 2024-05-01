@@ -66,7 +66,7 @@ const Vacancy_request = () => {
       if (res.status == 201) {
         alert("Request sent successfully.");
         setTimeout(() => {
-          // navigate('/user-myrequests')
+          navigate('/consultancy-my-vacancies')
         }, 1000)
       }
     } catch (err) {
@@ -95,7 +95,7 @@ const Vacancy_request = () => {
     <>
       <div>
         <Navbar />
-        <h2 className="text-center text-light mb-3 fw-bold">Vacancy Request</h2>
+        <h2 className="text-center text-light mb-3 fw-bold">Add Vacancy </h2>
         <Form
           style={{
             boxShadow:
@@ -207,7 +207,7 @@ const Vacancy_request = () => {
 
           <div className="d-flex justify-content-center">
             <Button className="mx-auto w-25" type="submit">
-              Request Work
+              Add Vacancy
             </Button>
           </div>
         </Form>

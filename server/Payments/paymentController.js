@@ -70,8 +70,32 @@ const viewPayment = async (req, res) => {
     return res.status(500).json({ success: false, error: "Server Error" });
   }
 };
+
+const getAllPaymentsByFreelancerId = async (req, res) => {
+  let freelancerId = req.params.freelancerId;
+  console.log("freel", freelancerId)
+  try {
+    const payments = await Payment.find({
+      freelancerId: req.params.freelancerId,
+    })
+      .populate("userId")
+      .populate("workId")
+      .populate("freelancerId")
+      .exec();
+
+    console.log("paymentss", payments);
+
+    return res
+      .status(200)
+      .json({ message: "data obtained Successfully", data: payments });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: "Server Error" });
+  }
+};
 module.exports = {
   addPayment,
   viewPayment,
   viewAllPayments,
+  getAllPaymentsByFreelancerId,
 };

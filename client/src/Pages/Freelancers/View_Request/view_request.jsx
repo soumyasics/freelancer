@@ -92,7 +92,7 @@ function ViewAllUsersRequests() {
     }
   };
   const viewRequestStatus = (req) => {
-    navigate('/view-request/'+req._id)
+    navigate('/freelancer-my-works')
 
   }
   console.log("is clicked", clickedRequest);

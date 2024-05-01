@@ -65,6 +65,12 @@ function Navbar() {
     navigate("../view-all-vacancies");
   };
 
+  const redirectMyVacancies = () => {
+    navigate("../consultancy-my-vacancies");
+  };
+  const redirectToMyWorks = () => {
+    navigate('../freelancer-my-works')
+  }
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
@@ -114,13 +120,23 @@ function Navbar() {
                 </li>
               )}
               {userType === "consultancy" && (
-                <li
-                  style={{ cursor: "pointer" }}
-                  className="nav-item m-3"
-                  onClick={redirectWorkVacancies}
-                >
-                  <p className="nav-link">Add vacancies</p>
-                </li>
+                <>
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item m-3"
+                    onClick={redirectWorkVacancies}
+                  >
+                    <p className="nav-link">Add vacancies</p>
+                  </li>
+
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item m-3"
+                    onClick={redirectMyVacancies}
+                  >
+                    <p className="nav-link">My Vacancies</p>
+                  </li>
+                </>
               )}
               {userType === "freelancer" && (
                 <>
@@ -137,6 +153,13 @@ function Navbar() {
                     onClick={redirectViewAllVacancies}
                   >
                     <p className="nav-link">View Vacancies</p>
+                  </li>
+                  <li
+                    className="nav-item m-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={redirectToMyWorks}
+                  >
+                    <p className="nav-link">My Works</p>
                   </li>
                 </>
               )}
