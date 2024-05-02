@@ -73,6 +73,9 @@ function Navbar() {
   const redirectToMyWorks = () => {
     navigate('../freelancer-my-works')
   }
+  const redirectToAppliedVacancies = () => {
+    navigate('../view-all-applied-works')
+  }
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
@@ -137,6 +140,13 @@ function Navbar() {
                     onClick={redirectMyVacancies}
                   >
                     <p className="nav-link">My Vacancies</p>
+                  </li>
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item m-3"
+                    onClick={redirectToAppliedVacancies}
+                  >
+                    <p className="nav-link">Applied Vacancies</p>
                   </li>
                 </>
               )}

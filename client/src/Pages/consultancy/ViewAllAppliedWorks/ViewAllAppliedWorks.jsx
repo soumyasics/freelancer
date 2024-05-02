@@ -55,18 +55,21 @@ function ViewAllAppliedWorks() {
             <thead className="text-center">
               <tr>
                 <th>No</th>
+                <th>Vacancy Title</th>
                 <th>Freelancer Name</th>
                 <th>Freelancer Email</th>
                 <th>Freelancer Contact</th>
-                <th>Category</th>
-                <th>Description</th>
+                <th>Vacancy Category</th>
+                <th>Vacancy Description</th>
               </tr>
             </thead>
             <tbody className="text-center">
               {appliedWorks.map((work, index) => {
+                console.log("workkk", work)
                 return (
                   <tr key={work._id}>
                     <td>{index + 1}</td>
+                    <td>{work?.vacencyId?.title}</td>
                     <td>{work?.freelancerId?.name}</td>
                     <td>{work?.freelancerId?.email}</td>
                     <td>{work?.freelancerId?.contact}</td>
