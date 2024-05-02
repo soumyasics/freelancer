@@ -40,6 +40,7 @@ import { MyVacanccies } from "./Pages/consultancy/my_vacancies/my_vacancies.jsx"
 import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
 import MyOrders from "./Pages/User/MyOrders/MyOrders.jsx";
 import ConsultancyProfile from "./Pages/consultancy/profile/ConsultancyProfile.jsx";
+import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAppliedVacancy/ViewAllAppliedVacancy.jsx";
 
 function App() {
   return (
@@ -81,6 +82,10 @@ function App() {
           <Route
             path="/freelancer-my-works"
             element={<MyWorks />}
+          />
+          <Route
+            path="/freelancer-applied-vacancies"
+            element={<ViewAllFreelancerAppliedVacancies />}
           />
           <Route path="/freelancer-profile" element={<Freelancer_Profile />} />
           <Route path="/view-request" element={<ViewAllUsersRequests />} />
