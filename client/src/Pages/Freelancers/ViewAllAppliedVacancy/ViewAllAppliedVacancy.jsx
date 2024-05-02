@@ -6,7 +6,7 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function ViewAllAppliedWorks() {
+export function ViewAllFreelancerAppliedVacancies() {
   const [appliedWorks, setAppliedWorks] = useState([]);
   const navigate = useNavigate();
   const { userId } = useSelector((state) => state.auth);
@@ -25,7 +25,7 @@ function ViewAllAppliedWorks() {
   const getAppliedWorksData = async () => {
     try {
       const res = await axiosInstance.get(
-        "/viewAllAppliedVacencyByConsultancyId/" + userId
+        "/viewAllAppliedVacencyByFreelancerId/" + userId
       );
       if (res.status === 200) {
         const data = res.data?.data || [];
@@ -48,7 +48,7 @@ function ViewAllAppliedWorks() {
       <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
-            Freelancer Applied Works
+            Vacancies applied by you
           </h1>
 
           <Table striped bordered hover>
@@ -56,11 +56,11 @@ function ViewAllAppliedWorks() {
               <tr>
                 <th>No</th>
                 <th>Vacancy Title</th>
-                <th>Freelancer Name</th>
-                <th>Freelancer Email</th>
-                <th>Freelancer Contact</th>
                 <th>Vacancy Category</th>
                 <th>Vacancy Description</th>
+                <th>Consultancy Name</th>
+                <th>Consultancy Email</th>
+                <th>Consultancy Contact</th>
               </tr>
             </thead>
             <tbody className="text-center">
@@ -70,11 +70,11 @@ function ViewAllAppliedWorks() {
                   <tr key={work._id}>
                     <td>{index + 1}</td>
                     <td>{work?.vacencyId?.title}</td>
-                    <td>{work?.freelancerId?.name}</td>
-                    <td>{work?.freelancerId?.email}</td>
-                    <td>{work?.freelancerId?.contact}</td>
                     <td>{work?.vacencyId?.category}</td>
                     <td>{work.vacencyId?.description}</td>
+                    <td>{work?.consultancyId?.name}</td>
+                    <td>{work?.consultancyId?.email}</td>
+                    <td>{work?.consultancyId?.contact}</td>
                   </tr>
                 );
               })}
@@ -89,4 +89,3 @@ function ViewAllAppliedWorks() {
   );
 }
 
-export default ViewAllAppliedWorks;
