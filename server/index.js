@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(cors())
 
-app.use('/freelancers_api',route)
+app.use('/freelancers_marketplace_api/',route)
 
-app.listen(4011,()=>{
+app.listen(4036,()=>{
     console.log("Server created successfully");
 })

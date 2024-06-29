@@ -45,7 +45,7 @@ import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAp
 function App() {
   return (
     <div className="container-fluid bg-hero m-auto " style={{ padding: 0 }}>
-      <BrowserRouter>
+      <BrowserRouter basename="freelancers_marketplace">
         <Routes>
           {/* user routes  */}
           <Route path="/" element={<Home />} />
