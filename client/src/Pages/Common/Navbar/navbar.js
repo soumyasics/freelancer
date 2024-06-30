@@ -82,7 +82,7 @@ function Navbar() {
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
-        <span>Marketplace Connect</span>
+        <span>FreelanceFlow</span>
         <i className="bi bi-gear-wide-connected mx-3"></i>
       </div>
       <nav className="navbar navbar-expand-lg navbar-dark">

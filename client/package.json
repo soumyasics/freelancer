@@ -1,6 +1,6 @@
 {
   "name": "freelancer",
-  "basename": "http://hybrid.srishticampus.in/freelancers_marketplace/",
+  "homepage": "http://hybrid.srishticampus.in/freelancers_marketplace/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

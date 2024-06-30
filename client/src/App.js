@@ -30,11 +30,9 @@ import ViewAllVacancies from "./Pages/Freelancers/ViewAllVacancies/ViewAllVacanc
 
 import ConsultancyHome from "./Pages/consultancy/home/ConsultancyHome.jsx";
 
-
-import {AdminViewAllConsultancy} from "./Pages/Admin/Admin_ViewAllConsultancy/Admin_ViewAllConsultancy.jsx";
+import { AdminViewAllConsultancy } from "./Pages/Admin/Admin_ViewAllConsultancy/Admin_ViewAllConsultancy.jsx";
 
 import ViewAllAppliedWorks from "./Pages/consultancy/ViewAllAppliedWorks/ViewAllAppliedWorks.jsx";
-
 
 import { MyVacanccies } from "./Pages/consultancy/my_vacancies/my_vacancies.jsx";
 import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
@@ -79,10 +77,7 @@ function App() {
             path="/freelancer-register"
             element={<Freelancer_register />}
           />
-          <Route
-            path="/freelancer-my-works"
-            element={<MyWorks />}
-          />
+          <Route path="/freelancer-my-works" element={<MyWorks />} />
           <Route
             path="/freelancer-applied-vacancies"
             element={<ViewAllFreelancerAppliedVacancies />}
@@ -90,7 +85,7 @@ function App() {
           <Route path="/freelancer-profile" element={<Freelancer_Profile />} />
           <Route path="/view-request" element={<ViewAllUsersRequests />} />
           <Route path="/view-request/:id" element={<View_Request_Details />} />
-          <Route path="/view-all-vacancies" element={<ViewAllVacancies />}/>
+          <Route path="/view-all-vacancies" element={<ViewAllVacancies />} />
           {/* consultancy routes  */}
           <Route
             path="/consultancy-register"
@@ -98,10 +93,16 @@ function App() {
           />
           <Route path="/consultancy-login" element={<ConsultancyLogin />} />
           <Route path="/consultancy-my-vacancies" element={<MyVacanccies />} />
-          <Route path="/consultancy-vacancy-request" element={<Vacancy_request />}/>
-          <Route path="/consultancy-home" element={<ConsultancyHome />}/>
-          <Route path="/view-all-applied-works" element={<ViewAllAppliedWorks />}/>
-          <Route path="/view-profile" element={<ConsultancyProfile />}/>
+          <Route
+            path="/consultancy-vacancy-request"
+            element={<Vacancy_request />}
+          />
+          <Route path="/consultancy-home" element={<ConsultancyHome />} />
+          <Route
+            path="/view-all-applied-works"
+            element={<ViewAllAppliedWorks />}
+          />
+          <Route path="/view-profile" element={<ConsultancyProfile />} />
 
           {/* Admin routes  */}
           <Route path="/admin" element={<Admin_login />} />
@@ -110,7 +111,7 @@ function App() {
             path="/admin-view-all-users"
             element={<Admin_ViewAllUsers />}
           />
-     
+
           <Route
             path="/admin-view-all-freelancers"
             element={<Admin_ViewAllFreelancers />}
