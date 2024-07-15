@@ -3,6 +3,7 @@ import "./admin_login.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
+import {toast} from "react-hot-toast";
 
 function Admin_login() {
   const [email, setEmail] = useState("");
@@ -11,14 +12,14 @@ function Admin_login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      alert("Please enter email and password");
+      toast.error("Please enter email and password");
       return;
     }
     
     if (email === "admin@gmail.com" && password === "admin@123") {
       navigate('/admin-dashboard');
     }else {
-      alert("Please enter correct email and password");
+      toast.error("Please enter correct email and password");
     }
   };
 

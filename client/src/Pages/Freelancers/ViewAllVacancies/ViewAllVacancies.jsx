@@ -6,6 +6,7 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import "./ViewAllVacancies.css";
 import { useSelector } from "react-redux";
+import {toast} from "react-hot-toast";
 
 export default function ViewAllVacancies() {
   const { userId } = useSelector((state) => state.auth);
@@ -36,7 +37,7 @@ export default function ViewAllVacancies() {
 
   const applyVacency = (vacencyId, consultancyId) => {
     if (!userId) {
-      alert("Login again.");
+      toast.error("Login again.");
       navigate("../freelancer-login");
       return;
     }
@@ -55,7 +56,7 @@ export default function ViewAllVacancies() {
     try {
       let res = await axiosInstance.post("/applyVacency", data);
       if (res.status === 200) {
-        alert("Applied successfully");
+        toast.success("Applied successfully");
         
       }
     } catch (error) {

@@ -6,6 +6,7 @@ import { isEmailValid } from "../../../utils/validations/emailValidation";
 import "./freelancer_login.css";
 import {useDispatch} from 'react-redux';
 import { loginSuccess } from "../../../redux/slices/authSlice";
+import {toast} from "react-hot-toast";
 
 function Freelancer_login() {
   const dispatch = useDispatch();
@@ -29,12 +30,12 @@ function Freelancer_login() {
     let { email, password } = freelancerData;
 
     if (!email || !password) {
-      alert("Please Fill All Details");
+      toast.error("Please Fill All Details");
       return;
     }
 
     if (!isEmailValid(email)) {
-      alert("Please Enter Valid Email");
+      toast.error("Please Enter Valid Email");
       return;
     }
 
@@ -45,7 +46,7 @@ function Freelancer_login() {
     try {
       let res = await axiosInstance.post("/freelancerLogin", freelancerData);
       if (res.status === 200) {
-        alert("Login Successfull");
+        toast.success("Login Successfull");
 
         let data = res?.data?.data || null;
         if (data && data._id) {
@@ -68,12 +69,12 @@ function Freelancer_login() {
       if (responseStatus === 400 || responseStatus === 404) {
         const responseMessage = error.response?.data?.message || null;
         if (responseMessage) {
-          alert(responseMessage);
+          toast.error(responseMessage);
         } else {
-          alert("Some Error Occured. Please try again after some time");
+          toast.error("Some Error Occured. Please try again after some time");
         }
       } else {
-        alert("Server Error Occured. Please try again after some time");
+        toast.error("Server Error Occured. Please try again after some time");
       }
       console.log("Error on freelancer login ", error);
     }

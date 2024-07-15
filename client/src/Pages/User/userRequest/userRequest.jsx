@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
+import {toast} from "react-hot-toast";
 import "./userRequest.css";
 const UserRequest = () => {
   const [validated, setValidated] = useState(false);
@@ -30,7 +31,7 @@ const UserRequest = () => {
     if (userId) {
       setRequestData({ ...requestData, userId });
     } else {
-      alert("Please login again..");
+      toast.error("Please login again..");
       setTimeout(() => {
         navigate("../user-login");
       }, 0);
@@ -50,7 +51,7 @@ const UserRequest = () => {
       !requestData.category ||
       !requestData.deadline
     ) {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
       return;
     }
 
@@ -60,7 +61,7 @@ const UserRequest = () => {
     try {
       let res = await axiosInstance.post("/createWorkRequest", requestData);
       if (res.status == 201) {
-        alert("Request sent successfully.");
+        toast.error("Request sent successfully.");
         setTimeout(() => {
           navigate('/user-myrequests')
         }, 1000)
@@ -70,11 +71,11 @@ const UserRequest = () => {
       if (status === 401) {
         let warningMsg = err?.response?.data?.message || null;
         if (warningMsg) {
-          alert(warningMsg);
+          toast.error(warningMsg);
           return;
         }
       }
-      alert("Server Error");
+      toast.error("Server Error");
     }
   };
   const handleChanges = (e) => {

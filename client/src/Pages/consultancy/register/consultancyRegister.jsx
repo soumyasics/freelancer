@@ -8,6 +8,7 @@ import {
 } from "../../../utils/validations/emailValidation";
 import { axiosMultipartInstance } from "../../../apis/axiosMultipart";
 import "./consultancyRegister.css";
+import {toast} from "react-hot-toast";
 export function ConsultancyRegister() {
   const navigate = useNavigate();
   const [consultancyData, setConsultancyData] = useState({
@@ -37,15 +38,15 @@ export function ConsultancyRegister() {
 
     console.log("consul data", consultancyData);
     if (!name || !email || !password || !contact || !licenseId || !address) {
-      alert("Please Fill All Details");
+      toast.error("Please Fill All Details");
       return;
     }
     if (!isEmailValid(email)) {
-      alert("Please Enter Valid Email");
+      toast.error("Please Enter Valid Email");
       return;
     }
     if (!isPhoneNumberValid(contact)) {
-      alert("Please Enter Valid Phone Number");
+      toast.error("Please Enter Valid Phone Number");
       return;
     }
 
@@ -59,7 +60,7 @@ export function ConsultancyRegister() {
         consultancyData
       );
       if (res.status === 201) {
-        alert("Registration Successfull");
+        toast.success("Registration Successfull");
         setTimeout(() => {
           redirectConsultancyLogin();
         }, 1500);
@@ -69,12 +70,12 @@ export function ConsultancyRegister() {
       if (responseStatus === 400) {
         const responseMessage = error.response?.data?.message || null;
         if (responseMessage) {
-          alert(responseMessage);
+          toast.error(responseMessage);
         } else {
-          alert("Some Error Occured. Please try again after some time");
+          toast.error("Some Error Occured. Please try again after some time");
         }
       } else {
-        alert("Server Error Occured. Please try again after some time");
+        toast.error("Server Error Occured. Please try again after some time");
       }
     }
   };

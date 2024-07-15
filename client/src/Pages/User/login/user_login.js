@@ -6,6 +6,7 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import {loginSuccess} from "../../../redux/slices/authSlice";
 import {useDispatch} from 'react-redux';
 import "./user_login.css";
+import {toast} from "react-hot-toast";
 function User_login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,12 +33,12 @@ function User_login() {
     let { email, password } = userData;
 
     if (!email || !password) {
-      alert("Please Fill All Details");
+      toast.error("Please Fill All Details");
       return;
     }
 
     if (!isEmailValid(email)) {
-      alert("Please Enter Valid Email");
+      toast.error("Please Enter Valid Email");
       return;
     }
 
@@ -60,7 +61,7 @@ function User_login() {
           localStorage.setItem("freelancerData",JSON.stringify(obj));
         }
 
-        alert("Login Successfull");
+        toast.success("Login Successfull");
         setTimeout(() => {
           navigate("/");
         }, 1500);
@@ -71,12 +72,12 @@ function User_login() {
         const responseMessage = error.response?.data?.message || null;
         console.log("response message", responseMessage);
         if (responseMessage) {
-          alert(responseMessage);
+          toast.error(responseMessage);
         } else {
-          alert("Some Error Occured. Please try again after some time");
+          toast.error("Some Error Occured. Please try again after some time");
         }
       } else {
-        alert("Server Error Occured. Please try again after some time");
+        toast.error("Server Error Occured. Please try again after some time");
       }
     }
   };

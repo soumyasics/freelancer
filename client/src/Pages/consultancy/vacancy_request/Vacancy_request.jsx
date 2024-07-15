@@ -10,10 +10,10 @@ import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import "./Vacancy_request.css";
+import {toast} from "react-hot-toast";
 
 const Vacancy_request = () => {
   const [validated, setValidated] = useState(false);
-  
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState({
@@ -30,7 +30,7 @@ const Vacancy_request = () => {
     if (userId) {
       setRequestData({ ...requestData, conId: userId });
     } else {
-      alert("Please login again..");
+      toast.error("Please login again..");
       setTimeout(() => {
         navigate("../consultancy-login");
       }, 0);
@@ -52,7 +52,7 @@ const Vacancy_request = () => {
       !requestData.deadline ||
       !requestData.consultancyPhoneNumber
     ) {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
       return;
     }
 
@@ -64,7 +64,7 @@ const Vacancy_request = () => {
       let res = await axiosInstance.post("/con-createWorkRequest", requestData); // Assuming this endpoint exists
       console.log("respo", res)
       if (res.status == 201) {
-        alert("Request sent successfully.");
+        toast.success("Request sent successfully.");
         setTimeout(() => {
           navigate('/consultancy-my-vacancies')
         }, 1000)
@@ -74,11 +74,11 @@ const Vacancy_request = () => {
       if (status === 401) {
         let warningMsg = err?.response?.data?.message || null;
         if (warningMsg) {
-          alert(warningMsg);
+          toast.error(warningMsg);
           return;
         }
       }
-      alert("Server Error");
+      toast.error("Server Error");
     }
   };
 

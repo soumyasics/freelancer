@@ -9,6 +9,7 @@ import profileIllu from "../../../Assets/depositphotos_68082973-stock-illustrati
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 function Freelancer_Profile({ user }) {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Freelancer_Profile({ user }) {
   console.log("user dat", userData);
   useEffect(() => {
     if (!isUserLoggedIn) {
-      alert("Login first");
+      toast.error("Login first");
       navigate("/freelancer-login");
     }
   }, []);

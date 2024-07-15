@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
+import {toast} from "react-hot-toast";
 function Payment() {
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function Payment() {
       !paymentDetails.workId ||
       !paymentDetails.freelancerId
     ) {
-      alert("All fields are required");
+      toast.error("All fields are required");
       return;
     }
     sendDataToServer()
@@ -65,13 +66,13 @@ function Payment() {
       let res = await axiosInstance.post("/addPayment", paymentDetails);
       console.log("respon", res)
       if (res.status === 201) {
-        alert("Payment added successfully");
+        toast.success("Payment added successfully");
         //TODO navigate to my acitivy page.
       }
     } catch (err) {
       console.log("Error on get request data", err);
 
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     }
   }
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { isEmailValid } from "../../../utils/validations/emailValidation";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-hot-toast";
 function User_register() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -27,12 +28,12 @@ function User_register() {
     e.preventDefault();
     const { firstName, lastName, email, password } = userData;
     if (!firstName || !lastName || !email || !password) {
-      alert("Please Fill All Details");
+      toast.error("Please Fill All Details");
       return;
     }
 
     if (!isEmailValid(userData.email)) {
-      alert("Please Enter Valid Email");
+      toast.error("Please Enter Valid Email");
       return;
     }
     sendDataToServer();
@@ -46,7 +47,7 @@ function User_register() {
     try {
       let res = await axiosInstance.post("/userRegistration", userData);
       if (res.status === 201) {
-        alert("Registration Successfull");
+        toast.success("Registration Successfull");
         setTimeout(() => {
           redirectToUserLogin();
         }, 1500);
@@ -60,12 +61,12 @@ function User_register() {
       ) {
         const responseMessage = error.response?.data?.message || null;
         if (responseMessage) {
-          alert(responseMessage);
+          toast.error(responseMessage);
         } else {
-          alert("Some Error Occured. Please try again after some time");
+          toast.error("Some Error Occured. Please try again after some time");
         }
       } else {
-        alert("Server Error Occured. Please try again after some time");
+        toast.error("Server Error Occured. Please try again after some time");
       }
     }
   };

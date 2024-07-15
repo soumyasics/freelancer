@@ -7,6 +7,7 @@ import {
   isPhoneNumberValid,
 } from "../../../utils/validations/emailValidation";
 import { axiosMultipartInstance } from "../../../apis/axiosMultipart";
+import {toast} from "react-hot-toast";
 function Freelancer_register() {
   
   const navigate = useNavigate();
@@ -43,15 +44,15 @@ function Freelancer_register() {
       !qualification ||
       !jobrole
     ) {
-      alert("Please Fill All Details");
+      toast.error("Please Fill All Details");
       return; 
     }
     if (!isEmailValid(email)) {
-      alert("Please Enter Valid Email");
+      toast.error("Please Enter Valid Email");
       return;
     }
     if (!isPhoneNumberValid(contact)) {
-      alert("Please Enter Valid Phone Number");
+      toast.error("Please Enter Valid Phone Number");
       return;
     }
 
@@ -65,7 +66,7 @@ function Freelancer_register() {
         freelancerData
       );
       if (res.status === 201) {
-        alert("Registration Successfull");
+        toast.success("Registration Successfull");
         setTimeout(() => {
           redirectFreelancerLogin();
         }, 1500)
@@ -75,12 +76,12 @@ function Freelancer_register() {
       if (responseStatus === 400) {
         const responseMessage = error.response?.data?.message || null;
         if (responseMessage) {
-          alert(responseMessage);
+          toast.error(responseMessage);
         } else {
-          alert("Some Error Occured. Please try again after some time");
+          toast.error("Some Error Occured. Please try again after some time");
         }
       } else {
-        alert("Server Error Occured. Please try again after some time");
+        toast.error("Server Error Occured. Please try again after some time");
       }
     }
   };

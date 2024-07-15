@@ -6,6 +6,7 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./view_request.css";
+import {toast} from "react-hot-toast";
 
 function ViewAllUsersRequests() {
   const [requests, setRequests] = useState([]);
@@ -25,7 +26,7 @@ function ViewAllUsersRequests() {
         freelancerId: userId,
       });
     } else {
-      alert("Please login again..");
+      toast.error("Please login again..");
       setTimeout(() => {
         navigate("../freelancer-login");
       }, 0);
@@ -67,7 +68,7 @@ function ViewAllUsersRequests() {
       return;
     }
     if (!freelancerResponse.message || !freelancerResponse.freelancerId) {
-      alert("Please write a message");
+      toast.error("Please write a message");
       console.log("freelancer response", freelancerResponse);
       return;
     }
@@ -80,7 +81,7 @@ function ViewAllUsersRequests() {
         freelancerResponse
       );
       if (res.status === 200) {
-        alert("Response sent successfully");
+        toast.error("Response sent successfully");
         setFreelancerResponse({ ...freelancerResponse, message: "" });
         setIsInterestClicked(false);
         getRequestsData();

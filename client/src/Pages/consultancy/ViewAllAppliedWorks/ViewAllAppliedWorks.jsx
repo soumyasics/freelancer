@@ -5,6 +5,7 @@ import Footer from "../../Common/Footer/footer";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 function ViewAllAppliedWorks() {
   const [appliedWorks, setAppliedWorks] = useState([]);
@@ -13,7 +14,7 @@ function ViewAllAppliedWorks() {
 
   useEffect(() => {
     if (!userId) {
-      alert("Please login again..");
+      toast.error("Please login again..");
       setTimeout(() => {
         navigate("../consultancy-login");
       }, 0);

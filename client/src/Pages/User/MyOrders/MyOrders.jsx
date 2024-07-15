@@ -6,6 +6,7 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import './MyOrders.css';
+import {toast} from "react-hot-toast";
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -14,7 +15,7 @@ function MyOrders() {
 
   useEffect(() => {
     if (!userId) {
-      alert("Please login again..");
+      toast.error("Please login again..");
       setTimeout(() => {
         navigate("../user-login");
       }, 0);

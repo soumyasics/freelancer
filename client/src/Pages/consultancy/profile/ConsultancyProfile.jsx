@@ -9,6 +9,7 @@ import defaultProfilePic from "../../../Assets/30-307416_profile-icon-png-image-
 import defaultIllustration from "../../../Assets/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector.jpg";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { BASE_URL } from "../../../apis/baseUrl";
+import {toast} from "react-hot-toast";
 function ConsultancyProfile() {
   const [consultancyData, setConsultancyData] = useState(null);
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function ConsultancyProfile() {
   const [proPic, setProPic] = useState(defaultProfilePic);
   useEffect(() => {
     if (!userId) {
-      alert("Please login again..");
+      toast.error("Please login again..");
       setTimeout(() => {
         navigate("../consultancy-login");
       }, 0);
