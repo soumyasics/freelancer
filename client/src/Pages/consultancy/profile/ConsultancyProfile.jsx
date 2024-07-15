@@ -9,11 +9,13 @@ import defaultProfilePic from "../../../Assets/30-307416_profile-icon-png-image-
 import defaultIllustration from "../../../Assets/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector.jpg";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { BASE_URL } from "../../../apis/baseUrl";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { ConsultancyeditProfileCard } from "../userEditProfileCard/userEditProfileCard";
 function ConsultancyProfile() {
-  const [consultancyData, setConsultancyData] = useState(null);
   const navigate = useNavigate();
-  const { userId } = useSelector((state) => state.auth);
+  const { userData: consultancyData, userId } = useSelector(
+    (state) => state.auth
+  );
 
   const [proPic, setProPic] = useState(defaultProfilePic);
   useEffect(() => {
@@ -23,7 +25,7 @@ function ConsultancyProfile() {
         navigate("../consultancy-login");
       }, 0);
     } else {
-      getConsultancyProfile();
+      // getConsultancyProfile();
     }
   }, []);
 
@@ -33,20 +35,9 @@ function ConsultancyProfile() {
       const imageUrl = BASE_URL + filename;
       setProPic(imageUrl);
     }
-  }, [])
+  }, []);
   console.log("consultancyData", consultancyData);
-  const getConsultancyProfile = async () => {
-    try {
-      const res = await axiosInstance.get(`/getConsultancyById/${userId}`);
-      if (res.status === 200) {
-        setConsultancyData(res.data.data);
-      } else {
-        console.log("Error fetching consultancy profile");
-      }
-    } catch (error) {
-      console.log("Error fetching consultancy profile", error);
-    }
-  };
+
 
   return (
     <>
@@ -69,7 +60,9 @@ function ConsultancyProfile() {
                   <h3 className="m-4">Name: {consultancyData.name}</h3>
                   <p className="m-4 fs-5">Email: {consultancyData.email}</p>
                   <p className="m-4 fs-5">Contact: {consultancyData.contact}</p>
-                  <p className="m-4 fs-5">License ID: {consultancyData.licenseId}</p>
+                  <p className="m-4 fs-5">
+                    License ID: {consultancyData.licenseId}
+                  </p>
                   <p className="m-4 fs-5">Address: {consultancyData.address}</p>
                 </div>
               </div>
@@ -85,6 +78,7 @@ function ConsultancyProfile() {
             </Col>
           </Row>
         )}
+        <ConsultancyeditProfileCard />
       </Container>
       <Footer />
     </>

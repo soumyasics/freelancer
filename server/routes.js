@@ -62,7 +62,7 @@ router.post("/consultancyLogin", consultancy.consultanyLogin);
 router.post("/consultancyForgotPassowrd", consultancy.consultancyForgotPassowrd);
 router.get("/getAllConsultancy", consultancy.getAllConsultancy);
 router.get("/getConsultancyById/:id", consultancy.getConsultancyById);
-router.patch("/editConsultancyById", consultancy.editConsultancyById);
+router.patch("/editConsultancyById/:id", consultancy.editConsultancyById);
 // consultancy work requst routs
 router.post("/con-createWorkRequest", conWorkRequestRoutes.createWorkRequest);
 router.get(
