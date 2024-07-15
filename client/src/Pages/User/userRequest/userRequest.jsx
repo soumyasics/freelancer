@@ -61,7 +61,7 @@ const UserRequest = () => {
     try {
       let res = await axiosInstance.post("/createWorkRequest", requestData);
       if (res.status == 201) {
-        toast.error("Request sent successfully.");
+        toast.success("Request sent successfully.");
         setTimeout(() => {
           navigate('/user-myrequests')
         }, 1000)

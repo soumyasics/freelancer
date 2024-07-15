@@ -131,12 +131,12 @@ function Freelancer_login() {
                     </div>
                     <div className="d-flex align-items-center justify-content-between mb-4">
                       <div className="form-check">
-                        <input
+                        {/* <input
                           className="form-check-input primary"
                           type="checkbox"
                           value=""
                           id="flexCheckChecked"
-                        />
+                        /> */}
                       </div>
                       <a className="user-login-label" href="">
                         {" "}

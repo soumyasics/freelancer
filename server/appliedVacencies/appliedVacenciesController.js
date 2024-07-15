@@ -8,6 +8,18 @@ const applyVacency = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
+    const alreadyApplied = await AppliedVacencyModel.findOne({
+      vacencyId,
+      consultancyId,
+      freelancerId,
+    });
+    if (alreadyApplied) {
+      return res
+        .status(400)
+        .json({ message: "You already applied for this vacency" });
+    }
+
+
     const newApply = new AppliedVacencyModel({
       vacencyId,
       consultancyId,

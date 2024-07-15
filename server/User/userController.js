@@ -147,36 +147,27 @@ const deleteuserById = (req, res) => {
     });
 };
 //forgotvPawd
-const forgotPwd = (req, res) => {
-  user
-    .findOneAndUpdate(
-      { email: req.body.email },
-      {
-        password: req.body.password,
-      }
-    )
-    .exec()
-    .then((data) => {
-      if (data != null)
-        res.json({
-          status: 200,
-          msg: "Updated successfully",
-        });
-      else
-        res.json({
-          status: 500,
-          msg: "Artist Not Found",
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "Data not Updated",
-        Error: err,
-      });
-    });
+const userForgotPassowrd = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+    const isUserexist = await user.findOne({ email });
+    if (!isUserexist) {
+      return res.status(404).json({ message: "Please check your email" });
+    }
+    const update = await user.findOneAndUpdate(
+      { email },
+      { password: newPassword }
+    );
+    return res
+      .status(200)
+      .json({ message: "Password updated successfully", data: update });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
 };
+
 
 module.exports = {
   userRegistration,
@@ -185,5 +176,5 @@ module.exports = {
   getuserById,
   edituserById,
   deleteuserById,
-  forgotPwd,
+  userForgotPassowrd
 };

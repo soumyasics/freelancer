@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single("profilepic");
 const freelancerRegistration = async (req, res) => {
-  console.log("ff req.body", req.body)
+  console.log("ff req.body", req.body);
   const { email } = req.body;
   const existingFreelancer = await Freelancer.findOne({ email });
   if (existingFreelancer) {
@@ -151,35 +151,26 @@ const deleteFreelancerById = (req, res) => {
       });
     });
 };
-//forgotvPawd
-const forgotPwd = (req, res) => {
-  Freelancer.findOneAndUpdate(
-    { email: req.body.email },
-    {
-      password: req.body.password,
+
+const freelancerForgotPassowrd = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+    const user = await Freelancer.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
-  )
-    .exec()
-    .then((data) => {
-      if (data != null)
-        res.json({
-          status: 200,
-          msg: "Updated successfully",
-        });
-      else
-        res.json({
-          status: 500,
-          msg: "Artist Not Found",
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "Data not Updated",
-        Error: err,
-      });
-    });
+    const update = await Freelancer.findOneAndUpdate(
+      { email },
+      { password: newPassword }
+    );
+    return res
+      .status(200)
+      .json({ message: "Password updated successfully", data: update });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
 };
 
 module.exports = {
@@ -190,5 +181,5 @@ module.exports = {
   loginFreelancer,
   editFreelancerById,
   deleteFreelancerById,
-  forgotPwd,
+  freelancerForgotPassowrd,
 };

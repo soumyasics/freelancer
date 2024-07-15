@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { isEmailValid } from "../../../utils/validations/emailValidation";
 import { useState } from "react";
 import { axiosInstance } from "../../../apis/axiosInstance";
-import {loginSuccess} from "../../../redux/slices/authSlice";
-import {useDispatch} from 'react-redux';
+import { loginSuccess } from "../../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 import "./user_login.css";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 function User_login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -45,6 +45,10 @@ function User_login() {
     sendDataToServer();
   };
 
+  const navigateToUserForgot = () => {
+    navigate("/user-forgot-password");
+  };
+
   const sendDataToServer = async () => {
     try {
       let res = await axiosInstance.post("/userLogin", userData);
@@ -53,12 +57,12 @@ function User_login() {
         let data = res?.data?.data || null;
         if (data && data._id) {
           let obj = {
-            userData: data, 
+            userData: data,
             userId: data._id,
-            userType: "user"
-          }
+            userType: "user",
+          };
           dispatch(loginSuccess(obj));
-          localStorage.setItem("freelancerData",JSON.stringify(obj));
+          localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
 
         toast.success("Login Successfull");
@@ -129,17 +133,27 @@ function User_login() {
                     </div>
                     <div className="d-flex align-items-center justify-content-between mb-4">
                       <div className="form-check">
-                        <input
+                        {/* <input
                           className="form-check-input primary"
                           type="checkbox"
                           value=""
                           id="flexCheckChecked"
                         />
+                        <label
+                          className="form-check-label user-login-label"
+                          htmlFor="flexCheckChecked"
+                        >
+                          Remember Me
+                        </label> */}
                       </div>
-                      <a className="user-login-label" href="">
+                      <p
+                        style={{ cursor: "pointer" }}
+                        className="user-login-label"
+                        onClick={navigateToUserForgot}
+                      >
                         {" "}
                         Forgot Password?
-                      </a>
+                      </p>
                     </div>
                     <div className="d-flex align-items-center justify-content-center">
                       <button type="submit" className="btn btn-primary mx-auto">
@@ -149,7 +163,7 @@ function User_login() {
                     </div>
                     <div className="d-flex align-items-center justify-content-center">
                       <p
-                        style={{cursor: "pointer"}}
+                        style={{ cursor: "pointer" }}
                         onClick={navigateToUserRegister}
                         className="fs-5 mb-0 mt-3 fw-bold"
                       >

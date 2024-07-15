@@ -7,6 +7,7 @@ const workRequest = require("./userWorkRequest/workRequestController");
 const consultancy = require("./consultancy/consultancyController");
 const conWorkRequestRoutes = require("./conWorkRequest/conWorkRequestController");
 const appliedVacencyRoutes = require("./appliedVacencies/appliedVacenciesController");
+
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -18,12 +19,13 @@ router.post("/editFreelancerById/:id", freelancer.editFreelancerById);
 router.get("/getAllFreelancers", freelancer.getAllFreelancers);
 router.post("/getFreelancerById/:id", freelancer.getFreelancerById);
 router.post("/deleteFreelancerById/:id", freelancer.deleteFreelancerById);
-router.post("/forgotPwd", freelancer.forgotPwd);
+router.post("/freelancerForgotPassword", freelancer.freelancerForgotPassowrd);
 
 // user routes
 router.post("/userRegistration", user.userRegistration);
 router.post("/userLogin", user.userLogin);
 router.post("/getAllUsers", user.getAllusers);
+router.post("/userForgotPassword", user.userForgotPassowrd);
 
 // user work requst routs
 router.post("/createWorkRequest", workRequest.createWorkRequest);

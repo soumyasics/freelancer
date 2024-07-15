@@ -60,6 +60,12 @@ export default function ViewAllVacancies() {
         
       }
     } catch (error) {
+      const stauts = error?.response?.status;
+      if (stauts === 401 || stauts === 400) {
+        toast.error(error?.response?.data?.message || "Something went wrong");
+      }else {
+        toast.error("Something went wrong");
+      }
       console.log("Error on applying vacency", error);
     }
   };
