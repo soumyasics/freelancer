@@ -4,9 +4,9 @@ import { useState } from "react";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { isEmailValid } from "../../../utils/validations/emailValidation";
 import "./freelancer_login.css";
-import {useDispatch} from 'react-redux';
+import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../../redux/slices/authSlice";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 function Freelancer_login() {
   const dispatch = useDispatch();
@@ -53,10 +53,10 @@ function Freelancer_login() {
           let obj = {
             userData: data,
             userId: data._id,
-            userType: "freelancer"
-          }
+            userType: "freelancer",
+          };
           dispatch(loginSuccess(obj));
-          localStorage.setItem("freelancerData",JSON.stringify(obj));
+          localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
         setTimeout(() => {
           // TODO
@@ -138,10 +138,16 @@ function Freelancer_login() {
                           id="flexCheckChecked"
                         /> */}
                       </div>
-                      <a className="user-login-label" href="">
+                      <p
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          navigate("/freelancer-forgot-password");
+                        }}
+                        className="user-login-label"
+                      >
                         {" "}
                         Forgot Password?
-                      </a>
+                      </p>
                     </div>
                     <button
                       type="submit"

@@ -5,7 +5,7 @@ import { isEmailValid } from "../../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { toast } from "react-hot-toast";
-function Forgot_password() {
+export const FreelancerForgot_password = () => {
   const [data, setData] = useState({
     email: "",
     newPassword: "",
@@ -52,10 +52,10 @@ function Forgot_password() {
   };
   const sendDataToServer = async () => {
     try {
-      const res = await axiosInstance.post("/userForgotPassword", data);
+      const res = await axiosInstance.post("freelancerForgotPassword", data);
       if (res.status === 200) {
         toast.success("Password Reset Successful");
-        navigate("/user-login");
+        navigate("/freelancer-login");
       }
     } catch (error) {
       const status = error?.response?.status;
@@ -144,4 +144,3 @@ function Forgot_password() {
   );
 }
 
-export default Forgot_password;

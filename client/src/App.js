@@ -39,6 +39,7 @@ import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
 import MyOrders from "./Pages/User/MyOrders/MyOrders.jsx";
 import ConsultancyProfile from "./Pages/consultancy/profile/ConsultancyProfile.jsx";
 import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAppliedVacancy/ViewAllAppliedVacancy.jsx";
+import { FreelancerForgot_password } from "./Pages/Freelancers/forgot_password/forgot_password.js";
 
 function App() {
   return (
@@ -66,10 +67,9 @@ function App() {
           {/* <Route path='/detailed-view-freelancers' element={<DetailedViewFreelancers />} /> */}
           <Route path="/payment" element={<Payment />} />
           <Route path="/payment-details" element={<Payment_Details />} />
-
           <Route path="/freelancer" element={<ViewAllFreelancers />} />
           <Route path="/freelancer/:id" element={<DetailedViewFreelancers />} />
-          {/* <Route path="" /> */}
+
 
           {/* Freelancer routes  */}
           <Route path="/freelancer-login" element={<Freelancer_login />} />
@@ -77,6 +77,7 @@ function App() {
             path="/freelancer-register"
             element={<Freelancer_register />}
           />
+          <Route path="/freelancer-forgot-password" element={<FreelancerForgot_password />} />
           <Route path="/freelancer-my-works" element={<MyWorks />} />
           <Route
             path="/freelancer-applied-vacancies"
