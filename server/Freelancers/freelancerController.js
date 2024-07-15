@@ -84,7 +84,7 @@ const loginFreelancer = (req, res) => {
           data: data,
         });
       } else {
-        return res.status(500).json({
+        return res.status(404).json({
           status: 500,
           message: "Email or password is incorrect",
         });

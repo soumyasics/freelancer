@@ -57,14 +57,14 @@ function ConsultancyProfile() {
           <Row className="align-items-center">
             <Col xs={12} md={6} className="mb-3 mb-md-0">
               <div className="d-flex align-items-center">
-                <Image
+                {/* <Image
                   src={proPic}
                   alt="Profile Picture"
                   roundedCircle
                   width={200}
                   height={200}
                   className="m-5"
-                />
+                /> */}
                 <div className="m-5 fs-3">
                   <h3 className="m-4">Name: {consultancyData.name}</h3>
                   <p className="m-4 fs-5">Email: {consultancyData.email}</p>

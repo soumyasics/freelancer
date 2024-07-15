@@ -14,7 +14,8 @@ import Footer from "../../Common/Footer/footer";
 function ViewAllFre1elancers() {
   const navigate = useNavigate();
   const [allFreelancersData, setAllFreelancersData] = useState([]);
-
+  const [fixedFreelancers, setFixedFreelancers] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     getAllFreelancers();
   }, []);
@@ -27,10 +28,25 @@ function ViewAllFre1elancers() {
       let res = await axiosInstance.get("/getAllFreelancers");
       let data = res?.data?.data || [];
       setAllFreelancersData(data);
+      setFixedFreelancers(data);
     } catch (error) {
       console.log("Error on getting all freelancers", error);
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  const searchFreelancers = (e) => {
+    const search = e.target.value;
+    if (search) {
+      let filteredData = fixedFreelancers.filter((el) => {
+        return el.name.toLowerCase().includes(search.toLowerCase());
+      });
+      setAllFreelancersData(filteredData);
+    }else {
+      setAllFreelancersData(fixedFreelancers);
+    }
+  }
   return (
     <>
       <Navbar />
@@ -46,68 +62,83 @@ function ViewAllFre1elancers() {
         {allFreelancersData.length > 0 && (
           <h1 className="text-center m-5 text-dark">View All Freelancers</h1>
         )}
-        <Container
-          style={{
-            boxShadow:
-              "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-          }}
-          className="d-flex justify-content-center flex-wrap  my-5"
-        >
-          {allFreelancersData.length === 0 && (
-            <h1 className="text-center m-5 text-dark">Freelancers Data Not Found</h1>
-          )}
-          {allFreelancersData.map((freelancer) => {
-            let filename = freelancer?.profilepic?.filename || null;
-            let profilePicUrl = placeholderImg;
-            if (filename) {
-              profilePicUrl = BASE_URL + filename;
-            }
+        <div>
+          <form className="shadow" onSubmit={handleSubmit}>
+            <input
+              onChange={searchFreelancers}
+              type="text"
+              placeholder="Search Freelancers here..."
+              className="form-control"
+            />
+          </form>
 
-            return (
-              <div key={freelancer._id}>
-                <Col md={8}>
-                  <Card className="m-3" style={{ maxWidth: "600px", width:"100%" }}>
-                    <Row className="g-0">
-                      <Col md={8}>
-                        <Card.Body className="text-center">
-                          <Card.Title className=" my-3 mx-2 ">
-                            {" "}
-                            Name: &nbsp;
-                            {freelancer.name}
-                          </Card.Title>
-                          <Card.Text>
-                            Qualification: {freelancer.qualification}
-                          </Card.Text>
-                          <Card.Text>Job Role: {freelancer.jobrole}</Card.Text>
-                          <Button
-                            variant="primary"
-                            className=" my-3 mx-2 bg-color border-0 rounded-pill"
-                            size="lg"
-                            onClick={() => {
-                              navigateToDetailedView(freelancer._id);
-                            }}
-                          >
-                            View More
-                          </Button>{" "}
-                        </Card.Body>
-                      </Col>
-                      <Col
-                        md={4}
-                        className="d-flex justify-content-center align-items-center"
-                      >
-                        <Card.Img
-                          src={profilePicUrl}
-                          className="img-fluid rounded-start m-5"
-                          alt="profile pic"
-                        />
-                      </Col>
-                    </Row>
-                  </Card>
-                </Col>
-              </div>
-            );
-          })}
-        </Container>
+          <Container
+            style={{
+              boxShadow:
+                "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+            }}
+            className="d-flex justify-content-center flex-wrap gap-5  py-5"
+          >
+            {allFreelancersData.length === 0 && (
+              <h1 className="text-center m-5 text-dark">
+                Freelancers Data Not Found
+              </h1>
+            )}
+            {allFreelancersData.map((freelancer) => {
+              let filename = freelancer?.profilepic?.filename || null;
+              let profilePicUrl = placeholderImg;
+              if (filename) {
+                profilePicUrl = BASE_URL + filename;
+              }
+
+              return (
+                <div key={freelancer._id} className=" shadow">
+                  <Col md={12}>
+                    <Card className="m-3" style={{ maxWidth: "400px" }}>
+                      <Row className="g-0">
+                        <Col md={8}>
+                          <Card.Body className="text-center">
+                            <Card.Title className=" my-3 mx-2 ">
+                              {" "}
+                              Name: &nbsp;
+                              {freelancer.name}
+                            </Card.Title>
+                            <Card.Text>
+                              Qualification: {freelancer.qualification}
+                            </Card.Text>
+                            <Card.Text>
+                              Job Role: {freelancer.jobrole}
+                            </Card.Text>
+                            <Button
+                              variant="primary"
+                              className=" my-3 mx-2 bg-color border-0 rounded-pill"
+                              size="lg"
+                              onClick={() => {
+                                navigateToDetailedView(freelancer._id);
+                              }}
+                            >
+                              View More
+                            </Button>{" "}
+                          </Card.Body>
+                        </Col>
+                        <Col
+                          md={4}
+                          className="d-flex justify-content-center align-items-center"
+                        >
+                          <Card.Img
+                            src={profilePicUrl}
+                            className="img-fluid rounded-start m-5"
+                            alt="profile pic"
+                          />
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                </div>
+              );
+            })}
+          </Container>
+        </div>
       </div>
       <div className="mt-5" style={{ position: "relative", top: "900px" }}>
         <Footer />

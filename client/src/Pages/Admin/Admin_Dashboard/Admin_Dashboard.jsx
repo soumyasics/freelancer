@@ -7,7 +7,7 @@ import Admin_ViewAllFreelancers from "../Admin_ViewAllFreelancers/Admin_ViewAllF
 import Admin_ViewAllUsers from "../Admin_ViewAllUsers/Admin_ViewAllUsers";
 import Admin_ViewAllRequests from "../Admin_ViewAllRequests/Admin_ViewAllRequests";
 import { AdminViewAllConsultancy } from "../Admin_ViewAllConsultancy/Admin_ViewAllConsultancy";
-
+import { SlLogout } from "react-icons/sl";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("users");
@@ -46,7 +46,7 @@ function Admin_Dashboard() {
                 Users
               </Link>
             </li>
-           
+
             <li className="nav-item m-1 p-1">
               <Link
                 onClick={() => {
@@ -84,6 +84,16 @@ function Admin_Dashboard() {
               >
                 <BsCollectionFill className="me-2" />
                 Consultancies
+              </Link>
+            </li>
+            <li className="nav-item m-1 p-1">
+              <Link
+                to="/admin"
+                className="nav-link m-3 d-flex align-items-center text-decoration-none fw-bold text-danger"
+                style={{ color: "inherit" }}
+              >
+                <SlLogout className="me-2" />
+                Logout
               </Link>
             </li>
             {/* Add more menu items */}
