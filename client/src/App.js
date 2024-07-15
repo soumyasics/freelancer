@@ -41,6 +41,7 @@ import ConsultancyProfile from "./Pages/consultancy/profile/ConsultancyProfile.j
 import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAppliedVacancy/ViewAllAppliedVacancy.jsx";
 import { FreelancerForgot_password } from "./Pages/Freelancers/forgot_password/forgot_password.js";
 import { ConsultancyForgot_password } from "./Pages/consultancy/forgot_password/forgot_password.js";
+import { UserViewAllConsultancy } from "./Pages/User/viewAllConsultancies/viewAllConsultancies.jsx";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/user-request" element={<UserRequest />} />
           <Route path="/user-myrequests" element={<MyRequests />} />
           <Route path="/user-forgot-password" element={<Forgot_password />} />
+          <Route path="/user-view-consultancies" element={<UserViewAllConsultancy/>} />
           <Route path="/view-responses/:id" element={<ViewResponseDetails />} />
           <Route
             path="/view-all-freelancers"
@@ -128,6 +130,9 @@ function App() {
             element={<AdminViewAllConsultancy />}
           />
           <Route path="/testing" element={<Testing />} />
+
+
+
           <Route path="/*" element={<h1> Please re-check the Route </h1>} />
         </Routes>
       </BrowserRouter>

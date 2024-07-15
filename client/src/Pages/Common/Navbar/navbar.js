@@ -30,6 +30,10 @@ function Navbar() {
     navigate("/");
   };
 
+  const viewAllConsultancies = () => {
+    navigate("/user-view-consultancies")
+  }
+
   const redirectConsultancyLogin = () => {
     navigate("/consultancy-login");
   };
@@ -116,6 +120,13 @@ function Navbar() {
                 onClick={redirectFreelancer}
               >
                 <p className="nav-link">Freelancers</p>
+              </li>
+              <li
+                className="nav-item m-3"
+                style={{ cursor: "pointer" }}
+                onClick={viewAllConsultancies}
+              >
+                <p className="nav-link">Consultancies</p>
               </li>
 
               {userType === "user" && (
