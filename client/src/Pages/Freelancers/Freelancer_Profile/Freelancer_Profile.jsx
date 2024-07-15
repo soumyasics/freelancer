@@ -10,11 +10,11 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from "react-hot-toast";
+import { FreelancereditProfileCard } from "../userEditProfileCard/userEditProfileCard";
 
 function Freelancer_Profile({ user }) {
   const navigate = useNavigate();
   const { userData, isUserLoggedIn } = useSelector((state) => state.auth);
-  console.log("user dat", userData);
   useEffect(() => {
     if (!isUserLoggedIn) {
       toast.error("Login first");
@@ -66,12 +66,7 @@ function Freelancer_Profile({ user }) {
                 </Button> */}
               </Col>
               <Col xs="auto">
-                <Button variant="info" size="sm" onClick={() => {
-                  navigate('/view-request')
-                }}>
-                  <FaListAlt className="me-2" />
-                  View All Request
-                </Button>
+                <FreelancereditProfileCard />
               </Col>
             </Row>
           </Col>

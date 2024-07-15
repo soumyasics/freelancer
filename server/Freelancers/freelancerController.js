@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Freelancer = require("./freelancerSchema");
-
+const mongoose = require("mongoose");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
