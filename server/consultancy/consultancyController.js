@@ -103,33 +103,51 @@ const getConsultancyById = async (req, res) => {
 //Login --finished
 
 //update  by id
-const editFreelancerById = (req, res) => {
-  ConsultancyModel.findByIdAndUpdate(
-    { _id: req.params.id },
-    {
-      name: req.body.name,
-      contact: req.body.contact,
-      email: req.body.email,
-      qualification: req.body.qualification,
-      profilepic: req.file,
-      age: req.body.age,
-      jobrole: req.body.jobrole,
+const editConsultancyById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
     }
-  )
-    .exec()
-    .then((data) => {
-      res.json({
-        status: 200,
-        message: "Updated successfully",
+
+    const { name, contact, licenseId, address, email } = req.body;
+    const obj = {};
+    if (name) {
+      obj.name = name;
+    }
+    if (contact) {
+      obj.contact = contact;
+    }
+    if (email) {
+      obj.email = email;
+    }
+    if (licenseId) {
+      obj.licenseId = licenseId;
+    }
+    if (address) {
+      obj.address = address;
+    }
+    const newUser = await ConsultancyModel.findByIdAndUpdate(id, obj, { new: true });
+    if (!newUser) {
+      return res.status(404).json({
+        status: 404,
+        message: "User not found",
       });
-    })
-    .catch((err) => {
-      res.json({
-        status: 500,
-        msg: "Data not Updated",
-        Error: err,
-      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "consultancy updated successfully",
+      data: newUser,
     });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+      message: "Server error",
+    });
+  }
 };
 
 const deleteFreelancerById = (req, res) => {
@@ -152,7 +170,6 @@ const deleteFreelancerById = (req, res) => {
       });
     });
 };
-
 
 const consultancyForgotPassowrd = async (req, res) => {
   try {
@@ -181,7 +198,7 @@ module.exports = {
   consultancyRegistration,
   consultanyLogin,
   upload,
-  editFreelancerById,
+  editConsultancyById,
   deleteFreelancerById,
   consultancyForgotPassowrd,
 };
