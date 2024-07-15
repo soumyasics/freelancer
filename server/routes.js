@@ -58,6 +58,7 @@ router.post(
   consultancy.consultancyRegistration
 );
 router.post("/consultancyLogin", consultancy.consultanyLogin);
+router.post("/consultancyForgotPassowrd", consultancy.consultancyForgotPassowrd);
 router.get("/getAllConsultancy", consultancy.getAllConsultancy);
 router.get("/getConsultancyById/:id", consultancy.getConsultancyById);
 

@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { isEmailValid } from "../../../utils/validations/emailValidation";
-import {useDispatch} from 'react-redux';
+import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../../redux/slices/authSlice";
 import "./consultancyLogin.css";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
-export  function ConsultancyLogin() {
+export function ConsultancyLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -54,9 +54,9 @@ export  function ConsultancyLogin() {
             userData: data,
             userId: data._id,
             userType: "consultancy",
-          }
+          };
           dispatch(loginSuccess(obj));
-          localStorage.setItem("freelancerData",JSON.stringify(obj));
+          localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
         setTimeout(() => {
           // TODO
@@ -138,10 +138,16 @@ export  function ConsultancyLogin() {
                           id="flexCheckChecked"
                         />
                       </div>
-                      <a className="user-login-label" href="">
+                      <p
+                        style={{ cursor: "pointer" }}
+                        className="user-login-label"
+                        onClick={() => {
+                          navigate("/consultancy-forgot-password");
+                        }}
+                      >
                         {" "}
                         Forgot Password?
-                      </a>
+                      </p>
                     </div>
                     <button
                       type="submit"
@@ -168,4 +174,3 @@ export  function ConsultancyLogin() {
     </div>
   );
 }
-

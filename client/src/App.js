@@ -40,6 +40,7 @@ import MyOrders from "./Pages/User/MyOrders/MyOrders.jsx";
 import ConsultancyProfile from "./Pages/consultancy/profile/ConsultancyProfile.jsx";
 import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAppliedVacancy/ViewAllAppliedVacancy.jsx";
 import { FreelancerForgot_password } from "./Pages/Freelancers/forgot_password/forgot_password.js";
+import { ConsultancyForgot_password } from "./Pages/consultancy/forgot_password/forgot_password.js";
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
             element={<ConsultancyRegister />}
           />
           <Route path="/consultancy-login" element={<ConsultancyLogin />} />
+          <Route path="/consultancy-forgot-password" element={<ConsultancyForgot_password />} />
           <Route path="/consultancy-my-vacancies" element={<MyVacanccies />} />
           <Route
             path="/consultancy-vacancy-request"

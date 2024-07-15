@@ -152,35 +152,27 @@ const deleteFreelancerById = (req, res) => {
       });
     });
 };
-//forgotvPawd
-const forgotPwd = (req, res) => {
-  ConsultancyModel.findOneAndUpdate(
-    { email: req.body.email },
-    {
-      password: req.body.password,
+
+
+const consultancyForgotPassowrd = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+    const isUserexist = await ConsultancyModel.findOne({ email });
+    if (!isUserexist) {
+      return res.status(404).json({ message: "Please check your email" });
     }
-  )
-    .exec()
-    .then((data) => {
-      if (data != null)
-        res.json({
-          status: 200,
-          msg: "Updated successfully",
-        });
-      else
-        res.json({
-          status: 500,
-          msg: "Artist Not Found",
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        status: 500,
-        msg: "Data not Updated",
-        Error: err,
-      });
-    });
+    const update = await ConsultancyModel.findOneAndUpdate(
+      { email },
+      { password: newPassword }
+    );
+    return res
+      .status(200)
+      .json({ message: "Password updated successfully", data: update });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
 };
 
 module.exports = {
@@ -191,5 +183,5 @@ module.exports = {
   upload,
   editFreelancerById,
   deleteFreelancerById,
-  forgotPwd,
+  consultancyForgotPassowrd,
 };
