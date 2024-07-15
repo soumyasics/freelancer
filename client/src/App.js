@@ -42,6 +42,7 @@ import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAp
 import { FreelancerForgot_password } from "./Pages/Freelancers/forgot_password/forgot_password.js";
 import { ConsultancyForgot_password } from "./Pages/consultancy/forgot_password/forgot_password.js";
 import { UserViewAllConsultancy } from "./Pages/User/viewAllConsultancies/viewAllConsultancies.jsx";
+import { FreelancerViewAllConsultancy } from "./Pages/Freelancers/viewAllConsultancies/viewAllConsultancies.jsx";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
             element={<Freelancer_register />}
           />
           <Route path="/freelancer-forgot-password" element={<FreelancerForgot_password />} />
+          <Route path="/freelancer-view-consultancies" element={<FreelancerViewAllConsultancy />} />
           <Route path="/freelancer-my-works" element={<MyWorks />} />
           <Route
             path="/freelancer-applied-vacancies"

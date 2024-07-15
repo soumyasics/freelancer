@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button } from "react-bootstrap";
+import { Container, Table, Button, InputGroup, Form } from "react-bootstrap";
 import Navbar from "../../Common/Navbar/navbar";
 import Footer from "../../Common/Footer/footer";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./view_request.css";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { FaSearch } from "react-icons/fa";
 
 function ViewAllUsersRequests() {
   const [requests, setRequests] = useState([]);
+  const [fixedReq, setFixedReq] = useState([]);
   const [isInterestClicked, setIsInterestClicked] = useState(false);
   const [clickedRequest, setClickedRequest] = useState(null);
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ function ViewAllUsersRequests() {
       const res = await axiosInstance.get("/getAllWorkRequest");
       if (res.status === 200) {
         let data = res.data?.data || [];
+        setFixedReq(data);
         setRequests(data);
       } else {
         console.log("Error on getting requests");
@@ -93,10 +96,19 @@ function ViewAllUsersRequests() {
     }
   };
   const viewRequestStatus = (req) => {
-    navigate('/freelancer-my-works')
-
-  }
-  console.log("is clicked", clickedRequest);
+    navigate("/freelancer-my-works");
+  };
+  const searchWorkReq = (e) => {
+    const value = e.target.value;
+    if (value) {
+      let filteredData = fixedReq.filter((el) => {
+        return el.title.toLowerCase().includes(value.toLowerCase());
+      });
+      setRequests(filteredData);
+    } else {
+      setRequests(fixedReq);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -105,7 +117,19 @@ function ViewAllUsersRequests() {
           <h1 className="table-heading text-dark m-5 text-center mt-5">
             Users Work Requests
           </h1>
-          <Table striped bordered hover >
+          <div>
+            <InputGroup className="mb-3 w-50 mx-auto">
+              <InputGroup.Text id="basic-addon1">
+                <FaSearch />
+              </InputGroup.Text>
+              <Form.Control
+                placeholder="Search work here.."
+                type="text"
+                onChange={searchWorkReq}
+              />
+            </InputGroup>
+          </div>
+          <Table striped bordered hover className="mt-5">
             <thead className="text-center">
               <tr>
                 <th>No</th>
@@ -120,7 +144,7 @@ function ViewAllUsersRequests() {
             </thead>
             <tbody className="text-center">
               {requests.map((req, index) => {
-                console.log("req u", req)
+                console.log("req u", req);
                 let isAlreadyResponsed =
                   checkFreelancerAlreadyRespondToARequest(req);
                 return (
@@ -170,7 +194,7 @@ function ViewAllUsersRequests() {
                         ) : (
                           <Button
                             onClick={() => {
-                              viewRequestStatus(req)
+                              viewRequestStatus(req);
                             }}
                             variant="warning"
                           >
