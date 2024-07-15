@@ -26,6 +26,7 @@ router.post("/userRegistration", user.userRegistration);
 router.post("/userLogin", user.userLogin);
 router.post("/getAllUsers", user.getAllusers);
 router.post("/userForgotPassword", user.userForgotPassowrd);
+router.patch("/edituserById/:id", user.edituserById);
 
 // user work requst routs
 router.post("/createWorkRequest", workRequest.createWorkRequest);

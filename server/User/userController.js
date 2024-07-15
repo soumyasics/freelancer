@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const user = require("./userSchema");
+const mongoose = require("mongoose");
 
 const userRegistration = async (req, res) => {
   try {
@@ -98,31 +99,45 @@ const userLogin = (req, res) => {
 //Login --finished
 
 //update  by id
-const edituserById = (req, res) => {
-  user
-    .findByIdAndUpdate(
-      { _id: req.params.id },
-      {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-      }
-    )
-    .exec()
-    .then((data) => {
-      res.json({
-        status: 200,
-        msg: "Updated successfully",
+const edituserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
       });
-    })
-    .catch((err) => {
-      res.json({
-        status: 500,
-        msg: "Data not Updated",
-        Error: err,
+    }
+
+    const { firstName, lastName, email } = req.body;
+    const obj = {};
+    if (firstName) {
+      obj.firstName = firstName;
+    }
+    if (lastName) {
+      obj.lastName = lastName;
+    }
+    if (email) {
+      obj.email = email;
+    }
+    const newUser = await user.findByIdAndUpdate(id, obj, { new: true });
+    if (!newUser) {
+      return res.status(404).json({
+        status: 404,
+        message: "User not found",
       });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "User updated successfully",
+      data: newUser,
     });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+      message: "Server error",
+    });
+  }
 };
 
 const deleteuserById = (req, res) => {
@@ -168,7 +183,6 @@ const userForgotPassowrd = async (req, res) => {
   }
 };
 
-
 module.exports = {
   userRegistration,
   userLogin,
@@ -176,5 +190,5 @@ module.exports = {
   getuserById,
   edituserById,
   deleteuserById,
-  userForgotPassowrd
+  userForgotPassowrd,
 };

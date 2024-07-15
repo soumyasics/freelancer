@@ -8,26 +8,28 @@ import Navbar from "../../Common/Navbar/navbar";
 import Footer from "../../Common/Footer/footer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { UsereditProfileCard } from "../userEditProfileCard/userEditProfileCard";
 function User_Profile() {
   const { userData } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  console.log("user data", userData);
+  
   return (
     <>
       <Navbar />
+      
       <Container fluid className="bg-light h-75 w-100 ">
         <h1 className="m-5 p-5 text-center">User Profile</h1>
         <Row className="align-items-center">
           <Col xs={12} md={6} className="mb-3 mb-md-0">
             <div className="d-flex align-items-center">
-              <Image
+              {/* <Image
                 src={profilePic}
                 alt="Profile Picture"
                 roundedCircle
                 width={200}
                 height={200}
                 className="m-5"
-              />
+              /> */}
               <div className="m-5 fs-3">
                 <h3 className="m-4">
                   Name: {userData?.firstName + " " + userData?.lastName}
@@ -48,18 +50,7 @@ function User_Profile() {
                   My Activity
                 </Button>
               </Col> */}
-              <Col xs="auto">
-                <Button
-                  onClick={() => {
-                    navigate("/view-request");
-                  }}
-                  variant="info"
-                  size="sm"
-                >
-                  <FaListAlt className="me-2" />
-                  View My Requests
-                </Button>
-              </Col>
+              
             </Row>
           </Col>
           <Col className="d-flex justify-content-center align-items-center">
@@ -72,6 +63,7 @@ function User_Profile() {
             />
           </Col>
         </Row>
+      <UsereditProfileCard />
       </Container>
       <Footer />
     </>

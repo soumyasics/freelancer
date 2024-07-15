@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.userEditProfileCard-header {
+  height: 170px;
+  margin-bottom: 30px;
+  background-color: #74d0d3;
+}
+.userEditProfileCard-header p {
+  color: #fff;
+  padding-bottom: 70px;
+}
+.userEditProfile-left-arrow {
+  color: #fff;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.editProfileCard-input {
+  width: 78% !important;
+  margin: auto;
+  border: 0.807px solid rgba(0, 0, 0, 0.5);
+}
+
+.EditProfileCard-button {
+  margin-bottom: 50px;
+  width: 30%;
+  margin-left: 35%;
+  border-radius: 30.213px !important;
+  background: linear-gradient(90deg, #6d3698 0%, rgba(109, 54, 152, 0.8) 100%);
+  color: #fff;
+  font-family: Inter;
+  font-size: 19.37px;
+  font-weight: 500;
+}
+.editProfileCard-Label {
+  margin-left: 10%;
+  color: #000;
+  font-family: Poppins;
+  font-size: 16.875px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.userEditProfile-base-button {
+  border-radius: 21.187px;
+  border: 0.706px solid rgba(0, 0, 0, 0.5);
+  background: linear-gradient(90deg, #6d3698 0%, rgba(109, 54, 152, 0.8) 100%);
+  box-shadow: 0px 2.825px 2.825px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  width: 135.598px;
+  padding: 11.3px 0px 11.725px 0px;
+  justify-content: center;
+  align-items: center;
+}
