@@ -71,7 +71,18 @@ router.post("/consultancyForgotPassowrd", consultancy.consultancyForgotPassowrd)
 router.get("/getAllConsultancy", consultancy.getAllConsultancy);
 router.get("/getConsultancyById/:id", consultancy.getConsultancyById);
 router.patch("/editConsultancyById/:id", consultancy.editConsultancyById);
+router.patch("/approveConsultancyById/:id", consultancy.approveConsultancyById);
+router.patch("/rejectConsultancyById/:id", consultancy.rejectConsultancyById);
+router.patch("/activateConsultancyById/:id", consultancy.activateConsultancyById);
+router.patch("/deactivateConsultancyById/:id", consultancy.deactivateConsultancyById);
+router.get("/getAllApprovedConsultancies", consultancy.getAllApprovedConsultancies);
+router.get("/getAllPendingConsultancies", consultancy.getAllPendingConsultancies);
+
+
+
+
 // consultancy work requst routs
+
 router.post("/con-createWorkRequest", conWorkRequestRoutes.createWorkRequest);
 router.get(
   "/con-getWorkRequestsByUserid/:id",

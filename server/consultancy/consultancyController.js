@@ -51,6 +51,26 @@ const consultanyLogin = (req, res) => {
           message: "Email or password is incorrect",
         });
       } else if (password == data.password) {
+        if (!data.isActive) {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has been deactivated",
+          });
+        }
+
+        if (data.adminApprovedStatus === "Pending") {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has not been approved yet",
+          });
+        }
+        if (data.adminApprovedStatus === "Rejected") {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has been rejected by admin",
+          });
+        }
+
         return res.status(200).json({
           status: 404,
           message: "Login successfull",
@@ -58,7 +78,7 @@ const consultanyLogin = (req, res) => {
         });
       } else {
         return res.status(404).json({
-          status: 500,
+          status: 404,
           message: "Email or password is incorrect",
         });
       }
@@ -130,7 +150,9 @@ const editConsultancyById = async (req, res) => {
     if (address) {
       obj.address = address;
     }
-    const newUser = await ConsultancyModel.findByIdAndUpdate(id, obj, { new: true });
+    const newUser = await ConsultancyModel.findByIdAndUpdate(id, obj, {
+      new: true,
+    });
     if (!newUser) {
       return res.status(404).json({
         status: 404,
@@ -150,7 +172,7 @@ const editConsultancyById = async (req, res) => {
   }
 };
 
-const deleteFreelancerById = (req, res) => {
+const deleteConsultancyById = (req, res) => {
   ConsultancyModel.findByIdAndDelete({ _id: req.params.id })
     .exec()
     .then((data) => {
@@ -192,6 +214,136 @@ const consultancyForgotPassowrd = async (req, res) => {
   }
 };
 
+const approveConsultancyById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newConsultancy = await ConsultancyModel.findByIdAndUpdate(
+      id,
+      {
+        adminApprovedStatus: "Approved",
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      message: "Consultancy approved successfully",
+      data: newConsultancy,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+const rejectConsultancyById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newConsultancy = await ConsultancyModel.findByIdAndUpdate(
+      id,
+      {
+        adminApprovedStatus: "Rejected",
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      message: "Consultancy rejected successfully",
+      data: newConsultancy,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+const activateConsultancyById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newConsultancy = await ConsultancyModel.findByIdAndUpdate(
+      id,
+      {
+        isActive: true,
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      message: "Consultancy activated successfully",
+      data: newConsultancy,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+const deactivateConsultancyById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newConsultancy = await ConsultancyModel.findByIdAndUpdate(
+      id,
+      {
+        isActive: false,
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      message: "Consultancy deactivated successfully",
+      data: newConsultancy,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+
+const getAllApprovedConsultancies = async (req, res) => {
+  try {
+    const consultancies = await ConsultancyModel.find({
+      adminApprovedStatus: "Approved",
+    });
+    return res
+      .status(200)
+      .json({ message: "Approved consultancies", data: consultancies });
+  } catch (error) {
+    res.status(500).json({ error: error.message, message: "Server error" });
+  }
+};
+const getAllPendingConsultancies = async (req, res) => {
+  try {
+    const consultancies = await ConsultancyModel.find({
+      adminApprovedStatus: "Pending",
+    });
+    return res
+      .status(200)
+      .json({ message: "Pending consultancies", data: consultancies });
+  } catch (error) {
+    res.status(500).json({ error: error.message, message: "Server error" });
+  }
+};
+
 module.exports = {
   getAllConsultancy,
   getConsultancyById,
@@ -199,6 +351,12 @@ module.exports = {
   consultanyLogin,
   upload,
   editConsultancyById,
-  deleteFreelancerById,
+  deleteConsultancyById,
   consultancyForgotPassowrd,
+  approveConsultancyById,
+  rejectConsultancyById,
+  getAllApprovedConsultancies,
+  getAllPendingConsultancies,
+  activateConsultancyById,
+  deactivateConsultancyById,
 };

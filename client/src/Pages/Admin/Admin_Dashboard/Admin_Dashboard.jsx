@@ -9,6 +9,7 @@ import Admin_ViewAllRequests from "../Admin_ViewAllRequests/Admin_ViewAllRequest
 import { AdminViewAllConsultancy } from "../Admin_ViewAllConsultancy/Admin_ViewAllConsultancy";
 import { SlLogout } from "react-icons/sl";
 import { Admin_ViewAllPendingFreelancers } from "../Admin_ViewAllFreelancers/Admin_ViewAllPendingFreelancers";
+import { AdminViewAllPendingConsultancy } from "../Admin_ViewAllConsultancy/Admin_ViewAllPendingConsultancy";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("users");
@@ -102,6 +103,19 @@ function Admin_Dashboard() {
             </li>
             <li className="nav-item m-1 p-1">
               <Link
+                onClick={() => {
+                  setShowSidebar(false);
+                  setActivePage("pending-consultancies");
+                }}
+                className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                style={{ color: "inherit" }}
+              >
+                <BsCollectionFill className="me-2" />
+                Pending Consultancies
+              </Link>
+            </li>
+            <li className="nav-item m-1 p-1">
+              <Link
                 to="/admin"
                 className="nav-link m-3 d-flex align-items-center text-decoration-none fw-bold text-danger"
                 style={{ color: "inherit" }}
@@ -120,9 +134,12 @@ function Admin_Dashboard() {
         {/* Add your dashboard content here */}
         {activePage === "users" && <Admin_ViewAllUsers />}
         {activePage === "freelancers" && <Admin_ViewAllFreelancers />}
-        {activePage === "pending-freelancers" && <Admin_ViewAllPendingFreelancers />}
+        {activePage === "pending-freelancers" && (
+          <Admin_ViewAllPendingFreelancers />
+        )}
         {activePage === "requests" && <Admin_ViewAllRequests />}
         {activePage === "consultancies" && <AdminViewAllConsultancy />}
+        {activePage === "pending-consultancies" && <AdminViewAllPendingConsultancy />}
       </main>
     </Container>
   );

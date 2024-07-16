@@ -12,7 +12,7 @@ export function AdminViewAllConsultancy() {
 
   const getData = async () => {
     try {
-      let res = await axiosInstance.get("/getAllConsultancy");
+      let res = await axiosInstance.get("/getAllApprovedConsultancies");
       if (res.status === 200) {
         let data = res.data?.data || [];
         setUsers(data);
