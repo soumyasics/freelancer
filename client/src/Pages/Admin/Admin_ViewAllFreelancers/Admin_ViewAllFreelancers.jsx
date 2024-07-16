@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Container , Button} from "react-bootstrap";
+import { Table, Container, Button } from "react-bootstrap";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { toast } from "react-hot-toast";
 function Admin_ViewAllFreelancers() {
@@ -22,7 +22,7 @@ function Admin_ViewAllFreelancers() {
     } catch (error) {
       console.log("Error on ACTIVATING user", error);
     }
-  }
+  };
 
   const deActivateUserById = async (id) => {
     try {
@@ -37,7 +37,7 @@ function Admin_ViewAllFreelancers() {
     } catch (error) {
       console.log("Error on deactivating user", error);
     }
-  }
+  };
 
   const getData = async () => {
     try {
