@@ -6,22 +6,53 @@ import {
   InputGroup,
   FormControl,
   Pagination,
+  Button,
 } from "react-bootstrap";
 import axios from "axios";
 import { BsSearch } from "react-icons/bs";
 import { axiosInstance } from "../../../apis/axiosInstance";
+import {toast} from "react-hot-toast";
 
 function Admin_ViewAllUsers() {
   const [users, setUsers] = useState([]);
-
 
   useEffect(() => {
     getData();
   }, []);
 
+  const activateUserById = async (id) => {
+    try {
+      let res = await axiosInstance.patch(`activateUserById/${id}`);
+      console.log("repon", res);
+      if (res.status === 200) {
+        toast.success("User deactivated successfully");
+        getData();
+      } else {
+        console.log("Error on deactivating user");
+      }
+    } catch (error) {
+      console.log("Error on deactivating user", error);
+    }
+  }
+
+  const deActivateUserById = async (id) => {
+    try {
+      let res = await axiosInstance.patch(`deactivateUserById/${id}`);
+      console.log("repon", res);
+      if (res.status === 200) {
+        toast.success("User deactivated successfully");
+        getData();
+      } else {
+        console.log("Error on deactivating user");
+      }
+    } catch (error) {
+      console.log("Error on deactivating user", error);
+    }
+  }
+
   const getData = async () => {
     try {
-      let res = await axiosInstance.post("/getAllUsers");
+      let res = await axiosInstance.post("getAllUsers");
       if (res.status === 200) {
         let data = res.data?.data || [];
         setUsers(data);
@@ -32,6 +63,8 @@ function Admin_ViewAllUsers() {
       console.log("Error on getting all users", error);
     }
   };
+
+ 
   console.log(users);
   return (
     <Container className="mt-4">
@@ -45,6 +78,7 @@ function Admin_ViewAllUsers() {
             <th>Last Name</th>
             <th>Email</th>
             <th>Current Status</th>
+            <th className="text-center">Active / Inactive</th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +88,28 @@ function Admin_ViewAllUsers() {
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
-              <td>Active</td>
+              <td>{user.isActive ? "Active" : "Inactive"}</td>
+              <td className="d-flex justify-content-around">
+                {user.isActive ? (
+                  <Button
+                    onClick={() => {
+                      deActivateUserById(user._id);
+                    }}
+                    variant="danger"
+                  >
+                    Deactivate
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      activateUserById(user._id);
+                    }}
+                    variant="success"
+                  >
+                    Activate
+                  </Button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

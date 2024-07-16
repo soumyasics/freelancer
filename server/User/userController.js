@@ -111,8 +111,8 @@ const activateUserById = async (req, res) => {
         message: "Id is not valid",
       });
     }
-    const user = await user.findByIdAndUpdate(id, { isActive: true });
-    if (!user) {
+    const isUserExist = await user.findByIdAndUpdate(id, { isActive: true });
+    if (!isUserExist) {
       return res.status(404).json({
         status: 404,
         message: "User not found",
@@ -140,13 +140,15 @@ const deActivateUserById = async (req, res) => {
         message: "Id is not valid",
       });
     }
-    const user = await user.findByIdAndUpdate(id, { isActive: false });
-    if (!user) {
+    const isUserExist = await user.findByIdAndUpdate(id, { isActive: false }, {new: true});
+    if (!isUserExist) {
       return res.status(404).json({
         status: 404,
         message: "User not found",
       });
     }
+
+
     return res.status(200).json({
       status: 200,
       message: "User deactivated successfully",
