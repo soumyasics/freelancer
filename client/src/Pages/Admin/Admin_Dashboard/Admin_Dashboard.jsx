@@ -8,6 +8,7 @@ import Admin_ViewAllUsers from "../Admin_ViewAllUsers/Admin_ViewAllUsers";
 import Admin_ViewAllRequests from "../Admin_ViewAllRequests/Admin_ViewAllRequests";
 import { AdminViewAllConsultancy } from "../Admin_ViewAllConsultancy/Admin_ViewAllConsultancy";
 import { SlLogout } from "react-icons/sl";
+import { Admin_ViewAllPendingFreelancers } from "../Admin_ViewAllFreelancers/Admin_ViewAllPendingFreelancers";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("users");
@@ -64,6 +65,19 @@ function Admin_Dashboard() {
               <Link
                 onClick={() => {
                   setShowSidebar(false);
+                  setActivePage("pending-freelancers");
+                }}
+                className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                style={{ color: "inherit" }}
+              >
+                <BsPerson className="me-2" />
+                Pending Freelancers
+              </Link>
+            </li>
+            <li className="nav-item m-1 p-1">
+              <Link
+                onClick={() => {
+                  setShowSidebar(false);
                   setActivePage("requests");
                 }}
                 className="nav-link m-3 d-flex align-items-center text-decoration-none"
@@ -106,6 +120,7 @@ function Admin_Dashboard() {
         {/* Add your dashboard content here */}
         {activePage === "users" && <Admin_ViewAllUsers />}
         {activePage === "freelancers" && <Admin_ViewAllFreelancers />}
+        {activePage === "pending-freelancers" && <Admin_ViewAllPendingFreelancers />}
         {activePage === "requests" && <Admin_ViewAllRequests />}
         {activePage === "consultancies" && <AdminViewAllConsultancy />}
       </main>

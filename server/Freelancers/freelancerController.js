@@ -78,6 +78,25 @@ const loginFreelancer = (req, res) => {
           message: "Email or password is incorrect",
         });
       } else if (password == data.password) {
+        if (!data.isActive) {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has been deactivated",
+          });
+        }
+
+        if (data.adminApprovedStatus === "Pending") {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has not been approved yet",
+          });
+        }
+        if (data.adminApprovedStatus === "Rejected") {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has been rejected by admin",
+          });
+        }
         return res.status(200).json({
           status: 404,
           message: "Login successfull",
@@ -112,9 +131,9 @@ const editFreelancerById = async (req, res) => {
       });
     }
 
-    const {name,contact, email, qualification, jobrole } = req.body;
+    const { name, contact, email, qualification, jobrole } = req.body;
     const obj = {};
-    if(name) {
+    if (name) {
       obj.name = name;
     }
     if (contact) {
@@ -191,6 +210,131 @@ const freelancerForgotPassowrd = async (req, res) => {
   }
 };
 
+const getAllPendingFreelancers = async (req, res) => {
+  try {
+    const freelancers = await Freelancer.find({
+      adminApprovedStatus: "Pending",
+    });
+    return res
+      .status(200)
+      .json({ message: "Pending freelancers", data: freelancers });
+  } catch (error) {
+    res.status(500).json({ error: error.message, message: "Server error" });
+  }
+};
+const getAllApprovedFreelancers = async (req, res) => {
+  try {
+    const freelancers = await Freelancer.find({
+      adminApprovedStatus: "Approved",
+    });
+    return res
+      .status(200)
+      .json({ message: "Approved freelancers", data: freelancers });
+  } catch (error) {
+    res.status(500).json({ error: error.message, message: "Server error" });
+  }
+};
+const approveFreelancerById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newFreelancer = await Freelancer.findByIdAndUpdate(
+      id,
+      {
+        adminApprovedStatus: "Approved",
+      },
+      { new: true }
+    );
+    return res
+      .status(200)
+      .json({ message: "Freelancer approved successfully", data: newFreelancer });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+const rejectFreelancerById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newFreelancer = await Freelancer.findByIdAndUpdate(
+      id,
+      {
+        adminApprovedStatus: "Rejected",
+      },
+      { new: true }
+    );
+    return res
+      .status(200)
+      .json({ message: "Freelancer rejected successfully", data: newFreelancer });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+const activateFreelancerById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newFreelancer = await Freelancer.findByIdAndUpdate(
+      id,
+      {
+        isActive: true,
+      },
+      { new: true }
+    );
+    return res
+      .status(200)
+      .json({ message: "Freelancer activated successfully", data: newFreelancer });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+const deactivateFreelancerById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const newFreelancer = await Freelancer.findByIdAndUpdate(
+      id,
+      {
+        isActive: false,
+      },
+      { new: true }
+    );
+    return res
+      .status(200)
+      .json({ message: "Freelancer deactivated successfully", data: newFreelancer });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+
 module.exports = {
   freelancerRegistration,
   getAllFreelancers,
@@ -200,4 +344,11 @@ module.exports = {
   editFreelancerById,
   deleteFreelancerById,
   freelancerForgotPassowrd,
+  getAllApprovedFreelancers,
+  getAllPendingFreelancers,
+  approveFreelancerById,
+  rejectFreelancerById,
+  activateFreelancerById,
+  deactivateFreelancerById
+
 };

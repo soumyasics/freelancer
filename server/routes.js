@@ -20,6 +20,12 @@ router.get("/getAllFreelancers", freelancer.getAllFreelancers);
 router.post("/getFreelancerById/:id", freelancer.getFreelancerById);
 router.post("/deleteFreelancerById/:id", freelancer.deleteFreelancerById);
 router.post("/freelancerForgotPassword", freelancer.freelancerForgotPassowrd);
+router.get("/getAllPendingFreelancers", freelancer.getAllPendingFreelancers);
+router.get("/getAllApprovedFreelancers", freelancer.getAllApprovedFreelancers);
+router.patch("/approveFreelancerById/:id", freelancer.approveFreelancerById);
+router.patch("/rejectFreelancerById/:id", freelancer.rejectFreelancerById);
+router.patch("/activateFreelancerById/:id", freelancer.activateFreelancerById);
+router.patch("/deactivateFreelancerById/:id", freelancer.deactivateFreelancerById);
 
 // user routes
 router.post("/userRegistration", user.userRegistration);
