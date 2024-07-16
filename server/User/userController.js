@@ -70,6 +70,12 @@ const userLogin = (req, res) => {
           message: "Email or password is incorrect",
         });
       } else if (password == data.password) {
+        if (!data.isActive) {
+          return res.status(404).json({
+            status: 404,
+            message: "Your account has been deactivated",
+          });
+        }
         return res.status(200).json({
           status: 200,
           message: "Login successfully",
@@ -95,6 +101,65 @@ const userLogin = (req, res) => {
       });
     });
 };
+
+const activateUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const user = await user.findByIdAndUpdate(id, { isActive: true });
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        message: "User not found",
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "User activated successfully",
+      data: user,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      error: err.message,
+      message: "Server error",
+    });
+  }
+};
+
+const deActivateUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        status: 404,
+        message: "Id is not valid",
+      });
+    }
+    const user = await user.findByIdAndUpdate(id, { isActive: false });
+    if (!user) {
+      return res.status(404).json({
+        status: 404,
+        message: "User not found",
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "User deactivated successfully",
+      data: user,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      error: err.message,
+      message: "Server error",
+    });
+  }
+};
+
 
 //Login --finished
 
@@ -186,6 +251,8 @@ const userForgotPassowrd = async (req, res) => {
 module.exports = {
   userRegistration,
   userLogin,
+  activateUserById,
+  deActivateUserById,
   getAllusers,
   getuserById,
   edituserById,

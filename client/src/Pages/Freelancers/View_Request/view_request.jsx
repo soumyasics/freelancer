@@ -29,9 +29,8 @@ function ViewAllUsersRequests() {
       });
     } else {
       toast.error("Please login again..");
-      setTimeout(() => {
-        navigate("../freelancer-login");
-      }, 0);
+      navigate("../freelancer-login");
+      
     }
     getRequestsData();
   }, []);

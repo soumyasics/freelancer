@@ -67,9 +67,8 @@ function Freelancer_register() {
       );
       if (res.status === 201) {
         toast.success("Registration Successfull");
-        setTimeout(() => {
-          redirectFreelancerLogin();
-        }, 1500)
+        redirectFreelancerLogin();
+        
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;

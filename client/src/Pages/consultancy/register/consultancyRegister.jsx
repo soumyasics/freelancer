@@ -61,9 +61,8 @@ export function ConsultancyRegister() {
       );
       if (res.status === 201) {
         toast.success("Registration Successfull");
-        setTimeout(() => {
-          redirectConsultancyLogin();
-        }, 1500);
+        redirectConsultancyLogin();
+
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;

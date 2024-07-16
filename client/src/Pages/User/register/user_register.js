@@ -48,9 +48,8 @@ function User_register() {
       let res = await axiosInstance.post("/userRegistration", userData);
       if (res.status === 201) {
         toast.success("Registration Successfull");
-        setTimeout(() => {
+        
           redirectToUserLogin();
-        }, 1500);
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;

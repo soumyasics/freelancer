@@ -66,9 +66,8 @@ function User_login() {
         }
 
         toast.success("Login Successfull");
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
+        navigate("/");
+        
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;

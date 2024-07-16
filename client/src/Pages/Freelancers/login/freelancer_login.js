@@ -58,11 +58,8 @@ function Freelancer_login() {
           dispatch(loginSuccess(obj));
           localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
-        setTimeout(() => {
-          // TODO
-          // Redirect here to freelancer home page
-          navigate("/");
-        }, 1500);
+        navigate("/");
+        
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;

@@ -58,11 +58,8 @@ export function ConsultancyLogin() {
           dispatch(loginSuccess(obj));
           localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
-        setTimeout(() => {
-          // TODO
-          // Redirect here to consultany  home page
-          navigate("/consultancy-home");
-        }, 1500);
+        navigate("/consultancy-home");
+
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;

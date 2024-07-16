@@ -15,9 +15,8 @@ function ViewAllAppliedWorks() {
   useEffect(() => {
     if (!userId) {
       toast.error("Please login again..");
-      setTimeout(() => {
-        navigate("../consultancy-login");
-      }, 0);
+      navigate("../consultancy-login");
+      
     } else {
       getAppliedWorksData();
     }

@@ -14,7 +14,6 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 function Admin_ViewAllUsers() {
   const [users, setUsers] = useState([]);
 
-  const [usersPerPage] = useState(5);
 
   useEffect(() => {
     getData();
