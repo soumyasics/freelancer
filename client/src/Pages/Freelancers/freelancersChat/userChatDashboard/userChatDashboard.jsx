@@ -16,7 +16,7 @@ export const FreelancerChatDashboard = () => {
 
   console.log("selec usr", selectedUser);
   return (
-    <div className="bg-light text-dark " style={{position: "sticky"}}>
+    <div className="bg-light text-dark " style={{position: "sticky", top: "0"}}>
       <UserChatNavbar />
       <div className="row">
         <div className="col-4">
