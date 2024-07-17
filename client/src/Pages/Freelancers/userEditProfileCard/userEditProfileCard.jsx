@@ -142,7 +142,7 @@ export const FreelancereditProfileCard = () => {
           onClick={handleShow}
           className="userEditProfile-base-button"
         >
-          Edit
+          Edit Profile
         </Button>
       </div>
       <div className="editProfile-card-body">

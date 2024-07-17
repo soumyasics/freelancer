@@ -81,15 +81,11 @@ function Navbar() {
   const redirectMyVacancies = () => {
     navigate("../consultancy-my-vacancies");
   };
-  const redirectToMyWorks = () => {
-    navigate('../freelancer-my-works')
-  }
+  
   const redirectToAppliedVacancies = () => {
     navigate('../view-all-applied-works')
   }
-  const redirectToFreelancerAppliedVacancies = () => {
-    navigate('../freelancer-applied-vacancies')
-  }
+
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
@@ -199,24 +195,17 @@ function Navbar() {
                   <li
                     className="nav-item m-3"
                     style={{ cursor: "pointer" }}
-                    onClick={redirectToMyWorks}
-                  >
-                    <p className="nav-link">My Works</p>
-                  </li>
-                  <li
-                    className="nav-item m-3"
-                    style={{ cursor: "pointer" }}
                     onClick={freelancerUserChat}
                   >
                     <p className="nav-link">Chat</p>
                   </li>
-                  <li
+                  {/* <li
                     className="nav-item m-3"
                     style={{ cursor: "pointer" }}
                     onClick={redirectToFreelancerAppliedVacancies}
                   >
                     <p className="nav-link">My Applied Vacancies</p>
-                  </li>
+                  </li> */}
                 </>
               )}
               {userType === "user" && (

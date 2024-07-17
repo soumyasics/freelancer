@@ -9,7 +9,7 @@ import profileIllu from "../../../Assets/depositphotos_68082973-stock-illustrati
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { FreelancereditProfileCard } from "../userEditProfileCard/userEditProfileCard";
 
 function Freelancer_Profile({ user }) {
@@ -21,7 +21,12 @@ function Freelancer_Profile({ user }) {
       navigate("/freelancer-login");
     }
   }, []);
-  console.log("user date", userData);
+  const redirectToMyWorks = () => {
+    navigate("/freelancer-my-works");
+  };
+  const redirectToFreelancerAppliedVacancies = () => {
+    navigate('/freelancer-applied-vacancies')
+  }
   return (
     <>
       <Navbar />
@@ -65,8 +70,10 @@ function Freelancer_Profile({ user }) {
                   My Activity
                 </Button> */}
               </Col>
-              <Col xs="auto">
+              <Col xs="auto" className="d-flex ps-5 w-100 justify-content-between">
                 <FreelancereditProfileCard />
+                <Button onClick={redirectToMyWorks}>My works</Button>
+                <Button variant="success" onClick={redirectToFreelancerAppliedVacancies}>Applied vacancies</Button>
               </Col>
             </Row>
           </Col>
