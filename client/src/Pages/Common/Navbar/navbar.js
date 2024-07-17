@@ -42,6 +42,9 @@ function Navbar() {
     navigate("/consultancy-login");
   };
 
+  const freelancerUserChat = () => {
+    navigate("/freelancer-user-chat")
+  }
   const handleLogout = () => {
     if (localStorage.getItem("freelancerData")) {
       localStorage.removeItem("freelancerData");
@@ -199,6 +202,13 @@ function Navbar() {
                     onClick={redirectToMyWorks}
                   >
                     <p className="nav-link">My Works</p>
+                  </li>
+                  <li
+                    className="nav-item m-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={freelancerUserChat}
+                  >
+                    <p className="nav-link">Chat</p>
                   </li>
                   <li
                     className="nav-item m-3"

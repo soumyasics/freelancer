@@ -44,6 +44,7 @@ import { ConsultancyForgot_password } from "./Pages/consultancy/forgot_password/
 import { UserViewAllConsultancy } from "./Pages/User/viewAllConsultancies/viewAllConsultancies.jsx";
 import { FreelancerViewAllConsultancy } from "./Pages/Freelancers/viewAllConsultancies/viewAllConsultancies.jsx";
 import { UserChatDashboard } from "./Pages/User/usersChat/userChatDashboard/userChatDashboard.jsx";
+import { FreelancerChatDashboard } from "./Pages/Freelancers/freelancersChat/userChatDashboard/userChatDashboard.jsx";
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
           <Route path="/freelancer-forgot-password" element={<FreelancerForgot_password />} />
           <Route path="/freelancer-view-consultancies" element={<FreelancerViewAllConsultancy />} />
           <Route path="/freelancer-my-works" element={<MyWorks />} />
+          <Route path="/freelancer-user-chat" element={<FreelancerChatDashboard />} />
           <Route
             path="/freelancer-applied-vacancies"
             element={<ViewAllFreelancerAppliedVacancies />}

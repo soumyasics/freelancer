@@ -5,21 +5,21 @@ import { Form, InputGroup } from "react-bootstrap";
 import { IoMdSend } from "react-icons/io";
 import { axiosInstance } from "../../../../apis/axiosInstance";
 
-export const UserchatInterFace = ({ receiverId, userId }) => {
+export const UserchatInterFace = ({ receiverId, freelancerId }) => {
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (receiverId && userId) {
+    if (receiverId && freelancerId) {
       getAllMessages();
     }
-  }, [receiverId, userId]);
+  }, [receiverId, freelancerId]);
   const getAllMessages = async () => {
     try {
       const res = await axiosInstance.post(`getUserMessages`, {
-        userId,
-        freelancerId: receiverId,
+        freelancerId,
+        userId: receiverId,
       });
       if (res.status === 200) {
         setAllMessages(res.data.data);
@@ -37,16 +37,16 @@ export const UserchatInterFace = ({ receiverId, userId }) => {
       toast.error("Type message");
       return;
     }
-    if (!userId || !receiverId) {
-      console.log("ids", userId, receiverId);
+    if (!freelancerId || !receiverId) {
+      console.log("ids", freelancerId, receiverId);
       return;
     }
 
     const obj = {
       message,
-      userId,
-      freelancerId: receiverId,
-      msgSenderType: "user",
+      freelancerId,
+      userId: receiverId,
+      msgSenderType: "freelancer",
     };
     sendDataToServer(obj);
   };
@@ -72,7 +72,7 @@ export const UserchatInterFace = ({ receiverId, userId }) => {
     <div className="userChatInterface-body">
       <div id="display-user-messages">
         {allMessages.map((msg) => {
-          if (msg.msgSenderType == "user") {
+          if (msg.msgSenderType == "freelancer") {
             return (
               <div key={msg._id} className="userChatInterface-chat2">
                 <p>{msg.message}</p>
