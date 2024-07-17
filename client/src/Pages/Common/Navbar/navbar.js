@@ -87,6 +87,9 @@ function Navbar() {
   // const redirectToFreelancerAppliedVacancies = () => {
   //   navigate('../freelancer-applied-vacancies')
   // }
+  const consChatWithUser = () => {
+    navigate('/consultancy-user-chat')
+  }
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
@@ -183,6 +186,13 @@ function Navbar() {
                     onClick={redirectToAppliedVacancies}
                   >
                     <p className="nav-link">Applied Vacancies</p>
+                  </li>
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item m-3"
+                    onClick={consChatWithUser}
+                  >
+                    <p className="nav-link">Chat</p>
                   </li>
                 </>
               )}

@@ -1,0 +1,11 @@
+.userChatNavbar-body {
+  width: 100%;
+  height: 70px;
+  background-color: #1181b598;
+}
+.userChatNavbar-left-arrow {
+  color: white;
+  font-size: 34px;
+  margin-left: 34px;
+  margin-top: 17px;
+}

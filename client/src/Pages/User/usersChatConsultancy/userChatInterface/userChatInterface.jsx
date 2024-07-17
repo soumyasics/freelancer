@@ -103,7 +103,7 @@ export const UserchatInterFace = ({ receiverId, userId }) => {
             }}
             placeholder="Type message"
           />
-          <InputGroup.Text>
+          <InputGroup.Text onClick={handleSubmit}>
             <IoMdSend />
           </InputGroup.Text>
         </InputGroup>

@@ -5,21 +5,21 @@ import { Form, InputGroup } from "react-bootstrap";
 import { IoMdSend } from "react-icons/io";
 import { axiosInstance } from "../../../../apis/axiosInstance";
 
-export const UserchatInterFace = ({ receiverId, userId }) => {
+export const UserchatInterFace = ({ receiverId, consultancyId }) => {
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (receiverId && userId) {
+    if (receiverId && consultancyId) {
       getAllMessages();
     }
-  }, [receiverId, userId]);
+  }, [receiverId, consultancyId]);
   const getAllMessages = async () => {
     try {
-      const res = await axiosInstance.post(`getUserMessages`, {
-        userId,
-        freelancerId: receiverId,
+      const res = await axiosInstance.post(`getUserMessagesConsultancy`, {
+        consultancyId,
+        userId: receiverId,
       });
       if (res.status === 200) {
         setAllMessages(res.data.data);
@@ -37,22 +37,22 @@ export const UserchatInterFace = ({ receiverId, userId }) => {
       toast.error("Type message");
       return;
     }
-    if (!userId || !receiverId) {
-      console.log("ids", userId, receiverId);
+    if (!consultancyId || !receiverId) {
+      console.log("ids", consultancyId, receiverId);
       return;
     }
 
     const obj = {
       message,
-      userId,
-      freelancerId: receiverId,
-      msgSenderType: "user",
+      consultancyId,
+      userId: receiverId,
+      msgSenderType: "consultancy",
     };
     sendDataToServer(obj);
   };
   const sendDataToServer = async (data) => {
     try {
-      const res = await axiosInstance.post("sendMessageToUser", data);
+      const res = await axiosInstance.post("sendMessageToUserConsultancy", data);
       if (res.status === 200) {
         console.log("respon", res);
       }
@@ -72,7 +72,7 @@ export const UserchatInterFace = ({ receiverId, userId }) => {
     <div className="userChatInterface-body">
       <div id="display-user-messages">
         {allMessages.map((msg) => {
-          if (msg.msgSenderType == "user") {
+          if (msg.msgSenderType == "consultancy") {
             return (
               <div key={msg._id} className="userChatInterface-chat2">
                 <p>{msg.message}</p>
