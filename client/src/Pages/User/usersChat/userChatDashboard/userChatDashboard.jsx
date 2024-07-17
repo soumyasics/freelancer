@@ -9,15 +9,17 @@ import { UserChatFooter } from "../userNavbarFooter/userChatFooter";
 import { useSelector } from "react-redux";
 export const UserChatDashboard = () => {
   const [selectedUser, setSelectedUser] = useState("");
+  const [selectedUserName, setSelectedUserName] = useState("");
   const { userId } = useSelector((state) => state.auth);
-  const selectingUser = (value) => {
+  const selectingUser = (value, selectedUserName) => {
     setSelectedUser(value);
+    setSelectedUserName(selectedUserName);
   };
 
   console.log("selec usr", selectedUser);
   return (
     <div className="bg-light text-dark " style={{position: "sticky", top: "0"}}>
-      <UserChatNavbar />
+      <UserChatNavbar selectedUserName={selectedUserName} />
       <div className="row">
         <div className="col-4">
           <UserChatSidebar selectingUser={selectingUser} />

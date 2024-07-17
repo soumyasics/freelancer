@@ -5,6 +5,7 @@ import "./userChatSidebar.css";
 import { axiosInstance } from "../../../../apis/axiosInstance";
 export const UserChatSidebar = ({ selectingUser }) => {
   const [data, setData] = useState([{ profile: { filename: "" } }]);
+  const [selectedUserid, setSelectedUserid] = useState("");
   const [fixedUsers, setFixedUsers] = useState([]);
   const getData = async () => {
     try {
@@ -23,8 +24,6 @@ export const UserChatSidebar = ({ selectingUser }) => {
   useEffect(() => {
     getData();
   }, []);
-
-  console.log("data", data);
 
   const handleSearch = (e) => {
     const value = e.target.value;
@@ -51,9 +50,12 @@ export const UserChatSidebar = ({ selectingUser }) => {
         return (
           <div
             onClick={() => {
-              selectingUser(e._id);
+              selectingUser(e._id, e.firstName);
+              setSelectedUserid(e._id);
             }}
-            className="chatSidebar-view-users d-flex align-items-center"
+            className={`chatSidebar-view-users d-flex align-items-center ${
+              selectedUserid == e._id ? "selected-user-boreder" : ""
+            }`}
           >
             {/* <img src={`${BASE_URL}${e?.profile?.filename}`} alt="" /> */}
             <p className="fs-4">{e.firstName}</p>

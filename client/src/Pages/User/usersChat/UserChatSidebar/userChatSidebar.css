@@ -49,3 +49,7 @@
   margin-left: 26px;
   margin-top: 14px;
 }
+
+.selected-user-boreder {
+  border: 3px solid #6d3698 !important;
+}
