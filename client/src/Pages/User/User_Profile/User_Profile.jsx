@@ -12,11 +12,17 @@ import { UsereditProfileCard } from "../userEditProfileCard/userEditProfileCard"
 function User_Profile() {
   const { userData } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  
+  const redirectUserRequest = () => {
+    navigate("/user-request");
+  };
+
+  const redirectMyRequests = () => {
+    navigate("/user-myrequests");
+  };
   return (
     <>
       <Navbar />
-      
+
       <Container fluid className="bg-light h-75 w-100 ">
         <h1 className="m-5 p-5 text-center">User Profile</h1>
         <Row className="align-items-center">
@@ -50,7 +56,6 @@ function User_Profile() {
                   My Activity
                 </Button>
               </Col> */}
-              
             </Row>
           </Col>
           <Col className="d-flex justify-content-center align-items-center">
@@ -63,7 +68,20 @@ function User_Profile() {
             />
           </Col>
         </Row>
-      <UsereditProfileCard />
+        <Col xs="auto" className="d-flex ps-5 w-50 justify-content-between">
+          <UsereditProfileCard />
+          <Button
+            variant="success"
+            onClick={redirectUserRequest}
+          >
+            Request work
+          </Button>
+          <Button
+            onClick={redirectMyRequests}
+          >
+            My Requests
+          </Button>
+        </Col>
       </Container>
       <Footer />
     </>

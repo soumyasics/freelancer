@@ -59,9 +59,7 @@ function Navbar() {
     navigate("/view-request");
   };
 
-  const redirectMyRequests = () => {
-    navigate("/user-myrequests");
-  };
+
   const redirectProfile = () => {
     if (userType === "user") {
       navigate("../user-profile");
@@ -85,7 +83,9 @@ function Navbar() {
   const redirectToAppliedVacancies = () => {
     navigate('../view-all-applied-works')
   }
-
+  // const redirectToFreelancerAppliedVacancies = () => {
+  //   navigate('../freelancer-applied-vacancies')
+  // }
   return (
     <div className="container-fluid bg-connect ">
       <div className="connect justify-content-center">
@@ -134,13 +134,13 @@ function Navbar() {
 
               {userType === "user" && (
                 <>
-                <li
+                {/* <li
                   style={{ cursor: "pointer" }}
                   className="nav-item m-3"
                   onClick={redirectUserRequest}
                 >
                   <p className="nav-link">Request Work</p>
-                </li>
+                </li> */}
                 <li
                   style={{ cursor: "pointer" }}
                   className="nav-item m-3"
@@ -207,15 +207,6 @@ function Navbar() {
                     <p className="nav-link">My Applied Vacancies</p>
                   </li> */}
                 </>
-              )}
-              {userType === "user" && (
-                <li
-                  style={{ cursor: "pointer" }}
-                  className="nav-item m-3"
-                  onClick={redirectMyRequests}
-                >
-                  <p className="nav-link">My Requests</p>
-                </li>
               )}
               {isUserLoggedIn ? (
                 <>
