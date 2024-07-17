@@ -14,6 +14,11 @@ const ChatUsersSchema = Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "freelancers",
     },
+    msgSenderType: {
+      enum: ["freelancer", "user"],
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

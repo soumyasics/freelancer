@@ -7,7 +7,7 @@ const workRequest = require("./userWorkRequest/workRequestController");
 const consultancy = require("./consultancy/consultancyController");
 const conWorkRequestRoutes = require("./conWorkRequest/conWorkRequestController");
 const appliedVacencyRoutes = require("./appliedVacencies/appliedVacenciesController");
-
+const chatRoutes = require("./chat-users-freelancers/chatUsersController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -25,7 +25,10 @@ router.get("/getAllApprovedFreelancers", freelancer.getAllApprovedFreelancers);
 router.patch("/approveFreelancerById/:id", freelancer.approveFreelancerById);
 router.patch("/rejectFreelancerById/:id", freelancer.rejectFreelancerById);
 router.patch("/activateFreelancerById/:id", freelancer.activateFreelancerById);
-router.patch("/deactivateFreelancerById/:id", freelancer.deactivateFreelancerById);
+router.patch(
+  "/deactivateFreelancerById/:id",
+  freelancer.deactivateFreelancerById
+);
 
 // user routes
 router.post("/userRegistration", user.userRegistration);
@@ -67,19 +70,31 @@ router.post(
   consultancy.consultancyRegistration
 );
 router.post("/consultancyLogin", consultancy.consultanyLogin);
-router.post("/consultancyForgotPassowrd", consultancy.consultancyForgotPassowrd);
+router.post(
+  "/consultancyForgotPassowrd",
+  consultancy.consultancyForgotPassowrd
+);
 router.get("/getAllConsultancy", consultancy.getAllConsultancy);
 router.get("/getConsultancyById/:id", consultancy.getConsultancyById);
 router.patch("/editConsultancyById/:id", consultancy.editConsultancyById);
 router.patch("/approveConsultancyById/:id", consultancy.approveConsultancyById);
 router.patch("/rejectConsultancyById/:id", consultancy.rejectConsultancyById);
-router.patch("/activateConsultancyById/:id", consultancy.activateConsultancyById);
-router.patch("/deactivateConsultancyById/:id", consultancy.deactivateConsultancyById);
-router.get("/getAllApprovedConsultancies", consultancy.getAllApprovedConsultancies);
-router.get("/getAllPendingConsultancies", consultancy.getAllPendingConsultancies);
-
-
-
+router.patch(
+  "/activateConsultancyById/:id",
+  consultancy.activateConsultancyById
+);
+router.patch(
+  "/deactivateConsultancyById/:id",
+  consultancy.deactivateConsultancyById
+);
+router.get(
+  "/getAllApprovedConsultancies",
+  consultancy.getAllApprovedConsultancies
+);
+router.get(
+  "/getAllPendingConsultancies",
+  consultancy.getAllPendingConsultancies
+);
 
 // consultancy work requst routs
 
@@ -141,6 +156,12 @@ router.get(
   "/viewAllAppliedVacencyByFreelancerId/:id",
   appliedVacencyRoutes.viewAllAppliedVacencyByFreelancerId
 );
+
+// user freelancer chat routes
+
+router.post("/sendMessageToUser", chatRoutes.sendMessage);
+router.post("/getUserMessages", chatRoutes.getUserMessages);
+
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });
 });

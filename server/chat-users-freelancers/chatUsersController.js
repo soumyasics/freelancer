@@ -4,7 +4,7 @@ const { ChatUserModel } = require("./chatUsersSchema");
 
 const sendMessage = async (req, res) => {
   try {
-    const { message, userId, freelancerId } = req.body;
+    const { message, userId, freelancerId, msgSenderType } = req.body;
 
     if (!message || !userId || !freelancerId) {
       return res.status(400).json({ msg: "All fields are required" });
@@ -17,11 +17,16 @@ const sendMessage = async (req, res) => {
     ) {
       return res.status(400).json({ msg: "Invalid user or freelancer id" });
     }
-
+    if (msgSenderType !== "freelancer" && msgSenderType !== "user") {
+      return res
+        .status(400)
+        .json({ msg: "msgSenderType must be 'freelancer' or 'user'" });
+    }
     const chatUser = new ChatUserModel({
       message,
       userId,
       freelancerId,
+      msgSenderType,
     });
     await chatUser.save();
     return res.status(200).json({ msg: "Message sent successfully" });
@@ -30,7 +35,7 @@ const sendMessage = async (req, res) => {
   }
 };
 
-const getMessages = async (req, res) => {
+const getUserMessages = async (req, res) => {
   try {
     const { userId, freelancerId } = req.body;
     if (!userId || !freelancerId) {
@@ -59,4 +64,4 @@ const getMessages = async (req, res) => {
   }
 };
 
-module.exports = { sendMessage, getMessages };
+module.exports = { sendMessage, getUserMessages };

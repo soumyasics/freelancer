@@ -30,6 +30,10 @@ function Navbar() {
     navigate("/");
   };
 
+  const userFreelancerChat = () => {
+    navigate('/user-freelancer-chat')
+  }
+
   const viewAllConsultancies = () => {
     navigate("/user-view-consultancies")
   }
@@ -130,6 +134,7 @@ function Navbar() {
               </li>
 
               {userType === "user" && (
+                <>
                 <li
                   style={{ cursor: "pointer" }}
                   className="nav-item m-3"
@@ -137,6 +142,14 @@ function Navbar() {
                 >
                   <p className="nav-link">Request Work</p>
                 </li>
+                <li
+                  style={{ cursor: "pointer" }}
+                  className="nav-item m-3"
+                  onClick={userFreelancerChat}
+                >
+                  <p className="nav-link">Chat with Freelancer</p>
+                </li>
+                </>
               )}
               {userType === "consultancy" && (
                 <>
