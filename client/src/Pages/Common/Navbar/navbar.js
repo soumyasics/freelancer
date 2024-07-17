@@ -33,6 +33,9 @@ function Navbar() {
   const userFreelancerChat = () => {
     navigate('/user-freelancer-chat')
   }
+  const userConsultancyChat = () => {
+    navigate('/user-consultancy-chat')
+  }
 
   const viewAllConsultancies = () => {
     navigate("/user-view-consultancies")
@@ -52,9 +55,7 @@ function Navbar() {
     dispatch(logoutSuccess());
     navigate("/");
   };
-  const redirectUserRequest = () => {
-    navigate("/user-request");
-  };
+  
   const redirectViewRequests = () => {
     navigate("/view-request");
   };
@@ -146,7 +147,16 @@ function Navbar() {
                   className="nav-item m-3"
                   onClick={userFreelancerChat}
                 >
-                  <p className="nav-link">Chat with Freelancer</p>
+                  
+                  <p className="nav-link">Chat with freelancer</p>
+                </li>
+                <li
+                  style={{ cursor: "pointer" }}
+                  className="nav-item m-3"
+                  onClick={userConsultancyChat}
+                >
+                  
+                  <p className="nav-link">Chat with consultancy</p>
                 </li>
                 </>
               )}

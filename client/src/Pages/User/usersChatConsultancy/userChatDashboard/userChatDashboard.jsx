@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { UserChatNavbar } from "../userChatNavbar/userChatNavbar";
 import { UserChatFooter } from "../userNavbarFooter/userChatFooter";
 import { useSelector } from "react-redux";
-export const UserChatDashboard = () => {
+export const UserConsultancyChatDashboard = () => {
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedUserName, setSelectedUserName] = useState("");
   const { userId } = useSelector((state) => state.auth);
@@ -16,6 +16,7 @@ export const UserChatDashboard = () => {
     setSelectedUserName(selectedUserName);
   };
 
+  console.log("selec usr", selectedUser);
   return (
     <div className="bg-light text-dark " style={{position: "sticky", top: "0"}}>
       <UserChatNavbar selectedUserName={selectedUserName} />
