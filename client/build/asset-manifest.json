@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/freelancers_marketplace/static/css/main.f002199b.css",
+    "main.js": "/freelancers_marketplace/static/js/main.b3159e7c.js",
+    "static/js/787.6a9fceeb.chunk.js": "/freelancers_marketplace/static/js/787.6a9fceeb.chunk.js",
+    "static/media/standard-quality-control-concept-m.jpg": "/freelancers_marketplace/static/media/standard-quality-control-concept-m.3996706ebdc5576bd982.jpg",
+    "static/media/banner.png": "/freelancers_marketplace/static/media/banner.9e98c2cd42b6d7d9b63b.png",
+    "static/media/banner_3.png": "/freelancers_marketplace/static/media/banner_3.6d719ea544213f650b2d.png",
+    "static/media/secure.png": "/freelancers_marketplace/static/media/secure.3802688610af42de17e0.png",
+    "static/media/banner2.png": "/freelancers_marketplace/static/media/banner2.3fc65209764034592dc2.png",
+    "static/media/banner3.png": "/freelancers_marketplace/static/media/banner3.53bdf437c9e89d2b2d25.png",
+    "static/media/credit-card.png": "/freelancers_marketplace/static/media/credit-card.c6f791289950c503b0c9.png",
+    "static/media/side_fig.png": "/freelancers_marketplace/static/media/side_fig.3418c83b8c0aab3c2d53.png",
+    "static/media/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector.jpg": "/freelancers_marketplace/static/media/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector.c36b3b672e1ee9a2d23c.jpg",
+    "static/media/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector-removebg-preview.png": "/freelancers_marketplace/static/media/illustration-graphic-cartoon-character-of-freelancer-programmer-outsourcer-vector-removebg-preview.8ada65568e6e37939fbc.png",
+    "static/media/bootstrap-icons.woff?": "/freelancers_marketplace/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
+    "static/media/istockphoto-955148158-612x612-removebg-preview.png": "/freelancers_marketplace/static/media/istockphoto-955148158-612x612-removebg-preview.9662eabdaae7c3bcf489.png",
+    "static/media/no-response.jpg": "/freelancers_marketplace/static/media/no-response.c46db16ca8a780dd7f36.jpg",
+    "static/media/bootstrap-icons.woff2?": "/freelancers_marketplace/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
+    "static/media/HD-wallpaper-purple-smile-design-eye-smily-profile-pic-face.jpg": "/freelancers_marketplace/static/media/HD-wallpaper-purple-smile-design-eye-smily-profile-pic-face.6cbaf06027eba2e975ad.jpg",
+    "static/media/consult.webp": "/freelancers_marketplace/static/media/consult.c9d0a6c3b38e595fae8d.webp",
+    "static/media/laptop.png": "/freelancers_marketplace/static/media/laptop.40c42c6c8b5ad1cb804d.png",
+    "static/media/30-307416_profile-icon-png-image-free-download-searchpng-employee.png": "/freelancers_marketplace/static/media/30-307416_profile-icon-png-image-free-download-searchpng-employee.16b7424786c37d0428e7.png",
+    "static/media/status.jpg": "/freelancers_marketplace/static/media/status.9fe64ad95b9230fb8fef.jpg",
+    "static/media/Beauty.png": "/freelancers_marketplace/static/media/Beauty.9ffedab2f2b7b4dc5ce3.png",
+    "static/media/amazonpay.png": "/freelancers_marketplace/static/media/amazonpay.90ea1778fc4c5e2fbb22.png",
+    "static/media/depositphotos_68082973-stock-illustration-workplace-designer-flat-modern-illustration.jpg": "/freelancers_marketplace/static/media/depositphotos_68082973-stock-illustration-workplace-designer-flat-modern-illustration.49ffa088d228699aef8d.jpg",
+    "static/media/strategic-consulting-concept-illustration_114360-8994.avif": "/freelancers_marketplace/static/media/strategic-consulting-concept-illustration_114360-8994.f5dcffae9cb944b73ffc.avif",
+    "static/media/paypal.png": "/freelancers_marketplace/static/media/paypal.c7074e558e8a3047eb41.png",
+    "static/media/consultative-sales-concept-illustration_114360-7388.avif": "/freelancers_marketplace/static/media/consultative-sales-concept-illustration_114360-7388.1073fcb74d91ca3a2463.avif",
+    "index.html": "/freelancers_marketplace/index.html",
+    "main.f002199b.css.map": "/freelancers_marketplace/static/css/main.f002199b.css.map",
+    "main.b3159e7c.js.map": "/freelancers_marketplace/static/js/main.b3159e7c.js.map",
+    "787.6a9fceeb.chunk.js.map": "/freelancers_marketplace/static/js/787.6a9fceeb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f002199b.css",
+    "static/js/main.b3159e7c.js"
+  ]
+}
