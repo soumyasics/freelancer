@@ -83,7 +83,7 @@ function ViewAllUsersRequests() {
         freelancerResponse
       );
       if (res.status === 200) {
-        toast.error("Response sent successfully");
+        toast.success("Response sent successfully");
         setFreelancerResponse({ ...freelancerResponse, message: "" });
         setIsInterestClicked(false);
         getRequestsData();

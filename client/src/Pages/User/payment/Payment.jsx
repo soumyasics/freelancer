@@ -70,9 +70,16 @@ function Payment() {
         //TODO navigate to my acitivy page.
       }
     } catch (err) {
+      const status = err?.response?.status;
+      if (status === 401 || status === 400 || status === 403) {
+        toast.error(err?.response?.data?.message);
+        return;
+      }else {
+        toast.error("Something went wrong");
+
+      }
       console.log("Error on get request data", err);
 
-      toast.error("Something went wrong");
     }
   }
 

@@ -112,7 +112,7 @@ export const ViewResponseDetails = () => {
                               onClick={() => {
                                 acceptOffer(res?.freelancerId, requestData?.budget);
                               }}
-                              className="ms-5"
+                              className="ms-5 m-3"
                               variant="success"
                             >
                               {" "}

@@ -18,7 +18,18 @@ const addPayment = async (req, res) => {
       .status(400)
       .json({ message: "All fields are required", data: req.body });
   }
+
   try {
+    const isAlreayPaid = await Payment.findOne({
+      freelancerId: req.body.freelancerId,
+      workId: req.body.workId,
+      userId: req.body.userId,
+    });
+    if (isAlreayPaid) {
+      return res
+        .status(400)
+        .json({ message: "You already paid.", data: req.body });
+    }
     // Create a new payment instance
     const payment = new Payment({
       freelancerId: req.body.freelancerId,
@@ -35,7 +46,7 @@ const addPayment = async (req, res) => {
     res.status(201).json({ message: "saved", data: payment });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Failed", error: "Server Error" });
+    res.status(500).json({ message: "Network Failed", error: "Server Error" });
   }
 };
 
@@ -73,7 +84,7 @@ const viewPayment = async (req, res) => {
 
 const getAllPaymentsByFreelancerId = async (req, res) => {
   let freelancerId = req.params.freelancerId;
-  console.log("freel", freelancerId)
+  console.log("freel", freelancerId);
   try {
     const payments = await Payment.find({
       freelancerId: req.params.freelancerId,

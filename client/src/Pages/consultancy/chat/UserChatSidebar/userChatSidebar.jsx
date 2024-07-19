@@ -39,7 +39,7 @@ export const UserChatSidebar = ({ selectingUser }) => {
   };
 
   return (
-    <div className="chatSidebar-body">
+    <div className="chatSidebar-body" style={{ overflow: "auto" }}>
       <input
         type="text"
         onChange={handleSearch}
