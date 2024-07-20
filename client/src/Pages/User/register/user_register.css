@@ -8,13 +8,3 @@
   font-weight: 300;
   line-height: normal;
 }
-@media only screen and (max-width: 1440px) {
-  .user-register {
-    margin-bottom: 19%;
-  }
-}
-@media only screen and (min-width: 1439px) {
-  .user-register {
-    margin-bottom: 1%;
-  }
-}
