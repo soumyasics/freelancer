@@ -16,34 +16,39 @@ function Home(props) {
     <>
       <Navbar />
 
-      <div className="container-fluid">
-        <div className="m-5">
-          <p className="hero-legend justify-content-center pt-5 ">
-            Connect, Collaborate, and Reunite
-          </p>
-        </div>
-        <div>
-          <p className="home-inner justify-content-center">
-            A Lost & Found for Your Freelance Community
-          </p>
-        </div>
-        <div className="connect justify-content-center p-5 m-5">
-          <span>Connect</span>
-          <i className="bi bi-gear-wide-connected mx-3"></i>
-        </div>
-        <div className="home-inner2 p-5 ">
-          <p className="m-3 p-3">"Empower your dreams. Freelance your future."</p>
-          <p className="home-inner3 mt-4 p-3">
-            Join Marketplace CONNECT, the trusted network for freelancing professionals
-          </p>
-          <button
-            className="btn btn-outline-info btn-lg px-5 py-4 m-5"
-            id="btn1"
-            onClick={redirectFreelancer}
-          >
-            Connect Now <i className="bi bi-gear-wide-connected mx-3"></i>
-          </button>
-        </div>
+      <div className="container-fluid" style={{ color: "black" }}>
+        {/* <div className="trashed">
+          <div className="m-5">
+            <p className="hero-legend justify-content-center pt-5 ">
+              Connect, Collaborate, and Reunite
+            </p>
+          </div>
+          <div>
+            <p className="home-inner justify-content-center">
+              A Lost & Found for Your Freelance Community
+            </p>
+          </div>
+          <div className="connect justify-content-center p-5 m-5">
+            <span>Connect</span>
+            <i className="bi bi-gear-wide-connected mx-3"></i>
+          </div>
+          <div className="home-inner2 p-5 ">
+            <p className="m-3 p-3">
+              "Empower your dreams. Freelance your future."
+            </p>
+            <p className="home-inner3 mt-4 p-3">
+              Join Marketplace CONNECT, the trusted network for freelancing
+              professionals
+            </p>
+            <button
+              className="btn btn-outline-info btn-lg px-5 py-4 m-5"
+              id="btn1"
+              onClick={redirectFreelancer}
+            >
+              Connect Now <i className="bi bi-gear-wide-connected mx-3"></i>
+            </button>
+          </div>
+        </div> */}
         <div className="home-banner mb-5 p-5">
           <div className="home-banner-inner m-5 p-5">
             <img
@@ -52,7 +57,8 @@ function Home(props) {
               className="ms-auto float-end"
             />
             <p className="home-banner-inner1 ">
-            Welcome to the world of freelancing—a vibrant ecosystem where talent knows no boundaries and innovation knows no limits.
+              Welcome to the world of freelancing—a vibrant ecosystem where
+              talent knows no boundaries and innovation knows no limits.
             </p>
           </div>
           <p className="home-banner-inner2 m-5 p-5">Simplified Reporting</p>
@@ -61,14 +67,16 @@ function Home(props) {
           <img src={laptop} alt="laptop" className="mx-auto p-5" />
           <p className="home-targeted-search p-3">Easy Payment</p>
           <p className="home-targeted-search-body p-3">
-          Experience seamless transactions with our easy payment feature, simplifying the process for hassle-free transactions.
+            Experience seamless transactions with our easy payment feature,
+            simplifying the process for hassle-free transactions.
           </p>
         </div>
         <div className="home-banner-inner m-5">
           <div className="home-banner-secure m-5">
             <p className="home-banner-secure-inner">Secure Communication</p>
             <p className="home-banner-secure-inner1">
-              Join Marketplace CONNECT, the trusted network for freelancing professionals
+              Join Marketplace CONNECT, the trusted network for freelancing
+              professionals
             </p>
           </div>
         </div>
@@ -83,7 +91,8 @@ function Home(props) {
                 </p>
                 <button
                   className="btn btn-outline-info btn-lg px-5 pt-3 my-3"
-                  id="btn2" onClick={redirectFreelancer}
+                  id="btn2"
+                  onClick={redirectFreelancer}
                 >
                   GROW <i className="bi bi-gear-wide-connected mx-1"></i>
                 </button>
@@ -99,7 +108,11 @@ function Home(props) {
           </div>
         </div>
         <div className="home-banner-ipad text-center  m-4 ">
-          <button className="btn btn-info btn-lg " id="btn3" onClick={redirectFreelancer}>
+          <button
+            className="btn btn-info btn-lg "
+            id="btn3"
+            onClick={redirectFreelancer}
+          >
             CONNECT TO NETWORK{" "}
             <i className="bi bi-gear-wide-connected mx-3"></i>
           </button>
@@ -107,9 +120,9 @@ function Home(props) {
         <div className="home-banner-inner text-center p-4 m-5">
           <p className="home-banner-testimonial m-5">Testimonials</p>
           <p className="home-banner-quoteblock m-5">
-            " Marketplace Connect restored my faith in the freelance community. My Code went
-            missing after a shoot, and within days, a fellow Coder messaged me
-            through the platform to return it! Amazing! "
+            " Marketplace Connect restored my faith in the freelance community.
+            My Code went missing after a shoot, and within days, a fellow Coder
+            messaged me through the platform to return it! Amazing! "
           </p>
           <img src={beauty} alt="beauty" className="mx-auto m-5" />
           <p className="home-banner-end">Amazing Coder</p>

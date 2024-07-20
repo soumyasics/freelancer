@@ -27,13 +27,9 @@ import { ConsultancyRegister } from "./Pages/consultancy/register/consultancyReg
 import { ConsultancyLogin } from "./Pages/consultancy/login/consultancyLogin.jsx";
 import Vacancy_request from "./Pages/consultancy/vacancy_request/Vacancy_request.jsx";
 import ViewAllVacancies from "./Pages/Freelancers/ViewAllVacancies/ViewAllVacancies.jsx";
-
 import ConsultancyHome from "./Pages/consultancy/home/ConsultancyHome.jsx";
-
 import { AdminViewAllConsultancy } from "./Pages/Admin/Admin_ViewAllConsultancy/Admin_ViewAllConsultancy.jsx";
-
 import ViewAllAppliedWorks from "./Pages/consultancy/ViewAllAppliedWorks/ViewAllAppliedWorks.jsx";
-
 import { MyVacanccies } from "./Pages/consultancy/my_vacancies/my_vacancies.jsx";
 import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
 import MyOrders from "./Pages/User/MyOrders/MyOrders.jsx";
@@ -50,7 +46,6 @@ import { ConsultancyChatDashboard } from "./Pages/consultancy/chat/userChatDashb
 
 function App() {
   return (
-    <div className="container-fluid bg-hero m-auto " style={{ padding: 0 }}>
       <BrowserRouter basename="freelancers_marketplace">
         <Routes>
           {/* user routes  */}
@@ -147,7 +142,6 @@ function App() {
           <Route path="/*" element={<h1> Please re-check the Route </h1>} />
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 
