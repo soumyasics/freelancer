@@ -8,7 +8,7 @@ const consultancy = require("./consultancy/consultancyController");
 const conWorkRequestRoutes = require("./conWorkRequest/conWorkRequestController");
 const appliedVacencyRoutes = require("./appliedVacencies/appliedVacenciesController");
 const chatRoutes = require("./chat-users-freelancers/chatUsersController");
-const chatConsultancy = require("./chat-users-consultancies/chatUsersController") 
+const chatConsultancy = require("./chat-users-consultancies/chatUsersController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -63,7 +63,10 @@ router.post(
   workRequest.workRequestFreelancerResponse
 );
 router.post("/workRequestUserReplay/:id", workRequest.workRequestUserReplay);
-
+router.delete(
+  "/deleteUserWorkRequestById/:id",
+  workRequest.deleteUserWorkRequestById
+);
 // consultancy
 router.post(
   "/consultancyRegistration",

@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../../redux/slices/authSlice";
 import "./consultancyLogin.css";
 import { toast } from "react-hot-toast";
+import Footer from "../../Common/Footer/footer";
+import { LandingNavbar } from "../../Common/Navbar/landingNavbar";
 
 export function ConsultancyLogin() {
   const dispatch = useDispatch();
@@ -59,7 +61,6 @@ export function ConsultancyLogin() {
           localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
         navigate("/consultancy-home");
-
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;
@@ -80,94 +81,100 @@ export function ConsultancyLogin() {
     navigate("/consultancy-register");
   };
   return (
-    <div className="freelancer-login container-fluid">
-      <div className="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-        <div className="d-flex align-items-center justify-content-center w-100">
-          <div className="row justify-content-center w-100">
-            <div className="col-4">
-              <div className="card mb-0 p-4">
-                <div className="card-body">
-                  <h2 className="text-center freelancer-login-heading mb-2">
-                    Consultancy Login
-                  </h2>
-                  <form onSubmit={handleLogin}>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label user-login-label"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        required
-                        id="exampleInputEmail1"
-                        name="email"
-                        value={freelancerData.email}
-                        onChange={handleChanges}
-                        aria-describedby="emailHelp"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="exampleInputPassword1"
-                        className="form-label user-login-label"
-                      >
-                        Password
-                      </label>
-                      <input
-                        type="password"
-                        required
-                        className="form-control"
-                        name="password"
-                        value={freelancerData.password}
-                        onChange={handleChanges}
-                        id="exampleInputPassword1"
-                      />
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between mb-4">
-                      <div className="form-check">
+    <>
+      <LandingNavbar />
+      <div className="freelancer-login container-fluid">
+        <div className="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+          <div className="d-flex align-items-center justify-content-center w-100">
+            <div className="row justify-content-center w-100">
+              <div className="col-4">
+                <div className="card mb-0 p-4">
+                  <div className="card-body">
+                    <h2 className="text-center freelancer-login-heading mb-2">
+                      Consultancy Login
+                    </h2>
+                    <form onSubmit={handleLogin}>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleInputEmail1"
+                          className="form-label user-login-label"
+                        >
+                          Email
+                        </label>
                         <input
-                          className="form-check-input primary"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
+                          type="email"
+                          className="form-control"
+                          required
+                          id="exampleInputEmail1"
+                          name="email"
+                          value={freelancerData.email}
+                          onChange={handleChanges}
+                          aria-describedby="emailHelp"
                         />
                       </div>
-                      <p
-                        style={{ cursor: "pointer" }}
-                        className="user-login-label"
-                        onClick={() => {
-                          navigate("/consultancy-forgot-password");
-                        }}
+                      <div className="mb-4">
+                        <label
+                          htmlFor="exampleInputPassword1"
+                          className="form-label user-login-label"
+                        >
+                          Password
+                        </label>
+                        <input
+                          type="password"
+                          required
+                          className="form-control"
+                          name="password"
+                          value={freelancerData.password}
+                          onChange={handleChanges}
+                          id="exampleInputPassword1"
+                        />
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between mb-4">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input primary"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckChecked"
+                          />
+                        </div>
+                        <p
+                          style={{ cursor: "pointer" }}
+                          className="user-login-label"
+                          onClick={() => {
+                            navigate("/consultancy-forgot-password");
+                          }}
+                        >
+                          {" "}
+                          Forgot Password?
+                        </p>
+                      </div>
+                      <button
+                        type="submit"
+                        className="btn  w-100 py-8 fs-4 mb-4 rounded-2 user-login-button text-white"
                       >
-                        {" "}
-                        Forgot Password?
-                      </p>
-                    </div>
-                    <button
-                      type="submit"
-                      className="btn  w-100 py-8 fs-4 mb-4 rounded-2 user-login-button text-white"
-                    >
-                      Sign In
-                    </button>
-                    <div className="d-flex align-items-center justify-content-center">
-                      <p
-                        style={{ cursor: "pointer" }}
-                        className="fs-5 mb-0 fw-bold"
-                        onClick={redirectConsultancyRegister}
-                      >
-                        Create an Consultancy account
-                      </p>
-                    </div>
-                  </form>
+                        Sign In
+                      </button>
+                      <div className="d-flex align-items-center justify-content-center">
+                        <p
+                          style={{ cursor: "pointer" }}
+                          className="fs-5 mb-0 fw-bold"
+                          onClick={redirectConsultancyRegister}
+                        >
+                          Create an Consultancy account
+                        </p>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div>
+        <Footer />
+      </div>
+    </>
   );
 }

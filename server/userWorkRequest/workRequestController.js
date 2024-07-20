@@ -3,13 +3,21 @@ const WorkRequestModel = require("./workRequestSchema");
 const createWorkRequest = async (req, res) => {
   try {
     const { userId, title, description, category, budget, deadline } = req.body;
-    if (!userId || !title || !description || !category || !budget || !deadline) {
+    if (
+      !userId ||
+      !title ||
+      !description ||
+      !category ||
+      !budget ||
+      !deadline
+    ) {
       return res.status(401).json({ message: "All fields are required" });
     }
 
-
     if (budget <= 0) {
-      return res.status(401).json({ message: "Budget cannot be negative or zero" });
+      return res
+        .status(401)
+        .json({ message: "Budget cannot be negative or zero" });
     }
 
     const workRequest = new WorkRequestModel({
@@ -47,7 +55,7 @@ const getWorkRequestByUserId = async (req, res) => {
     console.log("Error on get work request by id", error);
     return res.status(500).json({ error });
   }
-}
+};
 
 const getAllWorkRequest = async (req, res) => {
   try {
@@ -233,6 +241,24 @@ const workRequestUserReplay = async (req, res) => {
   }
 };
 
+const deleteUserWorkRequestById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(401).json({ message: "Id is required" });
+    }
+    const workRequest = await WorkRequestModel.findById(id);
+    if (!workRequest) {
+      return res.status(404).json({ message: "Work request can't find" });
+    }
+    const status = await WorkRequestModel.findByIdAndDelete(id);
+    console.log("status", status)
+    return res.status(200).json({ message: "Work request deleted successfully", data: status });
+  } catch (error) {
+    return res.status(500).json({ error: error.message, message: "Error on delete request" });
+  }
+};
+
 module.exports = {
   createWorkRequest,
   getAllWorkRequest,
@@ -242,5 +268,7 @@ module.exports = {
   makeWorkRequestCompleted,
   makeWorkRequestCancelled,
   workRequestFreelancerResponse,
-  workRequestUserReplay,getWorkRequestByUserId
+  workRequestUserReplay,
+  getWorkRequestByUserId,
+  deleteUserWorkRequestById
 };

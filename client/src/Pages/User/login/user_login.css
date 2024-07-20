@@ -18,3 +18,7 @@
 .user-login-button {
   background-color: #1a728e !important;
 }
+
+.user-login label {
+  font-weight: bold;
+}
