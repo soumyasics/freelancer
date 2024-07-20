@@ -97,7 +97,6 @@ const viewPayment = async (req, res) => {
 
 const getAllPaymentsByFreelancerId = async (req, res) => {
   let freelancerId = req.params.freelancerId;
-  console.log("freel", freelancerId);
   try {
     const payments = await Payment.find({
       freelancerId: req.params.freelancerId,
@@ -107,7 +106,6 @@ const getAllPaymentsByFreelancerId = async (req, res) => {
       .populate("freelancerId")
       .exec();
 
-    console.log("paymentss", payments);
 
     return res
       .status(200)
