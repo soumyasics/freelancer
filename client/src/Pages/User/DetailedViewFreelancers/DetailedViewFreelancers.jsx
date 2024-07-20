@@ -78,7 +78,7 @@ function DetailedViewFreelancers() {
           </Row>
         </Container>
       </div>
-      <div>
+      <div className="mt-5">
         <Footer />
       </div>
     </>

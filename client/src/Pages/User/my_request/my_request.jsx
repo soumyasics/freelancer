@@ -78,7 +78,7 @@ function MyRequests() {
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-light">
+      <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
             My Work Requests

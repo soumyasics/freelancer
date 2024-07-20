@@ -73,7 +73,7 @@ export default function ViewAllVacancies() {
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
+      <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
             Consultancies Vacancy
@@ -117,7 +117,7 @@ export default function ViewAllVacancies() {
           </Table>
         </Container>
       </div>
-      <div style={{ position: "relative", top: "400px" }}>
+      <div className="mt-5">
         <Footer />
       </div>
     </>

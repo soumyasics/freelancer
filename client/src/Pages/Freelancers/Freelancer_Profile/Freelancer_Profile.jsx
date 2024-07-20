@@ -25,8 +25,8 @@ function Freelancer_Profile({ user }) {
     navigate("/freelancer-my-works");
   };
   const redirectToFreelancerAppliedVacancies = () => {
-    navigate('/freelancer-applied-vacancies')
-  }
+    navigate("/freelancer-applied-vacancies");
+  };
   return (
     <>
       <Navbar />
@@ -70,10 +70,18 @@ function Freelancer_Profile({ user }) {
                   My Activity
                 </Button> */}
               </Col>
-              <Col xs="auto" className="d-flex ps-5 w-100 justify-content-between">
+              <Col
+                xs="auto"
+                className="d-flex ps-5 w-100 justify-content-between"
+              >
                 <FreelancereditProfileCard />
                 <Button onClick={redirectToMyWorks}>My works</Button>
-                <Button variant="success" onClick={redirectToFreelancerAppliedVacancies}>Applied vacancies</Button>
+                <Button
+                  variant="success"
+                  onClick={redirectToFreelancerAppliedVacancies}
+                >
+                  Applied vacancies
+                </Button>
               </Col>
             </Row>
           </Col>
@@ -88,7 +96,10 @@ function Freelancer_Profile({ user }) {
           </Col>
         </Row>
       </Container>
-      <Footer />
+
+      <div className="mt-5">
+        <Footer />
+      </div>
     </>
   );
 }

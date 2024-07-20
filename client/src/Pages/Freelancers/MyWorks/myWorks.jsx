@@ -15,11 +15,10 @@ export function MyWorks() {
     }
   }, [])
 
-  const navigate = useNavigate();
   const [payments, setPayments] = useState([]);
   const getAllPaymentsByFreelancerId = async (userId) => {
     try {
-      const res = await axiosInstance.get("/viewAllPaymentsByFreelancerId/"+userId);
+      const res = await axiosInstance.get("viewAllPaymentsByFreelancerId/"+userId);
       if (res.status === 200) {
         let data = res.data?.data || [];
         let revData = data.reverse();
@@ -37,7 +36,7 @@ export function MyWorks() {
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
+      <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
             My Accepted Works
@@ -57,8 +56,7 @@ export function MyWorks() {
             </thead>
             <tbody className="text-center">
               {payments.map((payment, index) => {
-                console.log("req u", payment);
-                console.log("req u", payment?.workId.title);
+           
                 return (
                   <tr key={payment._id}>
                     <td>{index + 1} </td>
@@ -77,7 +75,7 @@ export function MyWorks() {
           </Table>
         </Container>
       </div>
-      <div style={{ position: "relative", top: "400px" }}>
+      <div>
         <Footer />
       </div>
     </>

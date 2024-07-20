@@ -108,16 +108,28 @@ function ViewAllUsersRequests() {
       setRequests(fixedReq);
     }
   };
+
+  const filterWorkReqs = (e) => {
+    const category = e.target.value;
+    if (category) {
+      let filteredData = fixedReq.filter((el) => {
+        return el.category === category;
+      });
+      setRequests(filteredData);
+    } else {
+      setRequests(fixedReq);
+    }
+  };
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
+      <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
           <h1 className="table-heading text-dark m-5 text-center mt-5">
             Users Work Requests
           </h1>
-          <div>
-            <InputGroup className="mb-3 w-50 mx-auto">
+          <div className="d-flex justify-content-between ">
+            <InputGroup className="mb-3 mx-auto" style={{ width: "35%" }}>
               <InputGroup.Text id="basic-addon1">
                 <FaSearch />
               </InputGroup.Text>
@@ -127,6 +139,37 @@ function ViewAllUsersRequests() {
                 onChange={searchWorkReq}
               />
             </InputGroup>
+
+            <Form.Select
+              name="category"
+              onChange={filterWorkReqs}
+              style={{ width: "35%" }}
+            >
+              <option value="">Filter work request by category</option>
+              <option value="Website Creation">Website Creation</option>
+              <option value="Video Editing">Video Editing</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Content Writing">Content Writing</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="SEO Services">SEO Services</option>
+              <option value="Mobile App Development">
+                Mobile App Development
+              </option>
+              <option value="Social Media Management">
+                Social Media Management
+              </option>
+              <option value="Translation Services">Translation Services</option>
+              <option value="Virtual Assistance">Virtual Assistance</option>
+              <option value="Customer Support">Customer Support</option>
+              <option value="Data Entry">Data Entry</option>
+              <option value="Photography">Photography</option>
+              <option value="Illustration">Illustration</option>
+              <option value="Copywriting">Copywriting</option>
+              <option value="UX/UI Design">UX/UI Design</option>
+              <option value="IT Support">IT Support</option>
+              <option value="Project Management">Project Management</option>
+              <option value="Other">Other</option>
+            </Form.Select>
           </div>
           <Table striped bordered hover className="mt-5">
             <thead className="text-center">
@@ -156,7 +199,7 @@ function ViewAllUsersRequests() {
                     <td>{req?.budget}</td>
                     <td>{req?.deadline?.substring(0, 10)}</td>
                     {req?._id === clickedRequest?._id ? (
-                      <td >
+                      <td>
                         <input
                           onChange={(e) => {
                             setFreelancerResponse({
@@ -209,7 +252,7 @@ function ViewAllUsersRequests() {
           </Table>
         </Container>
       </div>
-      <div style={{ position: "relative", top: "400px" }}>
+      <div className="mt-5">
         <Footer />
       </div>
     </>
