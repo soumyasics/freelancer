@@ -115,21 +115,21 @@ function Navbar() {
           >
             <ul className="navbar-nav">
               <li
-                className="nav-item m-3"
+                className="nav-item me-3"
                 style={{ cursor: "pointer" }}
                 onClick={redirectHome}
               >
                 <p className="nav-link">Home</p>
               </li>
               <li
-                className="nav-item m-3"
+                className="nav-item me-3"
                 style={{ cursor: "pointer" }}
                 onClick={redirectFreelancer}
               >
                 <p className="nav-link">Freelancers</p>
               </li>
               <li
-                className="nav-item m-3"
+                className="nav-item me-3"
                 style={{ cursor: "pointer" }}
                 onClick={viewAllConsultancies}
               >
@@ -147,7 +147,7 @@ function Navbar() {
                 </li> */}
                 <li
                   style={{ cursor: "pointer" }}
-                  className="nav-item m-3"
+                  className="nav-item me-3"
                   onClick={userFreelancerChat}
                 >
                   
@@ -155,7 +155,7 @@ function Navbar() {
                 </li>
                 <li
                   style={{ cursor: "pointer" }}
-                  className="nav-item m-3"
+                  className="nav-item me-3"
                   onClick={userConsultancyChat}
                 >
                   
@@ -167,7 +167,7 @@ function Navbar() {
                 <>
                   <li
                     style={{ cursor: "pointer" }}
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     onClick={redirectWorkVacancies}
                   >
                     <p className="nav-link">Add vacancies</p>
@@ -175,21 +175,21 @@ function Navbar() {
 
                   <li
                     style={{ cursor: "pointer" }}
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     onClick={redirectMyVacancies}
                   >
                     <p className="nav-link">My Vacancies</p>
                   </li>
                   <li
                     style={{ cursor: "pointer" }}
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     onClick={redirectToAppliedVacancies}
                   >
                     <p className="nav-link">Applied Vacancies</p>
                   </li>
                   <li
                     style={{ cursor: "pointer" }}
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     onClick={consChatWithUser}
                   >
                     <p className="nav-link">Chat</p>
@@ -199,21 +199,21 @@ function Navbar() {
               {userType === "freelancer" && (
                 <>
                   <li
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     style={{ cursor: "pointer" }}
                     onClick={redirectViewRequests}
                   >
                     <p className="nav-link">View Requests</p>
                   </li>
                   <li
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     style={{ cursor: "pointer" }}
                     onClick={redirectViewAllVacancies}
                   >
                     <p className="nav-link">View Vacancies</p>
                   </li>
                   <li
-                    className="nav-item m-3"
+                    className="nav-item me-3"
                     style={{ cursor: "pointer" }}
                     onClick={freelancerUserChat}
                   >
@@ -230,13 +230,13 @@ function Navbar() {
               )}
               {isUserLoggedIn ? (
                 <>
-                  <li className="nav-item m-3" style={{ cursor: "pointer" }}>
+                  <li className="nav-item me-3" style={{ cursor: "pointer" }}>
                     {/* <p className="nav-link">Profile</p> */}
                     <p className="nav-link" onClick={redirectProfile}>
                       Profile
                     </p>
                   </li>
-                  <li className="nav-item m-3 ">
+                  <li className="nav-item me-3 ">
                     {/* <p className="nav-link">Profile</p> */}
                     <p
                       onClick={handleLogout}
@@ -248,7 +248,7 @@ function Navbar() {
                   </li>
                 </>
               ) : (
-                <li className="nav-item dropdown m-3">
+                <li className="nav-item dropdown me-3">
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"

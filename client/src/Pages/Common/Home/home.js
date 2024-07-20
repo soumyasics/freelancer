@@ -7,6 +7,7 @@ import beauty from "../../../Assets/Beauty.png";
 import Navbar from "../Navbar/navbar";
 import Footer from "../Footer/footer";
 import { useNavigate } from "react-router-dom";
+import { HomeCarousel } from "../../User/carousel/carousel";
 function Home(props) {
   const navigate = useNavigate();
   const redirectFreelancer = () => {
@@ -15,7 +16,7 @@ function Home(props) {
   return (
     <>
       <Navbar />
-
+      <HomeCarousel />
       <div className="container-fluid p-0 " style={{ color: "black" }}>
         {/* <div className="trashed">
           <div className="m-5">
