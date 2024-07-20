@@ -93,17 +93,18 @@ export const ViewResponseDetails = () => {
                         active
                         className="mb-3"
                       >
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content-start">
                           <div className="d-flex align-items-center">
                             <FaUser />
                             <span className="ms-2">{res?.message} </span>
                           </div>
-                          <div>
+                          <div className="d-flex align-items-center">
                             <Button
                               onClick={() => {
                                 redirectToViewFreelancer(res?.freelancerId);
                               }}
-                              className="ms-5"
+                              style={{height: "50px", width: "200px"}}
+                              className="ms-5 d-flex justify-content-center align-items-center"
                               variant="warning"
                             >
                               {" "}
