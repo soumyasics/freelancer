@@ -9,9 +9,10 @@
   line-height: normal;
 }
 
-
 /* modifications  */
 #freelance-common-navbar {
   background-color: #040f13;
   color: white;
+  margin: auto;
+  padding-top:20px;
 }

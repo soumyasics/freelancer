@@ -16,7 +16,7 @@ function Home(props) {
     <>
       <Navbar />
 
-      <div className="container-fluid" style={{ color: "black" }}>
+      <div className="container-fluid p-0 " style={{ color: "black" }}>
         {/* <div className="trashed">
           <div className="m-5">
             <p className="hero-legend justify-content-center pt-5 ">
@@ -90,7 +90,7 @@ function Home(props) {
                   professionals
                 </p>
                 <button
-                  className="btn btn-outline-info btn-lg px-5 pt-3 my-3"
+                  className="btn btn-outline-info btn-lg justify-content-center align-items-center d-flex mx-auto"
                   id="btn2"
                   onClick={redirectFreelancer}
                 >

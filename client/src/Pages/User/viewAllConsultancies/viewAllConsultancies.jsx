@@ -4,6 +4,7 @@ import { Table, Container, InputGroup, Form } from "react-bootstrap";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import Navbar from "../../Common/Navbar/navbar";
 import { FaSearch } from "react-icons/fa";
+import Footer from "../../Common/Footer/footer";
 
 export function UserViewAllConsultancy() {
   const [users, setUsers] = useState([]);
@@ -82,6 +83,10 @@ export function UserViewAllConsultancy() {
           </tbody>
         </Table>
       </Container>
+
+      <div className="mt-5">
+        <Footer />
+      </div>
     </div>
   );
 }

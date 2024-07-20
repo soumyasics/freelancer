@@ -1,8 +1,17 @@
 import React from "react";
 import "./ViewAllFreelancers.css";
 
-import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
-
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Image,
+  InputGroup,
+  Form,
+} from "react-bootstrap";
+import { IoSearchSharp } from "react-icons/io5";
 import Navbar from "../../Common/Navbar/navbar";
 import profilePic from "../../../Assets/HD-wallpaper-purple-smile-design-eye-smily-profile-pic-face.jpg";
 import placeholderImg from "../../../Assets/user-placeholder-img.jpg";
@@ -43,17 +52,15 @@ function ViewAllFre1elancers() {
         return el.name.toLowerCase().includes(search.toLowerCase());
       });
       setAllFreelancersData(filteredData);
-    }else {
+    } else {
       setAllFreelancersData(fixedFreelancers);
     }
-  }
+  };
   return (
     <>
       <Navbar />
       <div
         style={{
-          position: "relative",
-          top: "900px",
           boxShadow:
             "rgba(50, 50, 93, pa0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;",
         }}
@@ -63,13 +70,25 @@ function ViewAllFre1elancers() {
           <h1 className="text-center m-5 text-dark">View All Freelancers</h1>
         )}
         <div>
-          <form className="shadow" onSubmit={handleSubmit}>
-            <input
+          <form className="shadow w-25" onSubmit={handleSubmit}>
+            {/* <input
               onChange={searchFreelancers}
               type="text"
               placeholder="Search Freelancers here..."
-              className="form-control"
-            />
+              className="form-control "
+            /> */}
+
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">
+                <IoSearchSharp />
+              </InputGroup.Text>
+              <Form.Control
+                onChange={searchFreelancers}
+                type="text"
+                placeholder="Search Freelancers here..."
+                className="form-control "
+              />
+            </InputGroup>
           </form>
 
           <Container
@@ -77,7 +96,7 @@ function ViewAllFre1elancers() {
               boxShadow:
                 "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
             }}
-            className="d-flex justify-content-center flex-wrap gap-5  py-5"
+            className="d-flex justify-content-center flex-wrap gap-5 mt-4 py-5"
           >
             {allFreelancersData.length === 0 && (
               <h1 className="text-center m-5 text-dark">
@@ -140,7 +159,7 @@ function ViewAllFre1elancers() {
           </Container>
         </div>
       </div>
-      <div className="mt-5" style={{ position: "relative", top: "900px" }}>
+      <div className="mt-5">
         <Footer />
       </div>
     </>
