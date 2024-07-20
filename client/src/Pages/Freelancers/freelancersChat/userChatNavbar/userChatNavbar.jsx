@@ -16,7 +16,7 @@ export const UserChatNavbar = ({ selectedUserName }) => {
         style={{width: "10%"}}
         className="d-flex align-items-center  "
       >
-        <p className="text-light fs-2 m-0">{selectedUserName}</p>
+        <p className="text-light fs-4 m-0">{selectedUserName}</p>
       </div>
     </div>
   );
