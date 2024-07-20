@@ -7,6 +7,9 @@ import { loginSuccess } from "../../../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import "./user_login.css";
 import { toast } from "react-hot-toast";
+import { Navbar } from "react-bootstrap";
+import { LandingNavbar } from "../../Common/Navbar/landingNavbar";
+import Footer from "../../Common/Footer/footer";
 function User_login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -67,7 +70,6 @@ function User_login() {
 
         toast.success("Login Successfull");
         navigate("/");
-        
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;
@@ -85,54 +87,58 @@ function User_login() {
     }
   };
   return (
-    <div className="user-login container">
-      <div className="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-        <div className="d-flex align-items-center justify-content-center w-100">
-          <div className="row justify-content-center w-100">
-            <div className="col-4">
-              <div className="card mb-0 p-4">
-                <div className="card-body">
-                  <h2 className="text-center user-login-heading">User Login</h2>
-                  <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label user-login-label"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        required
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        name="email"
-                        value={userData.email}
-                        onChange={handleChanges}
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="exampleInputPassword1"
-                        className="form-label user-login-label"
-                      >
-                        Password
-                      </label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        required
-                        id="exampleInputPassword1"
-                        minLength="6"
-                        name="password"
-                        value={userData.password}
-                        onChange={handleChanges}
-                      />
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between mb-4">
-                      <div className="form-check">
-                        {/* <input
+    <>
+      <LandingNavbar />
+      <div className="user-login container">
+        <div className="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+          <div className="d-flex align-items-center justify-content-center w-100">
+            <div className="row justify-content-center w-100">
+              <div className="col-4">
+                <div className="card mb-0 p-4">
+                  <div className="card-body">
+                    <h2 className="text-center user-login-heading">
+                      User Login
+                    </h2>
+                    <form onSubmit={handleSubmit}>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleInputEmail1"
+                          className="form-label user-login-label"
+                        >
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          required
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          name="email"
+                          value={userData.email}
+                          onChange={handleChanges}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="exampleInputPassword1"
+                          className="form-label user-login-label"
+                        >
+                          Password
+                        </label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          required
+                          id="exampleInputPassword1"
+                          minLength="6"
+                          name="password"
+                          value={userData.password}
+                          onChange={handleChanges}
+                        />
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between mb-4">
+                        <div className="form-check">
+                          {/* <input
                           className="form-check-input primary"
                           type="checkbox"
                           value=""
@@ -144,39 +150,46 @@ function User_login() {
                         >
                           Remember Me
                         </label> */}
+                        </div>
+                        <p
+                          style={{ cursor: "pointer" }}
+                          className="user-login-label"
+                          onClick={navigateToUserForgot}
+                        >
+                          {" "}
+                          Forgot Password?
+                        </p>
                       </div>
-                      <p
-                        style={{ cursor: "pointer" }}
-                        className="user-login-label"
-                        onClick={navigateToUserForgot}
-                      >
-                        {" "}
-                        Forgot Password?
-                      </p>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-center">
-                      <button type="submit" className="btn btn-primary mx-auto">
-                        {" "}
-                        Sign In
-                      </button>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-center">
-                      <p
-                        style={{ cursor: "pointer" }}
-                        onClick={navigateToUserRegister}
-                        className="fs-5 mb-0 mt-3 fw-bold"
-                      >
-                        Create an User account
-                      </p>
-                    </div>
-                  </form>
+                      <div className="d-flex align-items-center justify-content-center">
+                        <button
+                          type="submit"
+                          className="btn btn-primary mx-auto"
+                        >
+                          {" "}
+                          Sign In
+                        </button>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-center">
+                        <p
+                          style={{ cursor: "pointer" }}
+                          onClick={navigateToUserRegister}
+                          className="fs-5 mb-0 mt-3 fw-bold"
+                        >
+                          Create an User account
+                        </p>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div className="mt-5">
+        <Footer />
+      </div>
+    </>
   );
 }
 

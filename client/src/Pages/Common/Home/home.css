@@ -2,7 +2,7 @@
 color: #FFF;
 text-align: center;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 60.051px;
 font-style: normal;
 font-weight: 300;
@@ -24,7 +24,7 @@ line-height: normal;
 color: #56D6FF;
 text-align: center;
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 32.779px;
 font-style: normal;
 font-weight: 500;
@@ -34,7 +34,7 @@ line-height: normal;
 color: #1A728E;
 text-align: center;
 text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 45.032px;
 font-style: normal;
 font-weight: 300;
@@ -46,7 +46,7 @@ margin-top: 35%;
 color: #1A728E;
 text-align: center;
 text-shadow: 0px 0.762px 0.762px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 29.928px;
 font-style: normal;
 font-weight: 300;
@@ -71,7 +71,7 @@ background-color: #FFF;
 color: #1A728E;
 text-align: center;
 text-shadow: 0px 0.885px 0.885px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 34.774px;
 font-style: normal;
 font-weight: 300;
@@ -81,7 +81,7 @@ line-height: normal;
 color: #FFF;
 text-align: center;
 text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 45.032px;
 font-style: normal;
 font-weight: 300;
@@ -95,7 +95,7 @@ line-height: normal;
 color: #FFF;
 text-align: center;
 text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 45.032px;
 font-style: normal;
 font-weight: 400;
@@ -105,7 +105,7 @@ line-height: normal;
     color: #FFF;
     text-align: center;
     text-shadow: 0px 0.885px 0.885px rgba(0, 0, 0, 0.25);
-    font-family: "Noto Sans";
+    
     font-size: 34.774px;
     font-style: normal;
     font-weight: 300;
@@ -120,7 +120,7 @@ line-height: normal;
 color: #FFF;
 text-align: center;
 text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 61.03px;
 font-style: normal;
 font-weight: 300;
@@ -130,7 +130,7 @@ line-height: normal;
 color: #FFF;
 text-align: center;
 text-shadow: 0px 0.885px 0.885px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 34.774px;
 font-style: normal;
 font-weight: 300;
@@ -140,7 +140,7 @@ line-height: normal;
 color: #1A728E;
 text-align: center;
 text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 45.032px;
 font-style: normal;
 font-weight: 300;
@@ -150,7 +150,7 @@ line-height: normal;
 color: #1A728E;
 text-align: center;
 text-shadow: 0px 0.74px 0.74px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 29.09px;
 font-style: normal;
 font-weight: 300;
@@ -172,7 +172,7 @@ line-height: normal;
 color: #1A728E;
 text-align: center;
 text-shadow: 0px 1.146px 1.146px rgba(0, 0, 0, 0.25);
-font-family: "Noto Sans";
+
 font-size: 45.032px;
 font-style: normal;
 font-weight: 300;
@@ -183,7 +183,7 @@ line-height: normal;
 font-style: italic;
 color: #000;
 text-align: center;
-font-family: "Noto Sans";
+
 font-size: 31px;
 font-weight: 300;
 line-height: normal;
@@ -191,7 +191,7 @@ line-height: normal;
 .home-banner-end{
 color: #000;
 text-align: center;
-font-family: "Noto Sans";
+
 font-size: 31px;
 font-style: normal;
 font-weight: 300;

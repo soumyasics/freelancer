@@ -70,20 +70,15 @@ function User_Profile() {
         </Row>
         <Col xs="auto" className="d-flex ps-5 w-50 justify-content-between">
           <UsereditProfileCard />
-          <Button
-            variant="success"
-            onClick={redirectUserRequest}
-          >
+          <Button variant="success" onClick={redirectUserRequest}>
             Request work
           </Button>
-          <Button
-            onClick={redirectMyRequests}
-          >
-            My Requests
-          </Button>
+          <Button onClick={redirectMyRequests}>My Requests</Button>
         </Col>
       </Container>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </>
   );
 }

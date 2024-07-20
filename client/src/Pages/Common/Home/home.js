@@ -17,7 +17,7 @@ function Home(props) {
     <>
       <Navbar />
       <HomeCarousel />
-      <div className="container-fluid p-0 " style={{ color: "black" }}>
+      <div className="container-fluid p-0 mt-5" style={{ color: "black" }}>
         {/* <div className="trashed">
           <div className="m-5">
             <p className="hero-legend justify-content-center pt-5 ">
