@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 function Payment() {
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -38,12 +38,10 @@ function Payment() {
   };
   // console.log("workid", workId, "freelancerId", freelancerId);
   const handleSubmit = (event) => {
-    console.log('evv', event)
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
     setValidated(true);
-    console.log("111")
     if (
       !paymentDetails.cardNumber ||
       !paymentDetails.accHolderName ||
@@ -58,13 +56,12 @@ function Payment() {
       toast.error("All fields are required");
       return;
     }
-    sendDataToServer()
+    sendDataToServer();
   };
   const sendDataToServer = async () => {
-    console.log("sdnd")
     try {
       let res = await axiosInstance.post("/addPayment", paymentDetails);
-      console.log("respon", res)
+      console.log("respon", res);
       if (res.status === 201) {
         toast.success("Payment added successfully");
         //TODO navigate to my acitivy page.
@@ -74,14 +71,12 @@ function Payment() {
       if (status === 401 || status === 400 || status === 403) {
         toast.error(err?.response?.data?.message);
         return;
-      }else {
+      } else {
         toast.error("Something went wrong");
-
       }
       console.log("Error on get request data", err);
-
     }
-  }
+  };
 
   return (
     <>
@@ -157,9 +152,12 @@ function Payment() {
                       </Form.Label>
                       <Form.Control
                         required
-                        type="number"
+                        type="text"
                         placeholder="Enter card number"
                         className="m-3"
+                        maxLength={16}
+                        minLength={16}
+                        pattern="[0-9]{16}"
                         name="cardNumber"
                         value={paymentDetails.cardNumber}
                         onChange={handleChanges}
@@ -175,15 +173,17 @@ function Payment() {
                       <Col>
                         <Form.Group controlId="expMonth">
                           <Form.Label className="text-white m-3">
-                            Exp Month
+                            Expiry Month
                           </Form.Label>
                           <Form.Control
                             required
-                            type="number"
+                            type="text"
                             name="expMonth"
-                            placeholder="MM"
-                            
+                            placeholder="Enter expiry month Eg: 02"
                             className="m-3"
+                            maxLength={2}
+                            minLength={2}
+                            pattern="[0-9]{2}"
                             value={paymentDetails.expMonth}
                             onChange={handleChanges}
                           />
@@ -198,14 +198,15 @@ function Payment() {
                       <Col>
                         <Form.Group controlId="expYear">
                           <Form.Label className="text-white m-3">
-                            Exp Year
+                            Expiry Year
                           </Form.Label>
                           <Form.Control
                             required
                             type="text"
-                            placeholder="YYYY"
-                            maxLength="4"
-                            minLength="4"
+                            placeholder="Enter expiry year Eg: 2000"
+                            maxLength={4}
+                            minLength={4}
+                            pattern="[0-9]{4}"
                             className="m-3"
                             name="expYear"
                             value={paymentDetails.expYear}
@@ -229,8 +230,9 @@ function Payment() {
                             type="text"
                             placeholder="Enter CVC"
                             name="cvc"
-                            maxLength="3"
-                            minLength="3"
+                            maxLength={3}
+                            minLength={3}
+                            pattern="[0-9]{3}"
                             value={paymentDetails.cvc}
                             onChange={handleChanges}
                             className="m-3"
@@ -251,7 +253,6 @@ function Payment() {
                           type="submit"
                           className="m-5"
                           size="lg"
-                          
                         >
                           Pay ₹{amount}
                         </Button>

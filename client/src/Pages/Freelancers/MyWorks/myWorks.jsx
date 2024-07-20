@@ -32,6 +32,8 @@ export function MyWorks() {
     }
   };
 
+  console.log("Payments,", payments)
+
   return (
     <>
       <Navbar />

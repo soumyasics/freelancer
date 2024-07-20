@@ -58,18 +58,18 @@ export const ViewResponseDetails = () => {
 
         <div className="d-flex gap-5 justify-content-between">
           <div style={{ height: "800px" }} className="p-4 w-50 shadow">
-            <h1 className="">Title: {requestData?.title || "..."}</h1>
-            <h5>Description: {requestData?.description || "..."}</h5>
-            <h5>Category: {requestData?.category || "..."}</h5>
-            <h5>Budget: ₹ {requestData?.budget || "..."}</h5>
-            <h5>Deadline: {requestData?.deadline.substring(0, 10) || "..."}</h5>
-            <h5>Current Status: {requestData?.status}</h5>
+            <h3 className="">Title: {requestData?.title || "..."}</h3>
+            <h6>Description: {requestData?.description || "..."}</h6>
+            <h6>Category: {requestData?.category || "..."}</h6>
+            <h6>Budget: ₹ {requestData?.budget || "..."}</h6>
+            <h6>Deadline: {requestData?.deadline.substring(0, 10) || "..."}</h6>
+            <h6>Current Status: {requestData?.status}</h6>
 
             {responses.length === 0 ? (
               <div>
-                <h3 className="mt-5">
+                <h5 className="mt-5">
                   Freelancers did not give any respones yet.{" "}
-                </h3>
+                </h5>
                 <Image
                   className="w-50  mx-auto"
                   src={noResponseImg}
@@ -88,6 +88,7 @@ export const ViewResponseDetails = () => {
                     return (
                       <ListGroup.Item
                         key={index}
+                        style={{backgroundColor: "white", color: "black"}}
                         as="li"
                         active
                         className="mb-3"

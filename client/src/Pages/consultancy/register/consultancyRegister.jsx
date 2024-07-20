@@ -253,7 +253,7 @@ export function ConsultancyRegister() {
                 </div>
                 <div className="d-flex align-items-center justify-content-center">
                   <p className="fs-5 mb-0 fw-bold">
-                    Alread have an account?
+                    Already have an account?
                     <span
                       style={{ cursor: "pointer" }}
                       onClick={redirectConsultancyLogin}

@@ -7,6 +7,11 @@ const workRequestSchema = new Schema(
       required: true,
       ref: "users",
     },
+    assignedFreelancerId: {
+      type: Schema.Types.ObjectId,
+      ref: "freelancers",
+      default: null
+    },
     deadline: {
       type: Date,
       required: true,

@@ -30,7 +30,6 @@ function ViewAllUsersRequests() {
     } else {
       toast.error("Please login again..");
       navigate("../freelancer-login");
-      
     }
     getRequestsData();
   }, []);
@@ -40,7 +39,8 @@ function ViewAllUsersRequests() {
       if (res.status === 200) {
         let data = res.data?.data || [];
         setFixedReq(data);
-        setRequests(data);
+        let revData = data.reverse();
+        setRequests(revData);
       } else {
         console.log("Error on getting requests");
       }
@@ -156,7 +156,7 @@ function ViewAllUsersRequests() {
                     <td>{req?.budget}</td>
                     <td>{req?.deadline?.substring(0, 10)}</td>
                     {req?._id === clickedRequest?._id ? (
-                      <td>
+                      <td >
                         <input
                           onChange={(e) => {
                             setFreelancerResponse({

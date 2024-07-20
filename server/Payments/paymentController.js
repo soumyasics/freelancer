@@ -3,6 +3,7 @@ const workRequest = require("../userWorkRequest/workRequestSchema");
 
 // Function to add a payment
 const addPayment = async (req, res) => {
+  try {
   const { freelancerId, workId, userId, amount, accHolderName, cardNumber } =
     req.body;
 
@@ -18,8 +19,7 @@ const addPayment = async (req, res) => {
       .status(400)
       .json({ message: "All fields are required", data: req.body });
   }
-
-  try {
+  
     const isAlreayPaid = await Payment.findOne({
       freelancerId: req.body.freelancerId,
       workId: req.body.workId,
@@ -30,6 +30,19 @@ const addPayment = async (req, res) => {
         .status(400)
         .json({ message: "You already paid.", data: req.body });
     }
+
+    const workReq = await workRequest.findById(workId);
+    if (!workReq) {
+      return res
+        .status(400)
+        .json({ message: "Work request not found.", data: req.body });
+    }
+
+    if (!workReq.assignedFreelancerId) {
+      workReq.assignedFreelancerId = null;
+    }
+
+    workReq.assignedFreelancerId = freelancerId;
     // Create a new payment instance
     const payment = new Payment({
       freelancerId: req.body.freelancerId,

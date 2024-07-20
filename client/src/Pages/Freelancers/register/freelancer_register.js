@@ -255,8 +255,8 @@ function Freelancer_register() {
                   </form>
                 </div>
                 <div className="d-flex align-items-center justify-content-center">
-                  <p className="fs-5 mb-0 fw-bold">
-                    Alread have an account?
+                <p className="fs-5 mb-0 fw-bold">
+                    Already have an account?
                     <span
                       style={{ cursor: "pointer" }}
                       onClick={redirectFreelancerLogin}
