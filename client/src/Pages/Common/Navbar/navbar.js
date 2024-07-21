@@ -97,9 +97,12 @@ function Navbar() {
   const redirectToAppliedVacancies = () => {
     navigate("../view-all-applied-works");
   };
-  // const redirectToFreelancerAppliedVacancies = () => {
-  //   navigate('../freelancer-applied-vacancies')
-  // }
+  const redirectToFreelancerAppliedVacancies = () => {
+    navigate('/freelancer-applied-vacancies')
+  }
+  const redirectToFreelancerWorks = () => {
+    navigate('/freelancer-my-works')
+  }
   const consChatWithUser = () => {
     navigate("/consultancy-user-chat");
   };
@@ -244,13 +247,20 @@ function Navbar() {
                   >
                     <p className="nav-link">Chat</p>
                   </li>
-                  {/* <li
-                    className="nav-item m-3"
+                  <li
+                    className="nav-item me-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={redirectToFreelancerWorks}
+                  >
+                    <p className="nav-link">Works</p>
+                  </li>
+                  <li
+                    className="nav-item me-3"
                     style={{ cursor: "pointer" }}
                     onClick={redirectToFreelancerAppliedVacancies}
                   >
-                    <p className="nav-link">My Applied Vacancies</p>
-                  </li> */}
+                    <p className="nav-link"> Vacancies</p>
+                  </li>
                 </>
               )}
               {isUserLoggedIn ? (
