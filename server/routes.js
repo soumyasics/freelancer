@@ -9,6 +9,7 @@ const conWorkRequestRoutes = require("./conWorkRequest/conWorkRequestController"
 const appliedVacencyRoutes = require("./appliedVacencies/appliedVacenciesController");
 const chatRoutes = require("./chat-users-freelancers/chatUsersController");
 const chatConsultancy = require("./chat-users-consultancies/chatUsersController");
+const rateFreelancer = require("./rateFreelancer/rateFreelancerController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -168,6 +169,14 @@ router.post("/sendMessageToUser", chatRoutes.sendMessage);
 router.post("/getUserMessages", chatRoutes.getUserMessages);
 router.post("/sendMessageToUserConsultancy", chatConsultancy.sendMessage);
 router.post("/getUserMessagesConsultancy", chatConsultancy.getUserMessages);
+
+// rate freelancer
+router.post("/addRating", rateFreelancer.addRating);
+router.get("/getAllRating", rateFreelancer.getAllRating);
+router.get(
+  "/getAllRatingByFreelancerId/:id",
+  rateFreelancer.getAllRatingByFreelancerId
+);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });
