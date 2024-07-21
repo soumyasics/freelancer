@@ -43,6 +43,7 @@ import { UserChatDashboard } from "./Pages/User/usersChat/userChatDashboard/user
 import { FreelancerChatDashboard } from "./Pages/Freelancers/freelancersChat/userChatDashboard/userChatDashboard.jsx";
 import { UserConsultancyChatDashboard } from "./Pages/User/usersChatConsultancy/userChatDashboard/userChatDashboard.jsx";
 import { ConsultancyChatDashboard } from "./Pages/consultancy/chat/userChatDashboard/userChatDashboard.jsx";
+import { UserViewWorkStatus } from "./Pages/User/viewWorkStatus/viewWorkStatus.jsx";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="/user-freelancer-chat" element={<UserChatDashboard/>} />
           <Route path="/user-consultancy-chat" element={<UserConsultancyChatDashboard/>} />
           <Route path="/view-responses/:id" element={<ViewResponseDetails />} />
+          <Route path="/user-view-work-status/:id" element={<UserViewWorkStatus />} />
           <Route
             path="/view-all-freelancers"
             element={<ViewAllFreelancers />}

@@ -337,10 +337,10 @@ const deactivateFreelancerById = async (req, res) => {
 
 module.exports = {
   freelancerRegistration,
+  loginFreelancer,
   getAllFreelancers,
   getFreelancerById,
   upload,
-  loginFreelancer,
   editFreelancerById,
   deleteFreelancerById,
   freelancerForgotPassowrd,

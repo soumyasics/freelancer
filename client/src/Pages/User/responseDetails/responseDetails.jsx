@@ -49,6 +49,10 @@ export const ViewResponseDetails = () => {
     dispatch(addPayment(collectData));
     navigate("/payment");
   };
+
+  const redirectToWorkStatus = (id) => {
+    navigate("/user-view-work-status/" + id);
+  };
   return (
     <>
       <Navbar />
@@ -76,7 +80,7 @@ export const ViewResponseDetails = () => {
             </p>
             <p>
               <span className="fs-6 fw-bold">Deadline: </span>{" "}
-              {requestData?.deadline.substring(0, 10) || "..."}
+              {requestData?.deadline?.substring(0, 10) || "..."}
             </p>
             <p>
               <span className="fs-6 fw-bold">Current Status :</span>{" "}
@@ -86,6 +90,19 @@ export const ViewResponseDetails = () => {
               <span className="fs-6 fw-bold">Description: </span>{" "}
               {requestData?.description || "..."}
             </p>
+
+            {requestData?.assignedFreelancerId && (
+              <div className="d-flex justify-content-center mt-3">
+                <button
+                  className="button-17"
+                  onClick={() => {
+                    redirectToWorkStatus(requestData._id);
+                  }}
+                >
+                  Work Status
+                </button>
+              </div>
+            )}
           </div>
 
           <div

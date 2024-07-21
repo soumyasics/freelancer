@@ -70,7 +70,7 @@ function DetailedViewFreelancers() {
                 <img
                   src={profilePic}
                   className="img-fluid rounded m-5"
-                  alt="profile pic"
+                   alt="profile pic"
                   style={{ width: "25%", height: "5%" }}
                 />
               </div>

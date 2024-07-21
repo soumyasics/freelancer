@@ -113,7 +113,7 @@ function User_register() {
                           required
                         />
 
-                        <div class="invalid-feedback">
+                        <div className="invalid-feedback">
                           Please provide your first Name.
                         </div>
                       </div>
