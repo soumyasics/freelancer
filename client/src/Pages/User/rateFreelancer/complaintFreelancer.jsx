@@ -37,7 +37,7 @@ export const ComplaintFreelancer = ({ freelancerId }) => {
 
   const sendDataToServer = async () => {
     try {
-      const res = await axiosInstance.post("addComplaint", complaintData);
+      const res = await axiosInstance.post("freelnacerComplaint", complaintData);
       if (res.status === 200) {
         toast.success("Complaint sent successfully. We will resolve it soon");
         setComplaintData({ ...complaintData, complaint: "" });

@@ -10,6 +10,7 @@ const appliedVacencyRoutes = require("./appliedVacencies/appliedVacenciesControl
 const chatRoutes = require("./chat-users-freelancers/chatUsersController");
 const chatConsultancy = require("./chat-users-consultancies/chatUsersController");
 const rateFreelancer = require("./rateFreelancer/rateFreelancerController");
+const complaintFreelancer = require("./complaintFreelancer/complaintFreelancerController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -176,6 +177,14 @@ router.get("/getAllRating", rateFreelancer.getAllRating);
 router.get(
   "/getAllRatingByFreelancerId/:id",
   rateFreelancer.getAllRatingByFreelancerId
+);
+
+// freelancer complaints
+router.post("/freelnacerComplaint", complaintFreelancer.freelnacerComplaint);
+router.get("/getAllCompliants", complaintFreelancer.getAllCompliants);
+router.get(
+  "/getAllCompliantsByFreelancerId/:id",
+  complaintFreelancer.getAllCompliantsByFreelancerId
 );
 
 router.all("/*", (req, res) => {
