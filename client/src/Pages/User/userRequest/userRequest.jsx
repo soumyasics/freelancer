@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
@@ -57,6 +56,11 @@ const UserRequest = () => {
 
     if (requestData.budget < 0 || requestData.budget > 100000000) {
       toast.error("Budget should be between 0 to 100000000");
+      return;
+    }
+
+    if (requestData.description.length < 50) {
+      toast.error("Description should be at least 50 characters");
       return;
     }
 
@@ -200,6 +204,7 @@ const UserRequest = () => {
               <Form.Control
                 as="textarea"
                 row={3}
+                minLength={50}
                 name="description"
                 value={requestData.description}
                 onChange={handleChanges}
@@ -207,7 +212,7 @@ const UserRequest = () => {
                 required
               />
               <Form.Control.Feedback type="invalid" className="">
-                Tell us more about your requested work.
+                Tell us more about your work. (minimum 50 characters)
               </Form.Control.Feedback>
             </Form.Group>
           </Row>

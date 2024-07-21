@@ -56,6 +56,34 @@ function Payment() {
       toast.error("All fields are required");
       return;
     }
+
+    const cardNumberPattern = /^[0-9]{16}$/;
+    const cvcPattern = /^[0-9]{3}$/;
+    const monthPattern = /^[0-9]{2}$/;
+    const yearPattern = /^[0-9]{4}$/;
+
+    if (!cardNumberPattern.test(paymentDetails.cardNumber)) {
+      toast.error("Card number should be 16 digits");
+      return;
+    }
+    if (!cvcPattern.test(paymentDetails.cvc)) {
+      toast.error("CVC should be 3 digits");
+      return;
+    }
+    if (!monthPattern.test(paymentDetails.expMonth)) {
+      toast.error("Month should be 2 digits. eg: for jan 01");
+      return;
+    }
+    if (!yearPattern.test(paymentDetails.expYear)) {
+      toast.error("Year should be 4 digits.");
+      return;
+    }
+
+    if (paymentDetails.cvc.length !== 3) {
+      toast.error("CVC should be 3 digits");
+      return;
+    }
+
     sendDataToServer();
   };
   const sendDataToServer = async () => {

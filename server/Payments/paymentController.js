@@ -4,22 +4,22 @@ const workRequest = require("../userWorkRequest/workRequestSchema");
 // Function to add a payment
 const addPayment = async (req, res) => {
   try {
-  const { freelancerId, workId, userId, amount, accHolderName, cardNumber } =
-    req.body;
+    const { freelancerId, workId, userId, amount, accHolderName, cardNumber } =
+      req.body;
 
-  if (
-    !freelancerId ||
-    !workId ||
-    !userId ||
-    !amount ||
-    !accHolderName ||
-    !cardNumber
-  ) {
-    return res
-      .status(400)
-      .json({ message: "All fields are required", data: req.body });
-  }
-  
+    if (
+      !freelancerId ||
+      !workId ||
+      !userId ||
+      !amount ||
+      !accHolderName ||
+      !cardNumber
+    ) {
+      return res
+        .status(400)
+        .json({ message: "All fields are required", data: req.body });
+    }
+
     const isAlreayPaid = await Payment.findOne({
       freelancerId: req.body.freelancerId,
       workId: req.body.workId,
@@ -28,7 +28,7 @@ const addPayment = async (req, res) => {
     if (isAlreayPaid) {
       return res
         .status(400)
-        .json({ message: "You already paid.", data: req.body });
+        .json({ message: "You already paid for this work.", data: req.body });
     }
 
     const workReq = await workRequest.findById(workId);
@@ -38,25 +38,25 @@ const addPayment = async (req, res) => {
         .json({ message: "Work request not found.", data: req.body });
     }
 
-    if (!workReq.assignedFreelancerId) {
-      workReq.assignedFreelancerId = null;
+    if (workReq.assignedFreelancerId) {
+      return res
+        .status(400)
+        .json({ message: "Work is already assigned to a freelancer." });
     }
-
     workReq.assignedFreelancerId = freelancerId;
-    // Create a new payment instance
+
     const payment = new Payment({
-      freelancerId: req.body.freelancerId,
-      workId: req.body.workId,
-      userId: req.body.userId,
-      amount: req.body.amount,
-      accHolderName: req.body.accHolderName,
-      cardNumber: req.body.cardNumber,
+      freelancerId,
+      workId,
+      userId,
+      amount,
+      accHolderName,
+      cardNumber,
     });
 
-    // Save the payment to the database
     await payment.save();
-
-    res.status(201).json({ message: "saved", data: payment });
+    await workReq.save();
+    return res.status(201).json({ message: "Payment successful", data: payment });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Network Failed", error: "Server Error" });
@@ -105,7 +105,6 @@ const getAllPaymentsByFreelancerId = async (req, res) => {
       .populate("workId")
       .populate("freelancerId")
       .exec();
-
 
     return res
       .status(200)

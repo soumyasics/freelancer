@@ -23,9 +23,11 @@ export const ViewResponseDetails = () => {
     }
   }, []);
 
+  console.log("request data", requestData);
+
   const getRequestData = async (id) => {
     try {
-      let res = await axiosInstance.get("/getWorkRequestById/" + id);
+      let res = await axiosInstance.get("getWorkRequestById/" + id);
       let data = res?.data?.data || null;
       if (data) {
         setRequestData(data);
@@ -141,19 +143,21 @@ export const ViewResponseDetails = () => {
                           </Button>
                         </Col>
                         <Col>
-                          <Button
-                            onClick={() => {
-                              acceptOffer(
-                                res?.freelancerId,
-                                requestData?.budget
-                              );
-                            }}
-                            className="ms-5 m-3"
-                            variant="success"
-                          >
-                            {" "}
-                            Accept Offer{" "}
-                          </Button>
+                          {!requestData?.assignedFreelancerId && (
+                            <Button
+                              onClick={() => {
+                                acceptOffer(
+                                  res?.freelancerId,
+                                  requestData?.budget
+                                );
+                              }}
+                              className="ms-5 m-3"
+                              variant="success"
+                            >
+                              {" "}
+                              Accept Offer{" "}
+                            </Button>
+                          )}
                         </Col>
                       </Row>
                     </ListGroup.Item>

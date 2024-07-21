@@ -128,16 +128,16 @@ function ViewAllFre1elancers() {
                             <Card.Text>
                               Job Role: {freelancer.jobrole}
                             </Card.Text>
-                            <Button
-                              variant="primary"
-                              className=" my-3 mx-2 bg-color border-0 rounded-pill"
-                              size="lg"
+                            <button
+                              
+                              className=" my-3 mx-2 button-30 border-0 "
+                              
                               onClick={() => {
                                 navigateToDetailedView(freelancer._id);
                               }}
                             >
                               View More
-                            </Button>{" "}
+                            </button>{" "}
                           </Card.Body>
                         </Col>
                         <Col
