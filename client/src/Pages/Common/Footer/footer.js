@@ -18,7 +18,7 @@ const Footer = () => {
     <div className="my-footer" >
       <div>
         <Stack>
-          <h4 className="footer-logo"> Freelancer </h4>
+          <h4 className="footer-logo"> FreelanceFlow </h4>
           <InputGroup style={{width: "240px"}} className="footer-mail">
             <InputGroup.Text>
               <AiOutlineMail />
@@ -32,37 +32,38 @@ const Footer = () => {
             <AiFillGoogleCircle style={iconStyle} />
           </div>
         </Stack>
+        <Stack className="my-stack ms-3">
+            <p>Contact us</p>
+            <p>(+91) 123-456-7890</p>
+            <p>freelanceflow@gmail.com</p>
+          </Stack>
 
         <Stack className="my-stack">
-          <p>Links</p>
+          {/* <p>Links</p>
           <p>Home</p>
           <p>Support</p>
-          <p>About </p>
+          <p>About </p> */}
         </Stack>
 
         <>
           <Stack className="my-stack">
-            <p>Services</p>
+            {/* <p>Services</p>
             <p>Insurance</p>
             <p>Legal</p>
-            <p>Site Map</p>
+            <p>Site Map</p> */}
           </Stack>
 
           <Stack className="my-stack">
-            <p>About </p>
+            {/* <p>About </p>
             <p>Accessability</p>
             <p>Enviornment</p>
-            <p>Branches</p>
+            <p>Branches</p> */}
           </Stack>
 
-          <Stack className="my-stack">
-            <p>Contact us</p>
-            <p>(+91) 123-456-7890</p>
-            <p>freelancer@gmail.com</p>
-          </Stack>
+       
         </>
 
-        <Stack className="download-app-stack my-stack">
+        <Stack className="download-app-stack my-stack ms-5">
           <p>Download App</p>
           <img
             src="https://pbs.twimg.com/media/F8K8X3_XMAAKWYp?format=jpg&name=small"
@@ -75,7 +76,7 @@ const Footer = () => {
         </Stack>
       </div>
       <div className="footer-credit">
-        <p>©2024 Freelancer</p>
+        <p>©2024 FreelanceFlow</p>
         <div>
           <p>Terms of Service</p>
           <p>Privacy Policy</p>

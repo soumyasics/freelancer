@@ -55,9 +55,9 @@ export function AdminViewAllConsultancy() {
   };
   console.log("users", users);
   return (
-    <Container className="mt-4">
-      <h1 className=" text-center">All Consultancies</h1>
-      <Table striped bordered hover>
+    <Container className="mt-4" style={{ minHeight: "400px" }}>
+      <h3 className=" text-center">All Consultancies</h3>
+      <Table striped bordered hover className="mt-5">
         <thead>
           <tr>
             <th>No</th>

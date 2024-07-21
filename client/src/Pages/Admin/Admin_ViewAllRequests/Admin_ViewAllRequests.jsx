@@ -23,9 +23,9 @@ function Admin_ViewAllRequests() {
     }
   };
   return (
-    <Container className="mt-4">
-      <h1 className=" text-center">All Requests</h1>
-      <Table striped bordered hover>
+    <Container className="mt-4"  style={{ minHeight: "400px" }}>
+      <h3 className=" text-center">All work requests</h3>
+      <Table striped bordered hover className="mt-5">
         <thead>
           <tr>
             <th>No.</th>

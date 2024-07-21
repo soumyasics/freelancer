@@ -67,10 +67,10 @@ function Admin_ViewAllUsers() {
  
   console.log(users);
   return (
-    <Container className="mt-4">
-      <h1 className=" text-center">All Users</h1>
+    <Container className="mt-4" style={{minHeight: "400px"}}>
+      <h3 className=" text-center">All Users</h3>
 
-      <Table striped bordered hover>
+      <Table striped bordered hover > 
         <thead>
           <tr>
             <th>#</th>
