@@ -9,6 +9,8 @@ import { Col, Row } from "react-bootstrap";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import PaymentPaidDetails from "./viewPaymentPaidDetails";
+import { FreelancerRating } from "../rateFreelancer/rateFreelancer";
+import { ComplaintFreelancer } from "../rateFreelancer/complaintFreelancer";
 export const UserViewWorkStatus = () => {
   const { id } = useParams();
   const [requestData, setRequestData] = useState({});
@@ -174,9 +176,19 @@ export const UserViewWorkStatus = () => {
           </div>
         </div>
 
+
         <div>
           <PaymentPaidDetails workId={id} />
         </div>
+        <Row className="d-flex justify-content-between mt-5">
+          <Col>
+            <FreelancerRating freelancerId={freelancerData._id} />
+          </Col>
+          <Col>
+            <ComplaintFreelancer freelancerId={freelancerData._id} />
+          </Col>
+        </Row>
+
       </div>
       <div className="mt-5">
         <Footer />
