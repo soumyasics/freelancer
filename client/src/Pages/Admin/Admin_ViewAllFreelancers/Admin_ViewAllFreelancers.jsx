@@ -55,7 +55,7 @@ function Admin_ViewAllFreelancers() {
   console.log("users", users);
   return (
     <Container className="mt-4">
-      <h1 className="text-white text-center">All Freelancers</h1>
+      <h1 className=" text-center">All Freelancers</h1>
       <Table striped bordered hover>
         <thead>
           <tr>

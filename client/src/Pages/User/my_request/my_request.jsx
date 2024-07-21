@@ -134,7 +134,6 @@ function MyRequests() {
                 <th>Category</th>
                 <th>Budget</th>
                 <th>Deadline</th>
-                <th>Description</th>
                 <th>View Responses</th>
                 <th>Delete Request</th>
               </tr>
@@ -149,15 +148,6 @@ function MyRequests() {
                     <td>{req.budget}</td>
                     <td>{req.deadline?.substring(0, 10)}</td>
 
-                    <td
-                      style={{
-                        overflowY: "auto",
-                        maxWidth: "200px",
-                        maxHeight: "200px",
-                      }}
-                    >
-                      {req.description}
-                    </td>
                     <td>
                       <Button
                         variant="success"

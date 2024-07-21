@@ -122,6 +122,7 @@ function Payment() {
               <Row className="mx-5">
                 <Col>
                   <Form
+                    className="px-5"
                     noValidate
                     validated={validated}
                     onSubmit={handleSubmit}
@@ -251,7 +252,7 @@ function Payment() {
                         <Button
                           variant="outline-light"
                           type="submit"
-                          className="m-5"
+                          className="my-5 mx-auto"
                           size="lg"
                         >
                           Pay ₹{amount}
@@ -282,6 +283,9 @@ function Payment() {
             </div>
           ))
         }
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );

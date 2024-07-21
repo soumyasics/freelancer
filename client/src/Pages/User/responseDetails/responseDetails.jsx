@@ -58,16 +58,36 @@ export const ViewResponseDetails = () => {
 
         <div className="d-flex gap-5 justify-content-between">
           <div className="p-4 w-50 shadow">
-            <h3 className="">Title: {requestData?.title || "..."}</h3>
-            <h6>Description: {requestData?.description || "..."}</h6>
-            <h6>Category: {requestData?.category || "..."}</h6>
-            <h6>Budget: ₹ {requestData?.budget || "..."}</h6>
-            <h6>Deadline: {requestData?.deadline.substring(0, 10) || "..."}</h6>
-            <h6>Current Status: {requestData?.status}</h6>
+            <h4 className="text-center"> Work Details</h4>
+
+            <p>
+              <span className="fs-6 fw-bold">Title: </span>{" "}
+              {requestData?.title || "..."}
+            </p>
+            <p>
+              <span className="fs-6 fw-bold">Category: </span>{" "}
+              {requestData?.category || "..."}
+            </p>
+            <p>
+              <span className="fs-6 fw-bold">Budget: </span> ₹{" "}
+              {requestData?.budget || "..."}
+            </p>
+            <p>
+              <span className="fs-6 fw-bold">Deadline: </span>{" "}
+              {requestData?.deadline.substring(0, 10) || "..."}
+            </p>
+            <p>
+              <span className="fs-6 fw-bold">Current Status :</span>{" "}
+              {requestData?.status}
+            </p>
+            <p>
+              <span className="fs-6 fw-bold">Description: </span>{" "}
+              {requestData?.description || "..."}
+            </p>
           </div>
 
           <div
-            style={{ height: "500px" }}
+            style={{ minHeight: "420px" }}
             className="d-flex justify-content-center align-items-center w-50"
           >
             <Image className="w-75  mx-auto" src={statusImg} alt="status" />
@@ -76,12 +96,12 @@ export const ViewResponseDetails = () => {
 
         <div className="shadow w-75 mx-auto">
           {responses.length === 0 ? (
-            <div>
-              <h5 className="mt-5">
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <h5 className="mt-5 text-center">
                 Freelancers did not give any responses yet.{" "}
               </h5>
               <Image
-                className="w-50  mx-auto"
+                className="w-25  mt-3"
                 src={noResponseImg}
                 alt="no-response"
               />
@@ -109,7 +129,7 @@ export const ViewResponseDetails = () => {
                           <span className="ms-2">{res?.message} </span>
                         </Col>
                         <Col className="d-flex align-items-center">
-                          <Button 
+                          <Button
                             onClick={() => {
                               redirectToViewFreelancer(res?.freelancerId);
                             }}

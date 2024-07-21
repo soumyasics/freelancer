@@ -24,7 +24,7 @@ function Admin_ViewAllRequests() {
   };
   return (
     <Container className="mt-4">
-      <h1 className="text-white text-center">All Requests</h1>
+      <h1 className=" text-center">All Requests</h1>
       <Table striped bordered hover>
         <thead>
           <tr>

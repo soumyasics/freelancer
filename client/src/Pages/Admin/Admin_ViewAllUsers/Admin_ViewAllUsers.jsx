@@ -68,7 +68,7 @@ function Admin_ViewAllUsers() {
   console.log(users);
   return (
     <Container className="mt-4">
-      <h1 className="text-white text-center">All Users</h1>
+      <h1 className=" text-center">All Users</h1>
 
       <Table striped bordered hover>
         <thead>

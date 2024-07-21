@@ -56,7 +56,7 @@ export function AdminViewAllPendingConsultancy() {
   console.log("users", users);
   return (
     <Container className="mt-4">
-      <h1 className="text-white text-center">Consultancies request</h1>
+      <h1 className=" text-center">Consultancies request</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
