@@ -15,6 +15,7 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import { RiPassPendingLine } from "react-icons/ri";
 import { MdOutlineWorkHistory } from "react-icons/md";
 import { MdOutlinePending } from "react-icons/md";
+import { Admin_ViewAllFreelancersCompliants } from "../AdminViewAllFreelancerCompliants/FreelancerCompliants";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("users");
@@ -120,6 +121,19 @@ function Admin_Dashboard() {
                   Work Requests
                 </Link>
               </li>
+              <li className="nav-item m-1 p-1">
+                <Link
+                  onClick={() => {
+                    setShowSidebar(false);
+                    setActivePage("freelancer-compliants");
+                  }}
+                  className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  <MdOutlineWorkHistory className="me-2" />
+                  Freelancer Compliants
+                </Link>
+              </li>
 
               <li className="nav-item m-1 p-1">
                 <Link
@@ -146,6 +160,7 @@ function Admin_Dashboard() {
           )}
           {activePage === "requests" && <Admin_ViewAllRequests />}
           {activePage === "consultancies" && <AdminViewAllConsultancy />}
+          {activePage === "freelancer-compliants" && <Admin_ViewAllFreelancersCompliants />}
           {activePage === "pending-consultancies" && (
             <AdminViewAllPendingConsultancy />
           )}

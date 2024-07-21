@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { axiosInstance } from "../../../apis/axiosInstance";
 export const ComplaintFreelancer = ({ freelancerId }) => {
   const { userId } = useSelector((state) => state.auth);
-  const { id } = useParams();
   const [complaintData, setComplaintData] = useState({
     complaint: "",
     userId: "",
@@ -37,7 +34,10 @@ export const ComplaintFreelancer = ({ freelancerId }) => {
 
   const sendDataToServer = async () => {
     try {
-      const res = await axiosInstance.post("freelnacerComplaint", complaintData);
+      const res = await axiosInstance.post(
+        "freelnacerComplaint",
+        complaintData
+      );
       if (res.status === 200) {
         toast.success("Complaint sent successfully. We will resolve it soon");
         setComplaintData({ ...complaintData, complaint: "" });
@@ -69,8 +69,9 @@ export const ComplaintFreelancer = ({ freelancerId }) => {
           onSubmit={handleSubmit}
         >
           <input
-            type="text"
-            style={{ height: "33px", width: "75%" }}
+            as="textarea"
+            rows="3"
+            style={{ height: "43px", width: "75%" }}
             value={complaintData.complaint}
             id="review"
             name="complaint"
@@ -78,9 +79,19 @@ export const ComplaintFreelancer = ({ freelancerId }) => {
             placeholder="Write your complaint"
             className="form-control"
           />
-          <button type="submit" className="btn ms-5 btn-danger ">
-            Submit
+
+          <button
+            className="button-50 ms-3"
+            style={{ backgroundColor: "#ed1616", width: "125px", height: "50px" }}
+            role="button"
+            type="submit"
+          >
+            Send 
           </button>
+
+          {/* <button type="submit" className="btn ms-5 btn-danger ">
+            Submit
+          </button> */}
         </form>
       </div>
     </div>

@@ -163,15 +163,7 @@ export const UserViewWorkStatus = () => {
                   </p>
                 </Col>
               </Row>
-              <Row className="mt-3 justify-content-center d-flex">
-                <button
-                  className="button-50"
-                  style={{ backgroundColor: "#ed1616", width: "185px" }}
-                  role="button"
-                >
-                  Send Complaint
-                </button>
-              </Row>
+            
             </div>
           </div>
         </div>
