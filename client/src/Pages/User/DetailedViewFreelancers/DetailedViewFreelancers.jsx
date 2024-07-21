@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../Common/Navbar/navbar";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { BASE_URL } from "../../../apis/baseUrl";
@@ -10,11 +10,13 @@ import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import { ReviewModal } from "./reviewModel";
 function DetailedViewFreelancers() {
   const { id } = useParams();
   const [freelancerData, setFreelancerData] = useState(null);
   const [profilePic, setProfilePic] = useState(placeholderImg);
-  const { userId, userType } = useSelector((state) => state.auth);
+  const [showReview, setShowReview] = useState(false);
+  const { userType } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   useEffect(() => {
     if (id) {
@@ -44,12 +46,22 @@ function DetailedViewFreelancers() {
   const startChatWithFreelancer = (id, name) => {
     navigate(`/user-freelancer-chat/${id}/${encodeURIComponent(name)}`);
   };
+
+  const handleClose = () => {
+    setShowReview(false);
+  };
+  const handleOpen = () => {
+    setShowReview(true);
+  }
   return (
     <>
       <Navbar />
+
       <div>
         <Container className="mt-5 ">
           <h3 className="text-center m-5 text-dark">Freelancer Details</h3>
+
+          <ReviewModal show={showReview} handleClose={handleClose} id={id} />
           <Row
             style={{ backgroundColor: "#eee" }}
             className=" border-0 text-white"
@@ -84,6 +96,13 @@ function DetailedViewFreelancers() {
                       <IoChatbubbleEllipsesOutline />
                     </button>
                   )}
+                  <Button
+                    className="ms-5"
+                    variant="success"
+                    onClick={handleOpen}
+                  >
+                    View Reviews
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>
