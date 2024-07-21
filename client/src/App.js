@@ -46,6 +46,7 @@ import { ConsultancyChatDashboard } from "./Pages/consultancy/chat/userChatDashb
 import { UserViewWorkStatus } from "./Pages/User/viewWorkStatus/viewWorkStatus.jsx";
 import { UserChatDashboardWithId } from "./Pages/User/usersChat/userChatDashboard/userChatDashboardWithId.jsx";
 import { FreelancerViewWorkStatus } from "./Pages/User/viewWorkStatus/freelancerWorkStatus.jsx";
+import { FreelancerChatDashboardWithId } from "./Pages/Freelancers/freelancersChat/userChatDashboard/freelancerChatDashboardId.jsx";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
           <Route path="/freelancer-view-consultancies" element={<FreelancerViewAllConsultancy />} />
           <Route path="/freelancer-my-works" element={<MyWorks />} />
           <Route path="/freelancer-user-chat" element={<FreelancerChatDashboard />} />
+          <Route path="/freelancer-user-chat/:id/:name" element={<FreelancerChatDashboardWithId />} />
           
           <Route
             path="/freelancer-applied-vacancies"

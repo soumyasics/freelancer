@@ -60,7 +60,7 @@ export const FreelancerViewWorkStatus = () => {
   console.log("freel", freelancerData);
 
   const startChatWithFreelancer = (id, name) => {
-    navigate(`/user-freelancer-chat/${id}/${encodeURIComponent(name)}`);
+    navigate(`/freelancer-user-chat/${id}/${encodeURIComponent(name)}`);
   };
   return (
     <div>
@@ -140,8 +140,8 @@ export const FreelancerViewWorkStatus = () => {
                       className="button-30"
                       onClick={() => {
                         startChatWithFreelancer(
-                          freelancerData._id,
-                          freelancerData.name
+                          requestData?.userId?._id,
+                          requestData?.userId?.firstName
                         );
                       }}
                     >
