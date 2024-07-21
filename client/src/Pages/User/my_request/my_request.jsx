@@ -80,11 +80,11 @@ function MyRequests() {
       <Navbar />
       <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
-          <h1 className="table-heading text-dark m-5 text-center mt-5">
+          <h3 className="table-heading text-dark m-5 text-center mt-5">
             My Work Requests
-          </h1>
-          <div className="d-flex justify-content-between ">
-            <InputGroup className="mb-3 mx-auto" style={{ width: "35%" }}>
+          </h3>
+          <div className="d-flex justify-content-between align-items-center ">
+            <InputGroup style={{ width: "35%", height: "42px" }}>
               <InputGroup.Text id="basic-addon1">
                 <FaSearch />
               </InputGroup.Text>
@@ -97,7 +97,7 @@ function MyRequests() {
             <Form.Select
               name="category"
               onChange={filterWorkReqs}
-              style={{ width: "35%" }}
+              style={{ width: "35%", height: "42px" }}
             >
               <option value="">Filter work request by category</option>
               <option value="Website Creation">Website Creation</option>
@@ -125,7 +125,7 @@ function MyRequests() {
               <option value="Other">Other</option>
             </Form.Select>
           </div>
-          <Table striped bordered hover className="m-5">
+          <Table striped bordered hover className="mt-5">
             <thead className="text-center">
               <tr>
                 <th>No</th>

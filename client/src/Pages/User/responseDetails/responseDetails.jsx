@@ -51,10 +51,10 @@ export const ViewResponseDetails = () => {
     <>
       <Navbar />
       <div
-        className="mx-auto p-3 rounded shadow"
+        className="mx-auto p-3 rounded"
         style={{ backgroundColor: "#ffffff", width: "95%" }}
       >
-        <h1 className="text-center">Request Status</h1>
+        <h2 className="text-center">Request Status</h2>
 
         <div className="d-flex gap-5 justify-content-between">
           <div className="p-4 w-50 shadow">
@@ -94,7 +94,7 @@ export const ViewResponseDetails = () => {
           </div>
         </div>
 
-        <div className="shadow w-75 mx-auto">
+        <div className="shadow w-75 mx-auto p-3 mt-3">
           {responses.length === 0 ? (
             <div className="d-flex flex-column justify-content-center align-items-center">
               <h5 className="mt-5 text-center">
@@ -109,7 +109,7 @@ export const ViewResponseDetails = () => {
           ) : (
             <div
               style={{ overflowY: "scroll", height: "400px" }}
-              className="mt-4 shadow"
+              className="mt-4 "
             >
               <h3 className="mt-5 text-center">Freelancer Responses.</h3>
 

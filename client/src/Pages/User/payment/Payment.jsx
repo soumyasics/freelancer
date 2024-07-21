@@ -87,10 +87,10 @@ function Payment() {
           freelancerId ? (
             <Container fluid>
               <Row className="mx-5">
-                <h1 className="text-white m-5 text-center">Payment</h1>
+                <h1 className="text-white mt-5 text-center">Payment</h1>
               </Row>
               <Row className="justify-content-center mx-5">
-                <h5 className="text-white mx-5">Choose payment method below</h5>
+                {/* <h5 className="text-white mx-5">Please provide your payment details here.</h5> */}
                 <Col xl={4} className="text-center">
                   <Image
                     src={creditCard}
@@ -128,14 +128,14 @@ function Payment() {
                     onSubmit={handleSubmit}
                   >
                     <Form.Group controlId="cardholdersName">
-                      <Form.Label className="text-white m-3">
+                      <Form.Label className="text-white ms-3">
                         Cardholder's Name
                       </Form.Label>
                       <Form.Control
                         required
                         type="text"
                         placeholder="Enter cardholder's name"
-                        className="m-3"
+                        className="ms-3 "
                         name="accHolderName"
                         value={paymentDetails.accHolderName}
                         onChange={handleChanges}
@@ -148,14 +148,14 @@ function Payment() {
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group controlId="cardNumber">
-                      <Form.Label className="text-white m-3">
+                      <Form.Label className="text-white ms-3 mt-3">
                         Card Number
                       </Form.Label>
                       <Form.Control
                         required
                         type="text"
                         placeholder="Enter card number"
-                        className="m-3"
+                        className="ms-3"
                         maxLength={16}
                         minLength={16}
                         pattern="[0-9]{16}"
@@ -170,10 +170,10 @@ function Payment() {
                         Please provide a valid card number.
                       </Form.Control.Feedback>
                     </Form.Group>
-                    <Row>
+                    <Row className="mt-3">
                       <Col>
                         <Form.Group controlId="expMonth">
-                          <Form.Label className="text-white m-3">
+                          <Form.Label className="text-white ms-3">
                             Expiry Month
                           </Form.Label>
                           <Form.Control
@@ -181,7 +181,7 @@ function Payment() {
                             type="text"
                             name="expMonth"
                             placeholder="Enter expiry month Eg: 02"
-                            className="m-3"
+                            className="ms-3"
                             maxLength={2}
                             minLength={2}
                             pattern="[0-9]{2}"
@@ -198,7 +198,7 @@ function Payment() {
                       </Col>
                       <Col>
                         <Form.Group controlId="expYear">
-                          <Form.Label className="text-white m-3">
+                          <Form.Label className="text-white ms-3">
                             Expiry Year
                           </Form.Label>
                           <Form.Control
@@ -208,7 +208,7 @@ function Payment() {
                             maxLength={4}
                             minLength={4}
                             pattern="[0-9]{4}"
-                            className="m-3"
+                            className="ms-3"
                             name="expYear"
                             value={paymentDetails.expYear}
                             onChange={handleChanges}
@@ -223,7 +223,7 @@ function Payment() {
                       </Col>
                       <Col>
                         <Form.Group controlId="cvc">
-                          <Form.Label className="text-white m-3">
+                          <Form.Label className="text-white ms-3">
                             CVC Number
                           </Form.Label>
                           <Form.Control
@@ -236,7 +236,7 @@ function Payment() {
                             pattern="[0-9]{3}"
                             value={paymentDetails.cvc}
                             onChange={handleChanges}
-                            className="m-3"
+                            className="ms-3"
                           />
                           <Form.Control.Feedback
                             type="invalid"

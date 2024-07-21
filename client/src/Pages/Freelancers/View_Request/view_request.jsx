@@ -120,16 +120,20 @@ function ViewAllUsersRequests() {
       setRequests(fixedReq);
     }
   };
+
+  const navigateToReqDetails = (id) => {
+    navigate("/view-request/" + id);
+  }
   return (
     <>
       <Navbar />
       <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
-          <h1 className="table-heading text-dark m-5 text-center mt-5">
+          <h3 className="table-heading text-dark m-5 text-center mt-5">
             Users Work Requests
-          </h1>
-          <div className="d-flex justify-content-between ">
-            <InputGroup className="mb-3 mx-auto" style={{ width: "35%" }}>
+          </h3>
+          <div className="d-flex justify-content-between align-items-center ">
+            <InputGroup style={{ width: "35%", height: "42px" }}>
               <InputGroup.Text id="basic-addon1">
                 <FaSearch />
               </InputGroup.Text>
@@ -143,7 +147,7 @@ function ViewAllUsersRequests() {
             <Form.Select
               name="category"
               onChange={filterWorkReqs}
-              style={{ width: "35%" }}
+              style={{ width: "35%", height: "42px" }}
             >
               <option value="">Filter work request by category</option>
               <option value="Website Creation">Website Creation</option>
@@ -175,13 +179,13 @@ function ViewAllUsersRequests() {
             <thead className="text-center">
               <tr>
                 <th>No</th>
-                <th>Name</th>
+                <th>Client Name</th>
                 <th>Work Title</th>
-                <th>Description</th>
                 <th>Category</th>
                 <th>Budget</th>
                 <th>Deadline</th>
                 <th>Send a message</th>
+                <th>View More</th>
               </tr>
             </thead>
             <tbody className="text-center">
@@ -194,7 +198,6 @@ function ViewAllUsersRequests() {
                     <td>{index + 1} </td>
                     <td>{req?.userId?.firstName}</td>
                     <td>{req?.title}</td>
-                    <td>{req?.description}</td>
                     <td>{req?.category}</td>
                     <td>{req?.budget}</td>
                     <td>{req?.deadline?.substring(0, 10)}</td>
@@ -245,6 +248,11 @@ function ViewAllUsersRequests() {
                         )}
                       </td>
                     )}
+                    <td>
+                      <Button onClick={() => {
+                        navigateToReqDetails(req._id)
+                      }}>View More</Button>
+                    </td>
                   </tr>
                 );
               })}

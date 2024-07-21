@@ -35,41 +35,60 @@ function View_Request_Details() {
     <>
       <Navbar />
       <Container className="mt-5 ">
-        <h1 className="text-center m-5 text-white">Request Details</h1>
+        <h3 className="text-center m-5 table-heading">Request Details</h3>
         <Row className="border-0 bg-white m-5 ">
-          <Col className="mb-3 border-0 ">
+          <Col className=" border-0 shadow">
             <Card className="border-0 ">
               <Card.Body className="m-3">
-                <Card.Title className="font-weight-bolder m-3">
-                  Work Title: {requestData?.title}
+                <Card.Title className="font-weight-bolder text-center">
+                  Work request details
                 </Card.Title>
+
                 <Card.Text className="m-3">
-                  Description: {requestData?.description}
+                  <span className="fw-bold me-2">Title:</span>
+                  {requestData?.title}
+                </Card.Text>
+
+                <Card.Text className="m-3">
+                  <span className="fw-bold me-2">Category:</span>
+                  {requestData?.category}
                 </Card.Text>
                 <Card.Text className="m-3">
-                  Category: {requestData?.category}
+                  <span className="fw-bold me-2">Budget:</span>
+                  {requestData?.budget}
                 </Card.Text>
                 <Card.Text className="m-3">
-                  Budget: {requestData?.budget}
+                  <span className="fw-bold me-2">Deadline:</span>
+                  {requestData?.deadline?.substring(0, 10)}
+                </Card.Text>
+           
+                <Card.Text className="m-3">
+                  <span className="fw-bold me-2">Client Name:</span>
+                  {requestData?.userId?.firstName}{" "}
+                  {requestData?.userId?.lastName}
                 </Card.Text>
                 <Card.Text className="m-3">
-                  Deadline: {requestData?.deadline?.substring(0, 10)}
+                  <span className="fw-bold me-2">Email:</span>
+                  {requestData?.userId?.email}
+                </Card.Text>
+                <Card.Text className="m-3">
+                  <span className="fw-bold me-2">Description:</span>
+                  {requestData?.description}
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
-          <Col className=" border-0 bg-white text-center rounded ">
+          <Col className=" border-0  align-items-center rounded shadow d-flex justify-content-center ">
             <Image
               src={placeholderImg}
               alt="Filler image"
-              className="m-3"
               width={300}
               height={300}
             />
           </Col>
         </Row>
       </Container>
-      <div className="position-relative" style={{ top: "200px" }}>
+      <div className="mt-5">
         <Footer />
       </div>
     </>
