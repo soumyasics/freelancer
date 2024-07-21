@@ -32,6 +32,7 @@ import { AdminViewAllConsultancy } from "./Pages/Admin/Admin_ViewAllConsultancy/
 import ViewAllAppliedWorks from "./Pages/consultancy/ViewAllAppliedWorks/ViewAllAppliedWorks.jsx";
 import { MyVacanccies } from "./Pages/consultancy/my_vacancies/my_vacancies.jsx";
 import { MyWorks } from "./Pages/Freelancers/MyWorks/myWorks.jsx";
+import {  MyCompletedWorks} from "./Pages/Freelancers/MyWorks/myCompletedWorks.jsx";
 import MyOrders from "./Pages/User/MyOrders/MyOrders.jsx";
 import ConsultancyProfile from "./Pages/consultancy/profile/ConsultancyProfile.jsx";
 import { ViewAllFreelancerAppliedVacancies } from "./Pages/Freelancers/ViewAllAppliedVacancy/ViewAllAppliedVacancy.jsx";
@@ -92,6 +93,7 @@ function App() {
           <Route path="/freelancer-forgot-password" element={<FreelancerForgot_password />} />
           <Route path="/freelancer-view-consultancies" element={<FreelancerViewAllConsultancy />} />
           <Route path="/freelancer-my-works" element={<MyWorks />} />
+          <Route path="/freelancer-completed-works" element={<MyCompletedWorks />} />
           <Route path="/freelancer-user-chat" element={<FreelancerChatDashboard />} />
           <Route path="/freelancer-user-chat/:id/:name" element={<FreelancerChatDashboardWithId />} />
           

@@ -92,7 +92,7 @@ function Payment() {
       let res = await axiosInstance.post("/addPayment", paymentDetails);
       console.log("respon", res);
       if (res.status === 201) {
-        toast.success("Payment added successfully");
+        toast.success("Payment successfull");
         //TODO navigate to my acitivy page.
       }
     } catch (err) {

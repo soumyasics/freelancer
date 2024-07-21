@@ -57,7 +57,6 @@ export const UserViewWorkStatus = () => {
       console.log("Error on get freelancers", error);
     }
   };
-  console.log("freel", freelancerData);
 
   const startChatWithFreelancer = (id, name) => {
     navigate(`/user-freelancer-chat/${id}/${encodeURIComponent(name)}`);
@@ -156,7 +155,7 @@ export const UserViewWorkStatus = () => {
               </Row>
 
               <Row>
-                <Col>
+                <Col style={{ maxHeight: "200px", overflowY: "auto" }}>
                   <p className="text-center">
                     {requestData?.description || "..."}
                   </p>
@@ -165,7 +164,7 @@ export const UserViewWorkStatus = () => {
               <Row className="mt-3 justify-content-center d-flex">
                 <button
                   className="button-50"
-                  style={{ backgroundColor: "#ed1616", width: "135px" }}
+                  style={{ backgroundColor: "#ed1616", width: "185px" }}
                   role="button"
                 >
                   Send Complaint

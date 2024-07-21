@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "./myWorks.css";
 import { FaSearch } from "react-icons/fa";
 
-export function MyWorks() {
+export function MyCompletedWorks() {
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate()
   useEffect(() => {
@@ -26,10 +26,11 @@ export function MyWorks() {
       );
       if (res.status === 200) {
         let data = res.data?.data || [];
-        const filterPendingWorks = data.filter(
-          (item) => item.workId?.status !== "completed"
+
+        const filterCompletedWorks = data.filter(
+          (item) => item.workId?.status === "completed"
         );
-        let revData = filterPendingWorks.reverse();
+        let revData = filterCompletedWorks.reverse();
         setFixedPayments(revData);
         setPayments(revData);
       } else {
@@ -39,6 +40,8 @@ export function MyWorks() {
       console.log("Error on getting requests", error);
     }
   };
+
+  console.log("Payments,", payments);
 
   const searchWorkReq = (e) => {
     const value = e.target.value;
@@ -84,7 +87,7 @@ export function MyWorks() {
       <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
           <h3 className="table-heading text-dark m-5 text-center mt-5">
-            My pending works
+            My Completed Works
           </h3>
 
           <div className="d-flex justify-content-between align-items-center ">

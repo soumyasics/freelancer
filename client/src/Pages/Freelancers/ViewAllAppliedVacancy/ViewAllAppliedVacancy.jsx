@@ -48,9 +48,9 @@ export function ViewAllFreelancerAppliedVacancies() {
       <Navbar />
       <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
         <Container>
-          <h1 className="table-heading text-dark m-5 text-center mt-5">
+          <h3 className="table-heading text-dark m-5 text-center mt-5">
             Vacancies applied by you
-          </h1>
+          </h3>
 
           <Table striped bordered hover>
             <thead className="text-center">

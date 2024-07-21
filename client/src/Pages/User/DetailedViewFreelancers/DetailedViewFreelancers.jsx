@@ -7,10 +7,15 @@ import { BASE_URL } from "../../../apis/baseUrl";
 import placeholderImg from "../../../Assets/user-placeholder-img.jpg";
 import "./DetailedViewFreelancers.css";
 import Footer from "../../Common/Footer/footer";
+import { useNavigate } from "react-router-dom";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 function DetailedViewFreelancers() {
   const { id } = useParams();
   const [freelancerData, setFreelancerData] = useState(null);
   const [profilePic, setProfilePic] = useState(placeholderImg);
+  const { userId, userType } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   useEffect(() => {
     if (id) {
       getFreelancerData();
@@ -36,12 +41,15 @@ function DetailedViewFreelancers() {
       console.log("error on get freelancer data", error);
     }
   };
+  const startChatWithFreelancer = (id, name) => {
+    navigate(`/user-freelancer-chat/${id}/${encodeURIComponent(name)}`);
+  };
   return (
     <>
       <Navbar />
       <div>
         <Container className="mt-5 ">
-          <h1 className="text-center m-5 text-dark">Freelancer Details</h1>
+          <h3 className="text-center m-5 text-dark">Freelancer Details</h3>
           <Row
             style={{ backgroundColor: "#eee" }}
             className=" border-0 text-white"
@@ -61,6 +69,21 @@ function DetailedViewFreelancers() {
                     Qualification: {freelancerData?.qualification}
                   </Card.Text>
                   <Card.Text>Job Role: {freelancerData?.jobrole}</Card.Text>
+
+                  {userType === "user" && (
+                    <button
+                      className="button-30"
+                      onClick={() => {
+                        startChatWithFreelancer(
+                          freelancerData._id,
+                          freelancerData.name
+                        );
+                      }}
+                    >
+                      Chat with {freelancerData?.name} &nbsp;
+                      <IoChatbubbleEllipsesOutline />
+                    </button>
+                  )}
                 </Card.Body>
               </Card>
             </Col>
@@ -70,8 +93,8 @@ function DetailedViewFreelancers() {
                 <img
                   src={profilePic}
                   className="img-fluid rounded m-5"
-                   alt="profile pic"
-                  style={{ width: "25%", height: "5%" }}
+                  alt="profile pic"
+                  style={{ width: "50%" }}
                 />
               </div>
             </Col>

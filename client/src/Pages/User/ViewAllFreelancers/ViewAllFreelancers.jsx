@@ -20,11 +20,12 @@ import { BASE_URL } from "../../../apis/baseUrl";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import Footer from "../../Common/Footer/footer";
+import { useSelector } from "react-redux";
 function ViewAllFre1elancers() {
   const navigate = useNavigate();
   const [allFreelancersData, setAllFreelancersData] = useState([]);
   const [fixedFreelancers, setFixedFreelancers] = useState([]);
-  const [search, setSearch] = useState("");
+  
   useEffect(() => {
     getAllFreelancers();
   }, []);
@@ -62,12 +63,12 @@ function ViewAllFre1elancers() {
       <div
         style={{
           boxShadow:
-            "rgba(50, 50, 93, pa0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;",
+            "rgba(50, 50, 93, pa0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
         }}
         className="container my-5  rounded"
       >
         {allFreelancersData.length > 0 && (
-          <h1 className="text-center m-5 text-dark">View All Freelancers</h1>
+          <h3 className="text-center m-5 text-dark">View All Freelancers</h3>
         )}
         <div>
           <form className="shadow w-25" onSubmit={handleSubmit}>

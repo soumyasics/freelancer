@@ -22,7 +22,7 @@ function Freelancer_Profile({ user }) {
     }
   }, []);
   const redirectToMyWorks = () => {
-    navigate("/freelancer-my-works");
+    navigate("/freelancer-completed-works");
   };
   const redirectToFreelancerAppliedVacancies = () => {
     navigate("/freelancer-applied-vacancies");
@@ -59,16 +59,10 @@ function Freelancer_Profile({ user }) {
             </div>
             <Row className="justify-content-center mt-5">
               <Col xs="auto" className="me-3">
-                {/* <Button variant="primary" size="sm">
-                  <FaEdit className="me-2" />
-                  Edit Profile
-                </Button> */}
+       
               </Col>
               <Col xs="auto" className="me-3">
-                {/* <Button variant="success" size="sm">
-                  <FaTasks className="me-2" />
-                  My Activity
-                </Button> */}
+            
               </Col>
               <Col
                 xs="auto"
@@ -76,7 +70,7 @@ function Freelancer_Profile({ user }) {
                 className="d-flex  w-100 justify-content-between"
               >
                 <FreelancereditProfileCard />
-                <Button onClick={redirectToMyWorks}>My works</Button>
+                <Button onClick={redirectToMyWorks}>Completed works</Button>
                 <Button
                   variant="success"
                   onClick={redirectToFreelancerAppliedVacancies}

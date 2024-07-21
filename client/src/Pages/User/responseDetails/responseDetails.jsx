@@ -86,7 +86,7 @@ export const ViewResponseDetails = () => {
               <span className="fs-6 fw-bold">Current Status :</span>{" "}
               {requestData?.status}
             </p>
-            <p>
+            <p style={{maxHeight: "200px", overflowY: "auto"}}>
               <span className="fs-6 fw-bold">Description: </span>{" "}
               {requestData?.description || "..."}
             </p>
