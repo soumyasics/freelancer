@@ -60,7 +60,7 @@ export function ConsultancyLogin() {
           dispatch(loginSuccess(obj));
           localStorage.setItem("freelancerData", JSON.stringify(obj));
         }
-        navigate("/consultancy-home");
+        navigate("/");
       }
     } catch (error) {
       let responseStatus = error.response?.status || null;
@@ -105,6 +105,7 @@ export function ConsultancyLogin() {
                           type="email"
                           className="form-control"
                           required
+                          placeholder="Enter email"
                           id="exampleInputEmail1"
                           name="email"
                           value={freelancerData.email}
@@ -122,6 +123,7 @@ export function ConsultancyLogin() {
                         <input
                           type="password"
                           required
+                          placeholder="Enter password"
                           className="form-control"
                           name="password"
                           value={freelancerData.password}
@@ -131,12 +133,13 @@ export function ConsultancyLogin() {
                       </div>
                       <div className="d-flex align-items-center justify-content-between mb-4">
                         <div className="form-check">
-                          <input
+                          {/* <input
                             className="form-check-input primary"
                             type="checkbox"
+
                             value=""
                             id="flexCheckChecked"
-                          />
+                          /> */}
                         </div>
                         <p
                           style={{ cursor: "pointer" }}

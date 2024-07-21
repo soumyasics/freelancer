@@ -132,6 +132,7 @@ function Freelancer_register() {
                           type="text"
                           className="form-control"
                           id="name"
+                          placeholder="Name"
                           required
                           name="name"
                           onChange={handleChanges}
@@ -149,7 +150,9 @@ function Freelancer_register() {
                           type="tel"
                           className={`form-control`}
                           id="contact"
+                          placeholder="Contact"
                           minLength="10"
+
                           maxlength="10"
                           pattern="[0-9]{10}"
                           required
@@ -167,6 +170,7 @@ function Freelancer_register() {
                         </label>
                         <input
                           type="email"
+                          placeholder="Enter email"
                           className="form-control"
                           id="email"
                           aria-describedby="emailHelp"
@@ -188,6 +192,7 @@ function Freelancer_register() {
                         </label>
                         <input
                           type="password"
+                          placeholder="Enter password"
                           className="form-control"
                           id="password"
                           minLength="6"
@@ -208,6 +213,7 @@ function Freelancer_register() {
                         </label>
                         <input
                           type="text"
+                          placeholder="Qualification"
                           className="form-control"
                           id="qualification"
                           name="qualification"
@@ -225,6 +231,7 @@ function Freelancer_register() {
                         </label>
                         <input
                           type="text"
+                          placeholder="Job Role"
                           className="form-control"
                           id="jobrole"
                           required
@@ -244,6 +251,7 @@ function Freelancer_register() {
                         </label>
                         <input
                           type="file"
+                          
                           className="form-control"
                           id="profilepic"
                           name="profilepic"

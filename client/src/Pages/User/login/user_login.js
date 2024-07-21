@@ -109,6 +109,7 @@ function User_login() {
                         </label>
                         <input
                           type="email"
+                          placeholder="Enter email"
                           className="form-control"
                           required
                           id="exampleInputEmail1"
@@ -127,6 +128,7 @@ function User_login() {
                         </label>
                         <input
                           type="password"
+                          placeholder="Enter password"
                           className="form-control"
                           required
                           id="exampleInputPassword1"
@@ -138,18 +140,7 @@ function User_login() {
                       </div>
                       <div className="d-flex align-items-center justify-content-between mb-4">
                         <div className="form-check">
-                          {/* <input
-                          className="form-check-input primary"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                        />
-                        <label
-                          className="form-check-label user-login-label"
-                          htmlFor="flexCheckChecked"
-                        >
-                          Remember Me
-                        </label> */}
+                   
                         </div>
                         <p
                           style={{ cursor: "pointer" }}

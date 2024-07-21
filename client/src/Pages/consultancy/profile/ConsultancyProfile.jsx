@@ -22,7 +22,6 @@ function ConsultancyProfile() {
     if (!userId) {
       toast.error("Please login again..");
       navigate("../consultancy-login");
-      
     } else {
       // getConsultancyProfile();
     }
@@ -36,7 +35,6 @@ function ConsultancyProfile() {
     }
   }, []);
   console.log("consultancyData", consultancyData);
-
 
   return (
     <>
@@ -79,7 +77,9 @@ function ConsultancyProfile() {
         )}
         <ConsultancyeditProfileCard />
       </Container>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </>
   );
 }

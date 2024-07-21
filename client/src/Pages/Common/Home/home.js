@@ -18,38 +18,6 @@ function Home(props) {
       <Navbar />
       <HomeCarousel />
       <div className="container-fluid p-0 mt-5" style={{ color: "black" }}>
-        {/* <div className="trashed">
-          <div className="m-5">
-            <p className="hero-legend justify-content-center pt-5 ">
-              Connect, Collaborate, and Reunite
-            </p>
-          </div>
-          <div>
-            <p className="home-inner justify-content-center">
-              A Lost & Found for Your Freelance Community
-            </p>
-          </div>
-          <div className="connect justify-content-center p-5 m-5">
-            <span>Connect</span>
-            <i className="bi bi-gear-wide-connected mx-3"></i>
-          </div>
-          <div className="home-inner2 p-5 ">
-            <p className="m-3 p-3">
-              "Empower your dreams. Freelance your future."
-            </p>
-            <p className="home-inner3 mt-4 p-3">
-              Join Marketplace CONNECT, the trusted network for freelancing
-              professionals
-            </p>
-            <button
-              className="btn btn-outline-info btn-lg px-5 py-4 m-5"
-              id="btn1"
-              onClick={redirectFreelancer}
-            >
-              Connect Now <i className="bi bi-gear-wide-connected mx-3"></i>
-            </button>
-          </div>
-        </div> */}
         <div className="home-banner mb-5 p-5">
           <div className="home-banner-inner m-5 p-5">
             <img

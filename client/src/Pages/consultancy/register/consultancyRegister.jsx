@@ -97,8 +97,11 @@ export function ConsultancyRegister() {
       <LandingNavbar />
       <div className="user-register container">
         <div className="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-          <div className="d-flex align-items-center justify-content-center w-100">
-            <div className="row justify-content-around w-100 my-4 gap-3">
+          <div className=" mt-5 w-100">
+            <h2 className="text-center fw-bold freelancer-register-heading mb-3">
+              Consultancy Registration
+            </h2>
+            <div className="row d-flex justify-content-around w-100 my-4 gap-3">
               <div className="col-5  d-flex align-items-center">
                 <div style={{ width: "auto", height: "370px" }}>
                   <img
@@ -108,13 +111,9 @@ export function ConsultancyRegister() {
                   />
                 </div>
               </div>
-
               <div className="col-5">
                 <div className="card mb-0 p-4">
                   <div className="card-body">
-                    <h2 className="text-center freelancer-register-heading mb-3">
-                      Consultancy Registration
-                    </h2>
                     <form onSubmit={handleRegister}>
                       <div className="mb-3">
                         <label
@@ -128,6 +127,7 @@ export function ConsultancyRegister() {
                           type="text"
                           className="form-control"
                           id="name"
+                          placeholder="Name"
                           required
                           name="name"
                           onChange={handleChanges}
@@ -145,6 +145,7 @@ export function ConsultancyRegister() {
                           type="tel"
                           className={`form-control`}
                           id="contact"
+                          placeholder="Contact"
                           minLength="10"
                           maxlength="10"
                           pattern="[0-9]{10}"
@@ -165,6 +166,7 @@ export function ConsultancyRegister() {
                           type="email"
                           className="form-control"
                           id="email"
+                          placeholder="Enter email"
                           aria-describedby="emailHelp"
                           required
                           value={consultancyData.email}
@@ -184,6 +186,7 @@ export function ConsultancyRegister() {
                         </label>
                         <input
                           type="password"
+                          placeholder="Enter password"
                           className="form-control"
                           id="password"
                           minLength="6"
@@ -206,6 +209,7 @@ export function ConsultancyRegister() {
                           type="text"
                           className="form-control"
                           id="licenseId"
+                          placeholder="License Id"
                           name="licenseId"
                           required
                           minLength="10"
@@ -224,6 +228,7 @@ export function ConsultancyRegister() {
                         </label>
                         <input
                           type="text"
+                          placeholder="Address"
                           className="form-control"
                           id="address"
                           required

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutSuccess } from "../../../redux/slices/authSlice";
 import useLocalStorage from "../../../customHooks/useLocalStorage";
+import { toast } from "react-hot-toast";
 
 function Navbar() {
   const { setDataToRedux } = useLocalStorage();
@@ -31,42 +32,51 @@ function Navbar() {
   };
 
   const userFreelancerChat = () => {
-    navigate('/user-freelancer-chat')
-  }
+    navigate("/user-freelancer-chat");
+  };
   const userConsultancyChat = () => {
-    navigate('/user-consultancy-chat')
-  }
+    navigate("/user-consultancy-chat");
+  };
 
   const viewAllConsultancies = () => {
-    navigate("/user-view-consultancies")
-  }
+    navigate("/user-view-consultancies");
+  };
 
   const redirectConsultancyLogin = () => {
     navigate("/consultancy-login");
   };
 
   const freelancerUserChat = () => {
-    navigate("/freelancer-user-chat")
-  }
+    navigate("/freelancer-user-chat");
+  };
   const handleLogout = () => {
     if (localStorage.getItem("freelancerData")) {
       localStorage.removeItem("freelancerData");
     }
     dispatch(logoutSuccess());
-    navigate("/");
+   
+    if (userType === "user") {
+      navigate("/user-login");
+    } else if (userType === "freelancer") {
+      navigate("/freelancer-login");
+    } else if (userType === "consultancy") {
+      navigate("/consultancy-login");
+    } else {
+      navigate("/");
+    }
+    toast.success("Logout Successfull");
   };
-  
+
   const redirectViewRequests = () => {
     navigate("/view-request");
   };
-
 
   const redirectProfile = () => {
     if (userType === "user") {
       navigate("../user-profile");
     } else if (userType === "freelancer") {
       navigate("../freelancer-profile");
-    }else if (userType === "consultancy") {
+    } else if (userType === "consultancy") {
       navigate("../view-profile");
     }
   };
@@ -80,23 +90,23 @@ function Navbar() {
   const redirectMyVacancies = () => {
     navigate("../consultancy-my-vacancies");
   };
-  
+
   const redirectToAppliedVacancies = () => {
-    navigate('../view-all-applied-works')
-  }
+    navigate("../view-all-applied-works");
+  };
   // const redirectToFreelancerAppliedVacancies = () => {
   //   navigate('../freelancer-applied-vacancies')
   // }
   const consChatWithUser = () => {
-    navigate('/consultancy-user-chat')
-  }
+    navigate("/consultancy-user-chat");
+  };
   return (
     <div className="container-fluid bg-connect " id="freelance-common-navbar">
       <div className="connect justify-content-center ">
         <span>FreelanceFlow</span>
         <i className="bi bi-gear-wide-connected mx-3"></i>
       </div>
-      <nav className="navbar navbar-expand-lg navbar-dark" >
+      <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -138,29 +148,27 @@ function Navbar() {
 
               {userType === "user" && (
                 <>
-                {/* <li
+                  {/* <li
                   style={{ cursor: "pointer" }}
                   className="nav-item m-3"
                   onClick={redirectUserRequest}
                 >
                   <p className="nav-link">Request Work</p>
                 </li> */}
-                <li
-                  style={{ cursor: "pointer" }}
-                  className="nav-item me-3"
-                  onClick={userFreelancerChat}
-                >
-                  
-                  <p className="nav-link">Chat with freelancer</p>
-                </li>
-                <li
-                  style={{ cursor: "pointer" }}
-                  className="nav-item me-3"
-                  onClick={userConsultancyChat}
-                >
-                  
-                  <p className="nav-link">Chat with consultancy</p>
-                </li>
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item me-3"
+                    onClick={userFreelancerChat}
+                  >
+                    <p className="nav-link">Chat with freelancer</p>
+                  </li>
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item me-3"
+                    onClick={userConsultancyChat}
+                  >
+                    <p className="nav-link">Chat with consultancy</p>
+                  </li>
                 </>
               )}
               {userType === "consultancy" && (

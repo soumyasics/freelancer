@@ -10,11 +10,12 @@ import Footer from "../../Common/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import "./Vacancy_request.css";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const Vacancy_request = () => {
   const [validated, setValidated] = useState(false);
   const { userId } = useSelector((state) => state.auth);
+  const [today] = useState(new Date().toISOString().split("T")[0]);
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState({
     conId: "",
@@ -55,6 +56,20 @@ const Vacancy_request = () => {
       toast.error("Please fill all the fields");
       return;
     }
+    // Regular expression for a 10-digit phone number
+    const phoneNumberPattern = /^[0-9]{10}$/;
+
+    // Check if the phone number is valid
+    if (!phoneNumberPattern.test(requestData.consultancyPhoneNumber)) {
+      toast.error("Please provide a valid phone number");
+      return;
+    }
+
+    // here check a regex if requestData.consultancyPhoneNumber is valid
+    if (requestData.budget < 0 || requestData.budget > 100000000) {
+      toast.error("Budget should be between 0 to 100000000");
+      return;
+    }
 
     sendDataToServer();
   };
@@ -62,12 +77,12 @@ const Vacancy_request = () => {
   const sendDataToServer = async () => {
     try {
       let res = await axiosInstance.post("/con-createWorkRequest", requestData); // Assuming this endpoint exists
-      console.log("respo", res)
+      console.log("respo", res);
       if (res.status == 201) {
         toast.success("Request sent successfully.");
         setTimeout(() => {
-          navigate('/consultancy-my-vacancies')
-        }, 1000)
+          navigate("/consultancy-my-vacancies");
+        }, 1000);
       }
     } catch (err) {
       let status = err.response?.status || null;
@@ -90,18 +105,17 @@ const Vacancy_request = () => {
     });
   };
 
-
   return (
     <>
       <div>
         <Navbar />
-        <h2 className="text-center text-light mb-3 fw-bold">Add Vacancy </h2>
+        <h2 className="text-center mt-3  mb-3 fw-bold">Add Vacancy </h2>
         <Form
           style={{
             boxShadow:
               "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
           }}
-          className="w-50 p-4 mx-auto text-light"
+          className="w-50 p-4 mx-auto "
           noValidate
           validated={validated}
           onSubmit={handleSubmit}
@@ -117,7 +131,7 @@ const Vacancy_request = () => {
                 placeholder="Title"
                 required
               />
-              <Form.Control.Feedback type="invalid" className="text-light">
+              <Form.Control.Feedback type="invalid" className="">
                 Please provide a valid title.
               </Form.Control.Feedback>
             </Form.Group>
@@ -125,30 +139,15 @@ const Vacancy_request = () => {
               <Form.Label>Deadline</Form.Label>
               <Form.Control
                 type="date"
+                min={today}
                 placeholder="Deadline"
                 name="deadline"
                 value={requestData.deadline}
                 onChange={handleChanges}
                 required
               />
-              <Form.Control.Feedback type="invalid" className="text-light">
+              <Form.Control.Feedback type="invalid" className="">
                 Please provide a valid state.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-          <Row>
-            <Form.Group as={Col} md="12">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type="text"
-                name="description"
-                value={requestData.description}
-                onChange={handleChanges}
-                placeholder="Description"
-                required
-              />
-              <Form.Control.Feedback type="invalid" className="text-light">
-                Tell us more about your requested work.
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
@@ -164,7 +163,7 @@ const Vacancy_request = () => {
                 onChange={handleChanges}
                 required
               />
-              <Form.Control.Feedback type="invalid" className="text-light">
+              <Form.Control.Feedback type="invalid" className="">
                 Please provide a valid Category.
               </Form.Control.Feedback>
             </Form.Group>
@@ -178,8 +177,10 @@ const Vacancy_request = () => {
                 type="number"
                 placeholder="Budget"
                 required
+                min="0"
+                max="100000000"
               />
-              <Form.Control.Feedback type="invalid" className="text-light">
+              <Form.Control.Feedback type="invalid" className="">
                 Please provide your maximum budget for this work.
               </Form.Control.Feedback>
             </Form.Group>
@@ -199,10 +200,27 @@ const Vacancy_request = () => {
                 onChange={handleChanges}
                 required
               />
-              <Form.Control.Feedback type="invalid" className="text-light">
+              <Form.Control.Feedback type="invalid" className="">
                 Please provide a valid phone number.
               </Form.Control.Feedback>
             </Form.Group>
+
+            <Row>
+              <Form.Group as={Col} md="12">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  name="description"
+                  value={requestData.description}
+                  onChange={handleChanges}
+                  placeholder="Description"
+                  required
+                />
+                <Form.Control.Feedback type="invalid" className="">
+                  Tell us more about your requested work.
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
           </Row>
 
           <div className="d-flex justify-content-center">
@@ -212,7 +230,7 @@ const Vacancy_request = () => {
           </div>
         </Form>
       </div>
-      <div style={{ marginTop: "400px" }}>
+      <div className="mt-5">
         <Footer />
       </div>
     </>

@@ -91,6 +91,7 @@ export const FreelancerForgot_password = () => {
                         </label>
                         <input
                           name="email"
+                          placeholder="Enter email"
                           onChange={handleChanges}
                           value={data.email}
                           type="email"
@@ -106,6 +107,7 @@ export const FreelancerForgot_password = () => {
                         </label>
                         <input
                           name="newPassword"
+                          placeholder="Enter new password"
                           onChange={handleChanges}
                           value={data.newPassword}
                           type="password"
@@ -122,6 +124,7 @@ export const FreelancerForgot_password = () => {
                         </label>
                         <input
                           name="confirmPassword"
+                          placeholder="Enter confirm password"
                           onChange={handleChanges}
                           value={data.confirmPassword}
                           type="password"

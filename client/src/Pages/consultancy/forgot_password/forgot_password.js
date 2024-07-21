@@ -91,9 +91,11 @@ export const ConsultancyForgot_password = () => {
                         </label>
                         <input
                           name="email"
+                          placeholder="Email"
                           onChange={handleChanges}
                           value={data.email}
                           type="email"
+
                           className="form-control"
                         />
                       </div>
@@ -106,6 +108,7 @@ export const ConsultancyForgot_password = () => {
                         </label>
                         <input
                           name="newPassword"
+                          placeholder="Enter New Password"
                           onChange={handleChanges}
                           value={data.newPassword}
                           type="password"
@@ -122,6 +125,7 @@ export const ConsultancyForgot_password = () => {
                         </label>
                         <input
                           name="confirmPassword"
+                          placeholder="Enter Confirm Password"
                           onChange={handleChanges}
                           value={data.confirmPassword}
                           type="password"

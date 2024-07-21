@@ -104,6 +104,7 @@ function User_register() {
                         </label>
                         <input
                           type="text"
+                          placeholder="First Name"
                           className="form-control"
                           id="firstName"
                           onChange={handleChanges}
@@ -125,6 +126,7 @@ function User_register() {
                         </label>
                         <input
                           type="text"
+                          placeholder="Last Name"
                           className="form-control"
                           id="lastName"
                           required
@@ -144,6 +146,7 @@ function User_register() {
 
                         <input
                           type="email"
+                          placeholder="Enter email"
                           className="form-control"
                           id="email"
                           onChange={handleChanges}
@@ -166,6 +169,7 @@ function User_register() {
                         </label>
                         <input
                           type="password"
+                          placeholder="Enter password"
                           className="form-control"
                           id="password"
                           minLength="6"

@@ -72,7 +72,8 @@ function Freelancer_Profile({ user }) {
               </Col>
               <Col
                 xs="auto"
-                className="d-flex ps-5 w-100 justify-content-between"
+                style={{paddingLeft: "82px"}}
+                className="d-flex  w-100 justify-content-between"
               >
                 <FreelancereditProfileCard />
                 <Button onClick={redirectToMyWorks}>My works</Button>
