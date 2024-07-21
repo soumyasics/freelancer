@@ -13,7 +13,7 @@ function User_Profile() {
   const { userData } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const redirectUserRequest = () => {
-    navigate("/user-request");
+    navigate("/user-completed-works");
   };
 
   const redirectMyRequests = () => {
@@ -71,7 +71,7 @@ function User_Profile() {
         <Col xs="auto" className="d-flex ps-5 w-50 justify-content-between">
           <UsereditProfileCard />
           <Button variant="success" onClick={redirectUserRequest}>
-            Request work
+            Completed works
           </Button>
           <Button onClick={redirectMyRequests}>My Requests</Button>
         </Col>

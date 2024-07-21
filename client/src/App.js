@@ -48,6 +48,7 @@ import { UserViewWorkStatus } from "./Pages/User/viewWorkStatus/viewWorkStatus.j
 import { UserChatDashboardWithId } from "./Pages/User/usersChat/userChatDashboard/userChatDashboardWithId.jsx";
 import { FreelancerViewWorkStatus } from "./Pages/User/viewWorkStatus/freelancerWorkStatus.jsx";
 import { FreelancerChatDashboardWithId } from "./Pages/Freelancers/freelancersChat/userChatDashboard/freelancerChatDashboardId.jsx";
+import { UserCompletedWorks } from "./Pages/User/my_request/completedWorks.jsx";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="/user-register" element={<User_register />} />
           <Route path="/user-request" element={<UserRequest />} />
           <Route path="/user-myrequests" element={<MyRequests />} />
+          <Route path="/user-completed-works" element={<UserCompletedWorks />} />
           <Route path="/user-forgot-password" element={<Forgot_password />} />
           <Route path="/user-view-consultancies" element={<UserViewAllConsultancy/>} />
           <Route path="/user-freelancer-chat" element={<UserChatDashboard/>} />

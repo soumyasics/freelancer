@@ -8,7 +8,6 @@ const addPayment = async (req, res) => {
     const { freelancerId, workId, userId, amount, accHolderName, cardNumber } =
       req.body;
 
-      console.log("req.b doy", req.body)
     if (
       !freelancerId ||
       !workId ||

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "./my_request.css";
 import { toast } from "react-hot-toast";
 import { FaSearch } from "react-icons/fa";
-function MyRequests() {
+export const UserCompletedWorks = () => {
   const [requests, setRequests] = useState([]);
   const [fixedReqs, setFixedReqs] = useState([]);
   const { userId } = useSelector((state) => state.auth);
@@ -23,8 +23,8 @@ function MyRequests() {
       const res = await axiosInstance.get("/getWorkRequestsByUserId/" + userId);
       if (res.status === 200) {
         let data = res.data?.data || [];
-        const filterNotCompleted = data.filter((el) => el.status !== "completed");
-        let revData = filterNotCompleted.reverse();
+        let filterData = data.filter((el) => el.status === "completed");
+        let revData = filterData.reverse();
         setRequests(revData);
         setFixedReqs(revData);
       } else {
@@ -82,7 +82,7 @@ function MyRequests() {
       <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
           <h3 className="table-heading text-dark m-5 text-center mt-5">
-            My Work Requests
+            My completed works
           </h3>
           <div className="d-flex justify-content-between align-items-center ">
             <InputGroup style={{ width: "35%", height: "42px" }}>
@@ -90,7 +90,7 @@ function MyRequests() {
                 <FaSearch />
               </InputGroup.Text>
               <Form.Control
-                placeholder="Search work requests here.."
+                placeholder="Search completed works.."
                 type="text"
                 onChange={searchWorkReqs}
               />
@@ -183,4 +183,3 @@ function MyRequests() {
   );
 }
 
-export default MyRequests;

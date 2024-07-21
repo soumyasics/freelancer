@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { Col, Row } from "react-bootstrap";
+import moment from "moment-timezone"
 import paymentIllusImage from "../../../Assets/new/payment-illus.png";
 const PaymentPaidDetails = ({ workId }) => {
   const [paymentData, setPaymentData] = useState({});
+  const [formattedDate, setFormattedDate] = useState("");
+  const [formattedTime, setFormattedTime] = useState("");
   useEffect(() => {
     getPaymentData();
   }, [workId]);
@@ -14,7 +17,13 @@ const PaymentPaidDetails = ({ workId }) => {
     try {
       const res = await axiosInstance.get("getPaymentDataByWorkId/" + workId);
       if (res.status === 200) {
-        setPaymentData(res?.data?.data);
+        const data = res?.data?.data;
+        setPaymentData(data);
+        if (data?.date) {
+          const date = moment(data.date).tz("Asia/Kolkata");
+          setFormattedDate(date.format("YYYY-MM-DD"));
+          setFormattedTime(date.format("HH:mm:ss"));
+        }
       }
     } catch (error) {
       console.log("Error on get payment data", error);
@@ -37,7 +46,6 @@ const PaymentPaidDetails = ({ workId }) => {
         style={{ minHeight: "300px", width: "90%" }}
         className="shadow mx-auto"
       >
-       
         <Col>
           <p>
             <span className="fs-6 fw-bold">Card Number: </span>{" "}
@@ -54,11 +62,11 @@ const PaymentPaidDetails = ({ workId }) => {
 
           <p>
             <span className="fs-6 fw-bold"> Date of payment</span>{" "}
-            {paymentData?.date?.substring(0, 10) || "..."}
+            {formattedDate || "..."}
           </p>
           <p>
             <span className="fs-6 fw-bold"> Transaction time</span>{" "}
-            {paymentData?.date?.substring(11, 19) || "..."}
+            {formattedTime || "..."}
           </p>
         </Col>
         <Col>
