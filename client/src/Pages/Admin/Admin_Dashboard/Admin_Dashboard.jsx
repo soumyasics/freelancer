@@ -16,6 +16,9 @@ import { RiPassPendingLine } from "react-icons/ri";
 import { MdOutlineWorkHistory } from "react-icons/md";
 import { MdOutlinePending } from "react-icons/md";
 import { Admin_ViewAllFreelancersCompliants } from "../AdminViewAllFreelancerCompliants/FreelancerCompliants";
+import { Admin_ViewAllFreelancersReviews } from "../AdminViewAllFreelancerReviews/FreelancerReviews";
+import { IoWarningOutline } from "react-icons/io5";
+import { GoCodeReview } from "react-icons/go";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("users");
@@ -130,8 +133,21 @@ function Admin_Dashboard() {
                   className="nav-link m-3 d-flex align-items-center text-decoration-none"
                   style={{ color: "inherit" }}
                 >
-                  <MdOutlineWorkHistory className="me-2" />
+                  <IoWarningOutline className="me-2" />
                   Freelancer Compliants
+                </Link>
+              </li>
+              <li className="nav-item m-1 p-1">
+                <Link
+                  onClick={() => {
+                    setShowSidebar(false);
+                    setActivePage("freelancer-reviews");
+                  }}
+                  className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  <GoCodeReview className="me-2" />
+                  Freelancer Reviews
                 </Link>
               </li>
 
@@ -161,6 +177,7 @@ function Admin_Dashboard() {
           {activePage === "requests" && <Admin_ViewAllRequests />}
           {activePage === "consultancies" && <AdminViewAllConsultancy />}
           {activePage === "freelancer-compliants" && <Admin_ViewAllFreelancersCompliants />}
+          {activePage === "freelancer-reviews" && <Admin_ViewAllFreelancersReviews />}
           {activePage === "pending-consultancies" && (
             <AdminViewAllPendingConsultancy />
           )}
