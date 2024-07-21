@@ -8,7 +8,7 @@ const schema = new Schema(
       ref: "users",
     },
     amount: {
-      type: Date,
+      type: Number,
       required: true,
     },
     workId: {

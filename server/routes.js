@@ -145,6 +145,7 @@ router.get(
   "/viewAllPaymentsByFreelancerId/:freelancerId",
   Payments.getAllPaymentsByFreelancerId
 );
+router.get("/getPaymentDataByWorkId/:id", Payments.getPaymentDataByWorkId);
 
 // applied vacencies
 router.post("/applyVacency", appliedVacencyRoutes.applyVacency);

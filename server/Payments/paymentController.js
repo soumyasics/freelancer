@@ -1,12 +1,14 @@
 const Payment = require("./paymentSchema");
 const workRequest = require("../userWorkRequest/workRequestSchema");
-
+const { default: mongoose } = require("mongoose");
+const WorkRequestModel = require("../userWorkRequest/workRequestSchema");
 // Function to add a payment
 const addPayment = async (req, res) => {
   try {
     const { freelancerId, workId, userId, amount, accHolderName, cardNumber } =
       req.body;
 
+      console.log("req.b doy", req.body)
     if (
       !freelancerId ||
       !workId ||
@@ -53,10 +55,13 @@ const addPayment = async (req, res) => {
       accHolderName,
       cardNumber,
     });
+    console.log("payment 3", payment);
 
     await payment.save();
     await workReq.save();
-    return res.status(201).json({ message: "Payment successful", data: payment });
+    return res
+      .status(201)
+      .json({ message: "Payment successful", data: payment });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Network Failed", error: "Server Error" });
@@ -114,9 +119,53 @@ const getAllPaymentsByFreelancerId = async (req, res) => {
     return res.status(500).json({ success: false, error: "Server Error" });
   }
 };
+
+const getPaymentDataByWorkId = async (req, res) => {
+  try {
+    const workId = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(workId)) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid work id",
+        message: "Please try again.",
+      });
+    }
+
+    const workReq = await WorkRequestModel.findById(workId);
+
+    if (!workReq) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Work request not found" });
+    }
+
+    const paymentDetails = await Payment.findOne({
+      workId,
+    })
+      .populate("userId")
+      .populate("freelancerId")
+      .exec();
+
+    if (!paymentDetails) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Payment not found" });
+    }
+
+    return res.status(200).json({ success: true, data: paymentDetails });
+  } catch (err) {
+    console.log("Error on getPaymentDataByWorkId", err);
+    return res.status(500).json({
+      success: false,
+      error: err.message,
+      message: "Something went wrong",
+    });
+  }
+};
 module.exports = {
   addPayment,
   viewPayment,
   viewAllPayments,
   getAllPaymentsByFreelancerId,
+  getPaymentDataByWorkId,
 };

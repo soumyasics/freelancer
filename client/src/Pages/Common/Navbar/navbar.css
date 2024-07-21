@@ -16,3 +16,16 @@
   margin: auto;
   padding-top:20px;
 }
+
+.chat-drop-down  {
+  background-color: #040f13;
+}
+.chat-drop-down  select {
+  background-color: #040f13;
+  color: #ffffff8c;
+  margin-top:10px;
+  cursor: pointer;
+}
+.chat-drop-down select option {
+  cursor: pointer;
+}

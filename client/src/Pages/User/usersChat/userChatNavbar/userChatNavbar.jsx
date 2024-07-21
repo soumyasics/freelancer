@@ -9,7 +9,7 @@ export const UserChatNavbar = ({ selectedUserName }) => {
         style={{ cursor: "pointer" }}
         className="userChatNavbar-left-arrow"
         onClick={() => {
-          Navigate("/");
+          Navigate(-1);
         }}
       />
       <div

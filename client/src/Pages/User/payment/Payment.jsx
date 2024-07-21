@@ -17,6 +17,7 @@ function Payment() {
   const { workId, freelancerId, amount } = useSelector(
     (state) => state.payment
   );
+  console.log("amount", amount)
 
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: "",
@@ -103,6 +104,8 @@ function Payment() {
         toast.error("Something went wrong");
       }
       console.log("Error on get request data", err);
+    }finally {
+      navigate(`/view-responses/${workId}`)
     }
   };
 

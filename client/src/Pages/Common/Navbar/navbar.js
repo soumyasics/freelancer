@@ -54,7 +54,7 @@ function Navbar() {
       localStorage.removeItem("freelancerData");
     }
     dispatch(logoutSuccess());
-   
+
     if (userType === "user") {
       navigate("/user-login");
     } else if (userType === "freelancer") {
@@ -69,6 +69,9 @@ function Navbar() {
 
   const redirectViewRequests = () => {
     navigate("/view-request");
+  };
+  const redirectUserRequests = () => {
+    navigate("/user-myrequests");
   };
 
   const redirectProfile = () => {
@@ -99,6 +102,20 @@ function Navbar() {
   // }
   const consChatWithUser = () => {
     navigate("/consultancy-user-chat");
+  };
+
+  const redirectUserRequestWork = () => {
+    navigate("/user-request");
+  };
+
+  const navigateToChat = (e) => {
+    const value = e.target.value;
+    console.log("Value", value);
+    if (value === "freelancer-chat") {
+      userFreelancerChat();
+    } else if (value === "consultancyChat") {
+      userConsultancyChat();
+    }
   };
   return (
     <div className="container-fluid bg-connect " id="freelance-common-navbar">
@@ -148,26 +165,26 @@ function Navbar() {
 
               {userType === "user" && (
                 <>
-                  {/* <li
-                  style={{ cursor: "pointer" }}
-                  className="nav-item m-3"
-                  onClick={redirectUserRequest}
-                >
-                  <p className="nav-link">Request Work</p>
-                </li> */}
                   <li
                     style={{ cursor: "pointer" }}
                     className="nav-item me-3"
-                    onClick={userFreelancerChat}
+                    onClick={redirectUserRequestWork}
                   >
-                    <p className="nav-link">Chat with freelancer</p>
+                    <p className="nav-link">Request Work</p>
                   </li>
                   <li
                     style={{ cursor: "pointer" }}
                     className="nav-item me-3"
-                    onClick={userConsultancyChat}
+                    onClick={redirectUserRequests}
                   >
-                    <p className="nav-link">Chat with consultancy</p>
+                    <p className="nav-link">My Requests</p>
+                  </li>
+                  <li style={{ cursor: "pointer" }} className="chat-drop-down nav-item me-3">
+                    <select onChange={navigateToChat}>
+                      <option value=""> Chat </option>
+                      <option value="freelancer-chat"> Freelancer</option>
+                      <option value="consultancyChat"> Consultancy </option>
+                    </select>
                   </li>
                 </>
               )}

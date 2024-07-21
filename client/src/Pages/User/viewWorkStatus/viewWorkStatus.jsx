@@ -7,11 +7,14 @@ import placeholderImg from "../../../Assets/user-placeholder-img.jpg";
 import { BASE_URL } from "../../../apis/baseUrl";
 import { Col, Row } from "react-bootstrap";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import PaymentPaidDetails from "./viewPaymentPaidDetails";
 export const UserViewWorkStatus = () => {
   const { id } = useParams();
   const [requestData, setRequestData] = useState({});
   const [freelancerData, setFreelancerData] = useState({});
   const [profilePic, setProfilePic] = useState(placeholderImg);
+  const navigate = useNavigate();
   console.log("work request data", requestData);
   useEffect(() => {
     if (id) {
@@ -56,6 +59,9 @@ export const UserViewWorkStatus = () => {
   };
   console.log("freel", freelancerData);
 
+  const startChatWithFreelancer = (id, name) => {
+    navigate(`/user-freelancer-chat/${id}/${encodeURIComponent(name)}`);
+  };
   return (
     <div>
       <Navbar />
@@ -104,7 +110,15 @@ export const UserViewWorkStatus = () => {
               <Row>
                 <Col>
                   <div className="d-flex justify-content-center">
-                    <button className="button-30">
+                    <button
+                      className="button-30"
+                      onClick={() => {
+                        startChatWithFreelancer(
+                          freelancerData._id,
+                          freelancerData.name
+                        );
+                      }}
+                    >
                       Chat
                       <IoChatbubbleEllipsesOutline />
                     </button>
@@ -151,7 +165,7 @@ export const UserViewWorkStatus = () => {
               <Row className="mt-3 justify-content-center d-flex">
                 <button
                   className="button-50"
-                  style={{ backgroundColor: "#ed1616", width: "50px" }}
+                  style={{ backgroundColor: "#ed1616", width: "135px" }}
                   role="button"
                 >
                   Send Complaint
@@ -159,6 +173,10 @@ export const UserViewWorkStatus = () => {
               </Row>
             </div>
           </div>
+        </div>
+
+        <div>
+          <PaymentPaidDetails workId={id} />
         </div>
       </div>
       <div className="mt-5">
