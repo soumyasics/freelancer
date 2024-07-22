@@ -21,9 +21,10 @@ import { IoWarningOutline } from "react-icons/io5";
 import { GoCodeReview } from "react-icons/go";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { AdminViewAllUsersCompliants } from "../AdminViewAllUserCompliants/UserCompliants";
+import AdminOverview from "../AdminOverview/adminOverview";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [activePage, setActivePage] = useState("users");
+  const [activePage, setActivePage] = useState("overview");
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
   return (
@@ -47,6 +48,19 @@ function Admin_Dashboard() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <ul className="list-unstyled">
+              <li className="nav-item m-1 p-1">
+                <Link
+                  onClick={() => {
+                    setShowSidebar(false);
+                    setActivePage("overview");
+                  }}
+                  className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  <BsGrid className="me-2" />
+                  Overview
+                </Link>
+              </li>
               <li className="nav-item m-1 p-1">
                 <Link
                   onClick={() => {
@@ -185,6 +199,7 @@ function Admin_Dashboard() {
         {/* Main content */}
         <main className="mt-3">
           {/* Add your dashboard content here */}
+          {activePage === "overview" && <AdminOverview />}
           {activePage === "users" && <Admin_ViewAllUsers />}
           {activePage === "freelancers" && <Admin_ViewAllFreelancers />}
           {activePage === "pending-freelancers" && (
