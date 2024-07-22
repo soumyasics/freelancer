@@ -153,7 +153,7 @@ const AdminOverview = () => {
           style={{ width: "35%" }}
           className="admin-overview-barchart-container"
         >
-          <h2> Active Users</h2>
+          <h3> Active Users</h3>
           <p className="mb-5">Total active users {totalUsers()} </p>
           <DoughnutChart chartData={dataSet} />
         </div>
@@ -161,7 +161,7 @@ const AdminOverview = () => {
           style={{ width: "35%" }}
           className="admin-overview-barchart-container "
         >
-          <h2> Total freelance works</h2>
+          <h3> Total freelance works</h3>
           <p>Total work requests are {totalWorkRequest()} </p>
           <PieChart chartData={workDataSet} />
         </div>

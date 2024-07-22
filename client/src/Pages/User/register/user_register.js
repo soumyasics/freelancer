@@ -157,7 +157,7 @@ function User_register() {
                         />
 
                         <div id="emailHelp" className="form-text">
-                          We'll never share your email with anyone else.
+                          {/* We'll never share your email with anyone else. */}
                         </div>
                       </div>
                       <div className="mb-3">

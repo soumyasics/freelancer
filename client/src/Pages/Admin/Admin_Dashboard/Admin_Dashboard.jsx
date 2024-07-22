@@ -23,6 +23,8 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { AdminViewAllUsersCompliants } from "../AdminViewAllUserCompliants/UserCompliants";
 import { FaUsers } from "react-icons/fa6";
 import AdminOverview from "../AdminOverview/adminOverview";
+import { Admin_ViewAllCompletedRequests } from "../Admin_ViewAllCompletedRequests/Admin_ViewAllCompletedRequests";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("overview");
@@ -145,6 +147,19 @@ function Admin_Dashboard() {
                 <Link
                   onClick={() => {
                     setShowSidebar(false);
+                    setActivePage("completed-requests");
+                  }}
+                  className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  <IoCheckmarkDoneCircleOutline className="me-2" />
+                  Completed Works
+                </Link>
+              </li>
+              <li className="nav-item m-1 p-1">
+                <Link
+                  onClick={() => {
+                    setShowSidebar(false);
                     setActivePage("freelancer-compliants");
                   }}
                   className="nav-link m-3 d-flex align-items-center text-decoration-none"
@@ -207,6 +222,9 @@ function Admin_Dashboard() {
             <Admin_ViewAllPendingFreelancers />
           )}
           {activePage === "requests" && <Admin_ViewAllRequests />}
+          {activePage === "completed-requests" && (
+            <Admin_ViewAllCompletedRequests />
+          )}
           {activePage === "consultancies" && <AdminViewAllConsultancy />}
           {activePage === "freelancer-compliants" && (
             <Admin_ViewAllFreelancersCompliants />

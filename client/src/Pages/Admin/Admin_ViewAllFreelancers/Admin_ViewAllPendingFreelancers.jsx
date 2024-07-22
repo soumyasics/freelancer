@@ -18,7 +18,6 @@ export const Admin_ViewAllPendingFreelancers = ({
       let res = await axiosInstance.get("/getAllPendingFreelancers");
       if (res.status === 200) {
         let data = res.data?.data || [];
-        console.log("pending", data);
         setUsers(data);
       } else {
         console.log("Error on getting all users");
@@ -55,7 +54,6 @@ export const Admin_ViewAllPendingFreelancers = ({
       console.log("Error on reject user", error);
     }
   };
-  console.log("users", users);
   return (
     <Container className="mt-4" style={{ minHeight: "400px" }}>
       <h3 className=" text-center">{title}</h3>
