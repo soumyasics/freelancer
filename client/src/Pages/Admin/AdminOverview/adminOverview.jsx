@@ -3,6 +3,7 @@ import { PieChart } from "../charts/PieChart/pieChart";
 import { DoughnutChart } from "../charts/Doughnut/doughnut";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../../apis/axiosInstance";
+import { Admin_ViewAllPendingFreelancers } from "../Admin_ViewAllFreelancers/Admin_ViewAllPendingFreelancers";
 const AdminOverview = () => {
   const [users, setUsers] = useState([]);
   const [freelancers, setFreelancers] = useState([]);
@@ -160,11 +161,13 @@ const AdminOverview = () => {
           style={{ width: "35%" }}
           className="admin-overview-barchart-container "
         >
-          <h2> Total work requests</h2>
+          <h2> Total freelance works</h2>
           <p>Total work requests are {totalWorkRequest()} </p>
           <PieChart chartData={workDataSet} />
         </div>
       </div>
+
+      <Admin_ViewAllPendingFreelancers title="Recent freelancers requests"/>
     </>
   );
 };

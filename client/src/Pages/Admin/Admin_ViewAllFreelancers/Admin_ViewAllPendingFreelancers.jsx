@@ -4,7 +4,9 @@ import { Table, Container, Button } from "react-bootstrap";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { toast } from "react-hot-toast";
 
-export const Admin_ViewAllPendingFreelancers = () => {
+export const Admin_ViewAllPendingFreelancers = ({
+  title = "Freelancers requests",
+}) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export const Admin_ViewAllPendingFreelancers = () => {
   console.log("users", users);
   return (
     <Container className="mt-4" style={{ minHeight: "400px" }}>
-      <h3 className=" text-center">Freelancers request</h3>
+      <h3 className=" text-center">{title}</h3>
       <Table striped bordered hover className="mt-5">
         <thead>
           <tr>

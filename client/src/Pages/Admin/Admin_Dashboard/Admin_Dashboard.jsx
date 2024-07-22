@@ -21,6 +21,7 @@ import { IoWarningOutline } from "react-icons/io5";
 import { GoCodeReview } from "react-icons/go";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { AdminViewAllUsersCompliants } from "../AdminViewAllUserCompliants/UserCompliants";
+import { FaUsers } from "react-icons/fa6";
 import AdminOverview from "../AdminOverview/adminOverview";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -70,7 +71,7 @@ function Admin_Dashboard() {
                   className="nav-link m-3 d-flex align-items-center text-decoration-none"
                   style={{ color: "inherit" }}
                 >
-                  <BsGrid className="me-2" />
+                  <FaUsers className="me-2" />
                   Users
                 </Link>
               </li>
