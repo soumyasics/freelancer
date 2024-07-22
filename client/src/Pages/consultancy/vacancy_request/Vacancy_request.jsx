@@ -71,6 +71,11 @@ const Vacancy_request = () => {
       return;
     }
 
+    if (requestData.description.length < 50) {
+      toast.error("Description should be at least 50 characters");
+      return;
+    }
+
     sendDataToServer();
   };
 
@@ -163,6 +168,7 @@ const Vacancy_request = () => {
                 onChange={handleChanges}
                 required
               />
+
               <Form.Control.Feedback type="invalid" className="">
                 Please provide a valid Category.
               </Form.Control.Feedback>
@@ -211,13 +217,14 @@ const Vacancy_request = () => {
                 <Form.Control
                   as="textarea"
                   name="description"
+                  minLength={50}
                   value={requestData.description}
                   onChange={handleChanges}
                   placeholder="Description"
                   required
                 />
                 <Form.Control.Feedback type="invalid" className="">
-                  Tell us more about your requested work.
+                Tell us more about your vacancy. (minimum 50 characters)
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>

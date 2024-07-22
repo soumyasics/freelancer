@@ -58,7 +58,6 @@ export function ViewAllFreelancerAppliedVacancies() {
                 <th>No</th>
                 <th>Vacancy Title</th>
                 <th>Vacancy Category</th>
-                <th>Vacancy Description</th>
                 <th>Consultancy Name</th>
                 <th>Consultancy Email</th>
                 <th>Consultancy Contact</th>
@@ -72,7 +71,6 @@ export function ViewAllFreelancerAppliedVacancies() {
                     <td>{index + 1}</td>
                     <td>{work?.vacencyId?.title}</td>
                     <td>{work?.vacencyId?.category}</td>
-                    <td>{work.vacencyId?.description}</td>
                     <td>{work?.consultancyId?.name}</td>
                     <td>{work?.consultancyId?.email}</td>
                     <td>{work?.consultancyId?.contact}</td>

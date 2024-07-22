@@ -75,15 +75,14 @@ export default function ViewAllVacancies() {
       <Navbar />
       <div className="container-fluid bg-light" style={{ minHeight: "500px" }}>
         <Container>
-          <h1 className="table-heading text-dark m-5 text-center mt-5">
+          <h3 className="table-heading text-dark m-5 text-center mt-5">
             Consultancies Vacancy
-          </h1>
+          </h3>
           <Table striped bordered hover>
             <thead className="text-center">
               <tr>
                 <th>No</th>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Category</th>
                 <th>Budget</th>
                 <th>Deadline</th>
@@ -97,7 +96,6 @@ export default function ViewAllVacancies() {
                 <tr key={vacancy._id}>
                   <td>{index + 1}</td>
                   <td>{vacancy.title}</td>
-                  <td>{vacancy.description}</td>
                   <td>{vacancy.category}</td>
                   <td>{vacancy.budget}</td>
                   <td>{vacancy.deadline?.substring(0, 10)}</td>

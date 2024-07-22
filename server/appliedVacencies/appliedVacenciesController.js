@@ -37,6 +37,8 @@ const applyVacency = async (req, res) => {
   }
 };
 
+
+
 const viewAllAppliedVacancies = async (req, res) => {
   try {
     const appliedVacencies = await AppliedVacencyModel.find()

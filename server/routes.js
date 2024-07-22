@@ -106,6 +106,7 @@ router.get(
 // consultancy work requst routs
 
 router.post("/con-createWorkRequest", conWorkRequestRoutes.createWorkRequest);
+router.get("/con-getWorkRequestById/:id", conWorkRequestRoutes.getWorkRequestById);
 router.get(
   "/con-getWorkRequestsByUserid/:id",
   conWorkRequestRoutes.getWorkRequestByUserId
