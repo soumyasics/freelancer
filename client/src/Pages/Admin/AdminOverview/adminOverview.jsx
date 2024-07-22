@@ -7,6 +7,7 @@ const AdminOverview = () => {
   const [users, setUsers] = useState([]);
   const [freelancers, setFreelancers] = useState([]);
   const [consultancies, setConsultancies] = useState([]);
+  const [workReqCount, setWorkReqCount] = useState([0, 0]);
   const [allUsersDataLength, setAllUsersDataLength] = useState([0, 0, 0]);
   const [dataSet, setDataSet] = useState({
     labels: ["Users", "Freelancers", "Consultancies"],
@@ -19,11 +20,41 @@ const AdminOverview = () => {
     hoverOffset: 3,
     backgroundColor: ["#6366f1", "#f79009", "#10b981"],
   });
+  const [workDataSet, setWorkDataSet] = useState({
+    labels: ["pending", "completed"],
+    datasets: [
+      {
+        label: "Work status",
+        data: workReqCount,
+      },
+    ],
+    backgroundColor: ["red", "green"],
+  });
+
   useEffect(() => {
     getAllUsers();
     getAllFreelancers();
     getAllConsultancies();
+    getAllWorkRequest();
   }, []);
+
+  const getAllWorkRequest = async () => {
+    try {
+      let res = await axiosInstance.get("getAllWorkRequest");
+      if (res.status === 200) {
+        let data = res.data?.data || [];
+        const pendingWorks = data.filter((item) => item.status === "pending");
+        const totalWorkReqCount = data.length;
+        const pendingWorksReqCount = pendingWorks.length;
+        const completedWorksReqCount = totalWorkReqCount - pendingWorksReqCount;
+        setWorkReqCount([pendingWorksReqCount, completedWorksReqCount]);
+      } else {
+        console.log("Error on getting all users");
+      }
+    } catch (error) {
+      console.log("Error on getting all users", error);
+    }
+  };
 
   useEffect(() => {
     setAllUsersDataLength([
@@ -47,6 +78,19 @@ const AdminOverview = () => {
       ],
     });
   }, [allUsersDataLength]);
+
+  useEffect(() => {
+    setWorkDataSet({
+      labels: ["pending", "completed"],
+      datasets: [
+        {
+          label: "Work status",
+          data: workReqCount,
+        },
+      ],
+      backgroundColor: ["red", "green"],
+    });
+  }, [workReqCount]);
 
   const getAllUsers = async () => {
     try {
@@ -89,24 +133,8 @@ const AdminOverview = () => {
     }
   };
 
-  const donationDataSet = {
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [
-      {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
-
   const totalWorkRequest = () => {
-    return 0;
+    return workReqCount[0] + workReqCount[1];
   };
   const totalUsers = () => {
     return (
@@ -124,17 +152,17 @@ const AdminOverview = () => {
           style={{ width: "35%" }}
           className="admin-overview-barchart-container"
         >
-          <h2> Total Active Users</h2>
-          <p className="mb-5">Total Users {totalUsers()} </p>
+          <h2> Active Users</h2>
+          <p className="mb-5">Total active users {totalUsers()} </p>
           <DoughnutChart chartData={dataSet} />
         </div>
         <div
           style={{ width: "35%" }}
           className="admin-overview-barchart-container "
         >
-          <h2> Donations Pending & Fullfilled</h2>
+          <h2> Total work requests</h2>
           <p>Total work requests are {totalWorkRequest()} </p>
-          <PieChart chartData={donationDataSet} />
+          <PieChart chartData={workDataSet} />
         </div>
       </div>
     </>
