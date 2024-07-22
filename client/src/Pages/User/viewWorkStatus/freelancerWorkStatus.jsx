@@ -10,6 +10,7 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import PaymentPaidDetails from "./viewPaymentPaidDetails";
 import { toast } from "react-hot-toast";
+import { ComplaintUser } from "../../Freelancers/complaintUser/complaintUser";
 export const FreelancerViewWorkStatus = () => {
   const { id } = useParams();
   const [requestData, setRequestData] = useState({});
@@ -173,13 +174,15 @@ export const FreelancerViewWorkStatus = () => {
               </Row>
 
               <Row className="mt-3 justify-content-center d-flex">
-                <button
+
+                <ComplaintUser userId={requestData?.userId?._id} />
+                {/* <button
                   className="button-50"
                   style={{ backgroundColor: "#ed1616", width: "135px" }}
                   role="button"
                 >
                   Send Complaint
-                </button>
+                </button> */}
               </Row>
             </div>
           </div>

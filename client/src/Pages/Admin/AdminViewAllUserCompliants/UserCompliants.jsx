@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import { Table, Container } from "react-bootstrap";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { toast } from "react-hot-toast";
-export const Admin_ViewAllFreelancersCompliants = () => {
+export const AdminViewAllUsersCompliants = () => {
   const [complaints, setComplaints] = useState([]);
 
   useEffect(() => {
@@ -11,25 +10,9 @@ export const Admin_ViewAllFreelancersCompliants = () => {
   }, []);
   const activateUserById = async (id) => {
     try {
-      let res = await axiosInstance.patch(`activateFreelancerById/${id}`);
-      console.log("repon", res);
+      let res = await axiosInstance.patch(`activateUserById/${id}`);
       if (res.status === 200) {
-        toast.success("User activated successfully");
-        getData();
-      } else {
-        console.log("Error on activating user");
-      }
-    } catch (error) {
-      console.log("Error on ACTIVATING user", error);
-    }
-  };
-
-  const deActivateUserById = async (id) => {
-    try {
-      let res = await axiosInstance.patch(`deactivateFreelancerById/${id}`);
-      console.log("repon", res);
-      if (res.status === 200) {
-        toast.success("Freelancer deactivated successfully");
+        toast.success("User deactivated successfully");
         getData();
       } else {
         console.log("Error on deactivating user");
@@ -39,9 +22,22 @@ export const Admin_ViewAllFreelancersCompliants = () => {
     }
   };
 
+  const deActivateUserById = async (id) => {
+    try {
+      let res = await axiosInstance.patch(`deactivateUserById/${id}`);
+      if (res.status === 200) {
+        toast.success("User deactivated successfully");
+        getData();
+      } else {
+        console.log("Error on deactivating user");
+      }
+    } catch (error) {
+      console.log("Error on deactivating user", error);
+    }
+  };
   const getData = async () => {
     try {
-      let res = await axiosInstance.get("getAllCompliants");
+      let res = await axiosInstance.get("user-getAllCompliants");
       if (res.status === 200) {
         let data = res.data?.data || [];
         data.reverse()
@@ -55,16 +51,16 @@ export const Admin_ViewAllFreelancersCompliants = () => {
   };
   return (
     <Container className="mt-4" style={{ minHeight: "400px" }}>
-      <h3 className=" text-center">All freelancers compliants</h3>
+      <h3 className=" text-center">All user compliants</h3>
       <Table striped bordered hover className="mt-5">
         <thead>
           <tr>
             <th>No</th>
-            <th>Complainor name</th>
-            <th>Freelancer name</th>
+            <th>Complainor name (freelancer)</th>
+            <th>User name</th>
             <th>Complaint</th>
-            <th>Freelancer email</th>
-            <th>Freelancer status</th>
+            <th>User email</th>
+            <th>User status</th>
             <th>Take Action</th>
           </tr>
         </thead>
@@ -72,23 +68,23 @@ export const Admin_ViewAllFreelancersCompliants = () => {
           {complaints.map((c, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{c?.userId?.firstName}</td>
               <td>{c?.freelancerId?.name}</td>
+              <td>{c?.userId?.firstName}</td>
               <td>{c.complaint}</td>
-              <td>{c.freelancerId?.email}</td>
-              <td>{c.freelancerId?.isActive ? "Active" : "Inactive"}</td>
+              <td>{c.userId?.email}</td>
+              <td>{c.userId?.isActive ? "Active" : "Inactive"}</td>
               <td>
-                {c.freelancerId?.isActive ? (
+                {c.userId?.isActive ? (
                   <button
                     className="btn btn-danger"
-                    onClick={() => deActivateUserById(c.freelancerId._id)}
+                    onClick={() => deActivateUserById(c.userId?._id)}
                   >
                     Deactivate
                   </button>
                 ) : (
                   <button
                     className="btn btn-success"
-                    onClick={() => activateUserById(c.freelancerId._id)}
+                    onClick={() => activateUserById(c.userId?._id)}
                   >
                     Activate
                   </button>

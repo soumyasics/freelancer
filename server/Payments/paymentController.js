@@ -54,7 +54,6 @@ const addPayment = async (req, res) => {
       accHolderName,
       cardNumber,
     });
-    console.log("payment 3", payment);
 
     await payment.save();
     await workReq.save();

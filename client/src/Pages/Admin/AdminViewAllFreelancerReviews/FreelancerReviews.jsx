@@ -14,6 +14,7 @@ export const Admin_ViewAllFreelancersReviews = () => {
       let res = await axiosInstance.get("getAllRating");
       if (res.status === 200) {
         let data = res.data?.data || [];
+        data.reverse()
         setComplaints(data);
       } else {
         console.log("Error on getting all users");

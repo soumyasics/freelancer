@@ -19,6 +19,8 @@ import { Admin_ViewAllFreelancersCompliants } from "../AdminViewAllFreelancerCom
 import { Admin_ViewAllFreelancersReviews } from "../AdminViewAllFreelancerReviews/FreelancerReviews";
 import { IoWarningOutline } from "react-icons/io5";
 import { GoCodeReview } from "react-icons/go";
+import { RiErrorWarningLine } from "react-icons/ri";
+import { AdminViewAllUsersCompliants } from "../AdminViewAllUserCompliants/UserCompliants";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("users");
@@ -153,6 +155,20 @@ function Admin_Dashboard() {
 
               <li className="nav-item m-1 p-1">
                 <Link
+                  onClick={() => {
+                    setShowSidebar(false);
+                    setActivePage("user-compliants");
+                  }}
+                  className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  <RiErrorWarningLine className="me-2" />
+                  User Compliants
+                </Link>
+              </li>
+
+              <li className="nav-item m-1 p-1">
+                <Link
                   to="/admin"
                   className="nav-link m-3 d-flex align-items-center text-decoration-none fw-bold text-danger"
                   style={{ color: "inherit" }}
@@ -176,8 +192,13 @@ function Admin_Dashboard() {
           )}
           {activePage === "requests" && <Admin_ViewAllRequests />}
           {activePage === "consultancies" && <AdminViewAllConsultancy />}
-          {activePage === "freelancer-compliants" && <Admin_ViewAllFreelancersCompliants />}
-          {activePage === "freelancer-reviews" && <Admin_ViewAllFreelancersReviews />}
+          {activePage === "freelancer-compliants" && (
+            <Admin_ViewAllFreelancersCompliants />
+          )}
+          {activePage === "user-compliants" && <AdminViewAllUsersCompliants />}
+          {activePage === "freelancer-reviews" && (
+            <Admin_ViewAllFreelancersReviews />
+          )}
           {activePage === "pending-consultancies" && (
             <AdminViewAllPendingConsultancy />
           )}

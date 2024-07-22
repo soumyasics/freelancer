@@ -11,6 +11,7 @@ const chatRoutes = require("./chat-users-freelancers/chatUsersController");
 const chatConsultancy = require("./chat-users-consultancies/chatUsersController");
 const rateFreelancer = require("./rateFreelancer/rateFreelancerController");
 const complaintFreelancer = require("./complaintFreelancer/complaintFreelancerController");
+const complaintUser = require("./complaintUser/complaintUserController");
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -185,6 +186,12 @@ router.get("/getAllCompliants", complaintFreelancer.getAllCompliants);
 router.get(
   "/getAllCompliantsByFreelancerId/:id",
   complaintFreelancer.getAllCompliantsByFreelancerId
+);
+router.post("/userComplaint", complaintUser.userComplaint);
+router.get("/user-getAllCompliants", complaintUser.getAllCompliants);
+router.get(
+  "/getAllCompliantsByUserId/:id",
+  complaintUser.getAllCompliantsByUserId
 );
 
 router.all("/*", (req, res) => {
