@@ -1,5 +1,6 @@
+const { default: mongoose } = require("mongoose");
 const ConsultancyVacencyRequestModel = require("./conWorkRequestSchema");
-
+const FreelancerModel = require("../Freelancers/freelancerController");
 const createWorkRequest = async (req, res) => {
   try {
     const {
@@ -49,11 +50,11 @@ const createWorkRequest = async (req, res) => {
 };
 
 const getWorkRequestByUserId = async (req, res) => {
-  const conId = req.params.id;
-  if (!conId || conId === "undefined" || conId.length !== 24) {
-    return res.status(401).json({ message: "Id is required" });
-  }
   try {
+    const conId = req.params.id;
+    if (!conId || conId === "undefined" || conId.length !== 24) {
+      return res.status(401).json({ message: "Id is required" });
+    }
     const conWorkRequest = await ConsultancyVacencyRequestModel.find({ conId });
     if (!conWorkRequest) {
       return res.status(404).json({ message: "Work request can't find" });
@@ -244,17 +245,126 @@ const workRequestUserReplay = async (req, res) => {
     let replayArr = [...conWorkRequest.userReplays, newResponse];
     conWorkRequest.userReplays = replayArr;
     await conWorkRequest.save();
-    return res
-      .status(200)
-      .json({
-        message: "User Replay added successfully",
-        data: conWorkRequest,
-      });
+    return res.status(200).json({
+      message: "User Replay added successfully",
+      data: conWorkRequest,
+    });
   } catch (err) {
     console.log("Error on post work request replay", err);
     return res
       .status(500)
       .json({ message: "Error on post work request replay", error: err });
+  }
+};
+
+const applyVacancy = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { freelancerId } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(401).json({ message: "vacancy id is not valid." });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(freelancerId)) {
+      return res.status(401).json({ message: "Freelancer Id is not valid." });
+    }
+    const conWorkRequest = await ConsultancyVacencyRequestModel.findById(id);
+
+    if (!conWorkRequest) {
+      return res.status(404).json({ message: "Work request can't find" });
+    }
+    const activeFreelancer = await FreelancerModel.findById(freelancerId);
+
+    if (!activeFreelancer) {
+      return res.status(404).json({ message: "Freelancer can't find" });
+    }
+    if (!req.file?.filename) {
+      return res.status(404).json({ message: "Resume is required" });
+    }
+
+    conWorkRequest.appliedFreelancers.push({
+      freelancerId,
+      resume: req.file.filename,
+    });
+    await conWorkRequest.save();
+    return res
+      .status(200)
+      .json({ message: "Vaccancy applied successfully", data: conWorkRequest });
+  } catch (error) {
+    console.log("Error on make work request pending", error);
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Server error" });
+  }
+};
+
+const getAllFreelancersByVacancyId = async (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    return res.status(401).json({ message: "Id is required" });
+  }
+  try {
+    const conWorkRequest = await ConsultancyVacencyRequestModel.findById(id);
+    if (!conWorkRequest) {
+      return res.status(404).json({ message: "Work request can't find" });
+    }
+    let appliedFreelancers = conWorkRequest.appliedFreelancers;
+
+    if (!appliedFreelancers) {
+      appliedFreelancers = [];
+    }
+    return res
+      .status(200)
+      .json({
+        message: "Freelancers fetched successfully",
+        data: appliedFreelancers,
+      });
+  } catch (err) {
+    console.log("Error on get all freelancers by vacency id", err);
+    return res
+      .status(500)
+      .json({
+        message: "Error on get all freelancers by vacency id",
+        error: err,
+      });
+  }
+};
+
+const storage = multer.diskStorage({
+  destination: function (req, res, cb) {
+    cb(null, "./upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const uploadResume = multer({ storage: storage }).single("resume");
+
+const getAllWorkRequestByConsultancyId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(401).json({ message: "Id is required" });
+    }
+    const conWorkRequest = await ConsultancyVacencyRequestModel.find({
+      consultancyId: id,
+    });
+    return res
+      .status(200)
+      .json({
+        message: "Work request fetched successfully",
+        data: conWorkRequest,
+      });
+  } catch (err) {
+    console.log("Error on get all work request by consultancy id", err);
+    return res
+      .status(500)
+      .json({
+        message: "Error on get all work request by consultancy id",
+        error: err.message,
+      });
   }
 };
 
@@ -269,4 +379,8 @@ module.exports = {
   workRequestFreelancerResponse,
   workRequestUserReplay,
   getWorkRequestByUserId,
+  applyVacancy,
+  uploadResume,
+  getAllFreelancersByVacancyId,
+  getAllWorkRequestByConsultancyId,
 };

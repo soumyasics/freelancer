@@ -12,6 +12,7 @@ const chatConsultancy = require("./chat-users-consultancies/chatUsersController"
 const rateFreelancer = require("./rateFreelancer/rateFreelancerController");
 const complaintFreelancer = require("./complaintFreelancer/complaintFreelancerController");
 const complaintUser = require("./complaintUser/complaintUserController");
+const inteviewRoutes = require("./interview/interviewController")
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -106,7 +107,10 @@ router.get(
 // consultancy work requst routs
 
 router.post("/con-createWorkRequest", conWorkRequestRoutes.createWorkRequest);
-router.get("/con-getWorkRequestById/:id", conWorkRequestRoutes.getWorkRequestById);
+router.get(
+  "/con-getWorkRequestById/:id",
+  conWorkRequestRoutes.getWorkRequestById
+);
 router.get(
   "/con-getWorkRequestsByUserid/:id",
   conWorkRequestRoutes.getWorkRequestByUserId
@@ -141,6 +145,15 @@ router.post(
   conWorkRequestRoutes.workRequestUserReplay
 );
 
+router.post(
+  "/applyConVacancy/:id",
+  conWorkRequestRoutes.uploadResume,
+  conWorkRequestRoutes.applyVacancy
+);
+router.get(
+  "/getAllFreelancersByVacancyId/:id",
+  conWorkRequestRoutes.getAllFreelancersByVacancyId
+);
 //payments
 router.post("/addPayment", Payments.addPayment);
 router.get("/viewAllPayments", Payments.viewAllPayments);
@@ -194,6 +207,14 @@ router.get(
   "/getAllCompliantsByUserId/:id",
   complaintUser.getAllCompliantsByUserId
 );
+
+// interview schedules 
+router.post("/scheduleInterview", inteviewRoutes.scheduleInterview);
+router.post("/getAllInterviews", inteviewRoutes.getAllInterviews);
+router.post("/getInterviewById/:id", inteviewRoutes.getInterviewById);
+router.post("/getAllInterviewsByFreelancerId/:id", inteviewRoutes.getAllInterviewsByFreelancerId);
+router.post("/getAllInterviewsByConsultancyId/:id", inteviewRoutes.getAllInterviewsByConsultancyId);
+router.post("/getAllInterviewsByVacencyId/:id", inteviewRoutes.getAllInterviewsByVacencyId);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });

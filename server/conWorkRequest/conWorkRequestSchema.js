@@ -33,8 +33,35 @@ const workRequestSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "progress", "cancelled", "completed"],
+      enum: ["pending", "selected"],
       default: "pending",
+    },
+    appliedFreelancers: [
+      {
+        freelancerId: {
+          type: Schema.Types.ObjectId,
+          ref: "freelancers",
+          required: true
+        },
+        resume: {
+          type: String,
+          required: true
+        },
+        appliedAt: {
+          type: Date,
+          default: Date.now(),
+        },
+        hiringStatus: {
+          type: String,
+          enum: ["pending", "accepted", "rejected"],
+          default: "pending",
+        },
+      },
+    ],
+    selectedFreelancer: {
+      type: Schema.Types.ObjectId,
+      ref: "freelancers",
+      default: null
     },
     freelancerResponses: [
       {
@@ -62,5 +89,8 @@ const workRequestSchema = new Schema(
   { timestamps: true }
 );
 
-const ConsultancyVacencyRequestModel = mongoose.model("conWorkRequest", workRequestSchema);
+const ConsultancyVacencyRequestModel = mongoose.model(
+  "conWorkRequest",
+  workRequestSchema
+);
 module.exports = ConsultancyVacencyRequestModel;
