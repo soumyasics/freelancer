@@ -13,6 +13,7 @@ const rateFreelancer = require("./rateFreelancer/rateFreelancerController");
 const complaintFreelancer = require("./complaintFreelancer/complaintFreelancerController");
 const complaintUser = require("./complaintUser/complaintUserController");
 const inteviewRoutes = require("./interview/interviewController")
+const chatConsFreelancerRoutes = require("./chat-con-freelancers/chatConsWithFreeController")
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -215,6 +216,11 @@ router.post("/getInterviewById/:id", inteviewRoutes.getInterviewById);
 router.post("/getAllInterviewsByFreelancerId/:id", inteviewRoutes.getAllInterviewsByFreelancerId);
 router.post("/getAllInterviewsByConsultancyId/:id", inteviewRoutes.getAllInterviewsByConsultancyId);
 router.post("/getAllInterviewsByVacencyId/:id", inteviewRoutes.getAllInterviewsByVacencyId);
+
+// chat consultancy freelancer 
+
+router.post("/sendMessageConsFreelancer", chatConsFreelancerRoutes.sendMessage);
+router.get("/getUserMessagesConsFreelancer", chatConsFreelancerRoutes.getUserMessages);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });
