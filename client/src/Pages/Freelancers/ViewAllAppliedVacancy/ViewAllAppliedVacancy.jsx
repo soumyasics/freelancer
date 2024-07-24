@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button } from "react-bootstrap";
+import { Container, Table, Button, InputGroup, Form } from "react-bootstrap";
 import Navbar from "../../Common/Navbar/navbar";
 import Footer from "../../Common/Footer/footer";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { FaSearch } from "react-icons/fa";
 
 export function ViewAllFreelancerAppliedVacancies() {
+  const { userId, userType } = useSelector((state) => state.auth);
   const [appliedWorks, setAppliedWorks] = useState([]);
+  const [fixedWorks , setFixedWorks] = useState([]);
   const navigate = useNavigate();
-  const { userId , userType} = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!userId || userType !== "freelancer") {
@@ -31,6 +33,7 @@ export function ViewAllFreelancerAppliedVacancies() {
       if (res.status === 200) {
         let data = res.data?.data || [];
         setAppliedWorks(data);
+        setFixedWorks(data);
       } else {
         console.log("Error fetching applied works");
       }
@@ -43,6 +46,18 @@ export function ViewAllFreelancerAppliedVacancies() {
     navigate(`/view-work/${work._id}`);
   };
 
+  const searchVacancy = (e) => {
+    const value = e.target.value;
+    if (value) {
+      let filteredData = fixedWorks.filter((el) => {
+        return el.title?.toLowerCase().includes(value.toLowerCase());
+      });
+      setAppliedWorks(filteredData);
+    } else {
+      setAppliedWorks(fixedWorks);
+    }
+  }
+
   return (
     <>
       <Navbar />
@@ -51,8 +66,20 @@ export function ViewAllFreelancerAppliedVacancies() {
           <h3 className="table-heading text-dark m-5 text-center mt-5">
             Vacancies applied by you
           </h3>
+          <div className="d-flex justify-content-between align-items-center ">
+            <InputGroup style={{ width: "30%", height: "42px" }}>
+              <InputGroup.Text>
+                <FaSearch />
+              </InputGroup.Text>
+              <Form.Control
+                placeholder="Search vacancy.."
+                type="text"
+                onChange={searchVacancy}
+              />
+            </InputGroup>
+          </div>
 
-          <Table striped bordered hover>
+          <Table striped bordered hover className="mt-5">
             <thead className="text-center">
               <tr>
                 <th>No</th>
@@ -66,7 +93,7 @@ export function ViewAllFreelancerAppliedVacancies() {
             </thead>
             <tbody className="text-center">
               {appliedWorks.map((work, index) => {
-                console.log("workkk", work)
+                console.log("workkk", work);
                 return (
                   <tr key={work._id}>
                     <td>{index + 1}</td>
@@ -89,4 +116,3 @@ export function ViewAllFreelancerAppliedVacancies() {
     </>
   );
 }
-
