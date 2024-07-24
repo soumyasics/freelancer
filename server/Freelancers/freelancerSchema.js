@@ -42,11 +42,18 @@ const schema = mongoose.Schema(
       enum: ["Pending", "Approved", "Rejected"],
       default: "Pending",
     },
+    appliedVacancies: [
+      {
+        vacancyId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "conWorkRequest",
+        },
+      },
+    ],
     rating: {
       type: Number,
       default: 0,
     },
-
   },
   { timestamps: true }
 );

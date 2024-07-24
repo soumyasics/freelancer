@@ -12,8 +12,10 @@ const chatConsultancy = require("./chat-users-consultancies/chatUsersController"
 const rateFreelancer = require("./rateFreelancer/rateFreelancerController");
 const complaintFreelancer = require("./complaintFreelancer/complaintFreelancerController");
 const complaintUser = require("./complaintUser/complaintUserController");
-const inteviewRoutes = require("./interview/interviewController")
-const chatConsFreelancerRoutes = require("./chat-con-freelancers/chatConsWithFreeController")
+const inteviewRoutes = require("./interview/interviewController");
+const chatConsFreelancerRoutes = require("./chat-con-freelancers/chatConsWithFreeController");
+const multer = require("multer");
+
 // freelancer routes
 router.post(
   "/freelancerRegistration",
@@ -155,6 +157,10 @@ router.get(
   "/getAllFreelancersByVacancyId/:id",
   conWorkRequestRoutes.getAllFreelancersByVacancyId
 );
+router.get(
+  "/getAllAppliedWorksByFreelancerId/:id",
+  conWorkRequestRoutes.getAllAppliedWorksByFreelancerId
+);
 //payments
 router.post("/addPayment", Payments.addPayment);
 router.get("/viewAllPayments", Payments.viewAllPayments);
@@ -209,18 +215,30 @@ router.get(
   complaintUser.getAllCompliantsByUserId
 );
 
-// interview schedules 
+// interview schedules
 router.post("/scheduleInterview", inteviewRoutes.scheduleInterview);
 router.post("/getAllInterviews", inteviewRoutes.getAllInterviews);
 router.post("/getInterviewById/:id", inteviewRoutes.getInterviewById);
-router.post("/getAllInterviewsByFreelancerId/:id", inteviewRoutes.getAllInterviewsByFreelancerId);
-router.post("/getAllInterviewsByConsultancyId/:id", inteviewRoutes.getAllInterviewsByConsultancyId);
-router.post("/getAllInterviewsByVacencyId/:id", inteviewRoutes.getAllInterviewsByVacencyId);
+router.post(
+  "/getAllInterviewsByFreelancerId/:id",
+  inteviewRoutes.getAllInterviewsByFreelancerId
+);
+router.post(
+  "/getAllInterviewsByConsultancyId/:id",
+  inteviewRoutes.getAllInterviewsByConsultancyId
+);
+router.post(
+  "/getAllInterviewsByVacencyId/:id",
+  inteviewRoutes.getAllInterviewsByVacencyId
+);
 
-// chat consultancy freelancer 
+// chat consultancy freelancer
 
 router.post("/sendMessageConsFreelancer", chatConsFreelancerRoutes.sendMessage);
-router.get("/getUserMessagesConsFreelancer", chatConsFreelancerRoutes.getUserMessages);
+router.get(
+  "/getUserMessagesConsFreelancer",
+  chatConsFreelancerRoutes.getUserMessages
+);
 
 router.all("/*", (req, res) => {
   res.status(400).send({ message: "Please check api routes" });

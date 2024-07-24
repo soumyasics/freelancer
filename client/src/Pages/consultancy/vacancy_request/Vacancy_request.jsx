@@ -67,7 +67,7 @@ const Vacancy_request = () => {
 
     // here check a regex if requestData.consultancyPhoneNumber is valid
     if (requestData.budget < 0 || requestData.budget > 100000000) {
-      toast.error("Budget should be between 0 to 100000000");
+      toast.error("Salary should be between 0 to 100000000");
       return;
     }
 
@@ -174,20 +174,20 @@ const Vacancy_request = () => {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="6">
-              <Form.Label>Your Budget</Form.Label>
+              <Form.Label>Salary</Form.Label>
               <Form.Control
                 as="input"
                 name="budget"
                 value={requestData.budget}
                 onChange={handleChanges}
                 type="number"
-                placeholder="Budget"
+                placeholder="Salary"
                 required
                 min="0"
                 max="100000000"
               />
               <Form.Control.Feedback type="invalid" className="">
-                Please provide your maximum budget for this work.
+                Please provide salary for this work.
               </Form.Control.Feedback>
             </Form.Group>
           </Row>

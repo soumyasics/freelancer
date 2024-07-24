@@ -1,6 +1,8 @@
 const { default: mongoose } = require("mongoose");
 const ConsultancyVacencyRequestModel = require("./conWorkRequestSchema");
-const FreelancerModel = require("../Freelancers/freelancerController");
+const FreelancerModel = require("../Freelancers/freelancerSchema");
+const ObjectId = mongoose.Types.ObjectId;
+const multer = require("multer")
 const createWorkRequest = async (req, res) => {
   try {
     const {
@@ -256,21 +258,36 @@ const workRequestUserReplay = async (req, res) => {
       .json({ message: "Error on post work request replay", error: err });
   }
 };
+const storage = multer.diskStorage({
+  destination: function (req, res, cb) {
+    cb(null, "./upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const uploadResume = multer({ storage: storage }).single("resume");
+
 
 const applyVacancy = async (req, res) => {
   try {
     const id = req.params.id;
     const { freelancerId } = req.body;
+    
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(401).json({ message: "vacancy id is not valid." });
+    }
+    if (!req.file?.filename) {
+      return res.status(404).json({ message: "Resume is required" });
     }
 
     if (!mongoose.Types.ObjectId.isValid(freelancerId)) {
       return res.status(401).json({ message: "Freelancer Id is not valid." });
     }
     const conWorkRequest = await ConsultancyVacencyRequestModel.findById(id);
-
+    
     if (!conWorkRequest) {
       return res.status(404).json({ message: "Work request can't find" });
     }
@@ -279,15 +296,30 @@ const applyVacancy = async (req, res) => {
     if (!activeFreelancer) {
       return res.status(404).json({ message: "Freelancer can't find" });
     }
-    if (!req.file?.filename) {
-      return res.status(404).json({ message: "Resume is required" });
-    }
 
+    const alreadyAppliedVac = activeFreelancer.appliedVacancies.find((vacancy) => {
+      if (vacancy.vacancyId ) {
+
+        return vacancy.vacancyId.toString() == conWorkRequest._id.toString()
+      }
+      return false
+    })
+
+    if (alreadyAppliedVac) {
+      return res
+        .status(404)
+        .json({ message: "You already applied on this vacancy" });
+    }
+    
     conWorkRequest.appliedFreelancers.push({
       freelancerId,
       resume: req.file.filename,
     });
+    activeFreelancer.appliedVacancies.push({
+      vacancyId: conWorkRequest._id
+    })
     await conWorkRequest.save();
+    await activeFreelancer.save()
     return res
       .status(200)
       .json({ message: "Vaccancy applied successfully", data: conWorkRequest });
@@ -331,16 +363,8 @@ const getAllFreelancersByVacancyId = async (req, res) => {
   }
 };
 
-const storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-    cb(null, "./upload");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
 
-const uploadResume = multer({ storage: storage }).single("resume");
+
 
 const getAllWorkRequestByConsultancyId = async (req, res) => {
   try {
@@ -368,6 +392,23 @@ const getAllWorkRequestByConsultancyId = async (req, res) => {
   }
 };
 
+const getAllAppliedWorksByFreelancerId = async (req, res) => {
+  try {
+    
+    const data = await ConsultancyVacencyRequestModel.find({
+      appliedFreelancers: { $elemMatch: { freelancerId: req.params.id } },
+    }).populate("conId").exec();
+    return res.status(200).json({
+      message: "Work request fetched successfully",
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error on get all work request by freelancer id",
+      error: error.message,})
+  }
+}
+
 module.exports = {
   createWorkRequest,
   getAllWorkRequest,
@@ -383,4 +424,5 @@ module.exports = {
   uploadResume,
   getAllFreelancersByVacancyId,
   getAllWorkRequestByConsultancyId,
+  getAllAppliedWorksByFreelancerId
 };

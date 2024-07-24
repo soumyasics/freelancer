@@ -94,8 +94,9 @@ function Navbar() {
     navigate("../consultancy-my-vacancies");
   };
 
+  // todo => find this route purpose
   const redirectToAppliedVacancies = () => {
-    navigate("../view-all-applied-works");
+    navigate("/view-all-applied-works");
   };
   const redirectToFreelancerAppliedVacancies = () => {
     navigate('/freelancer-applied-vacancies')
@@ -207,13 +208,6 @@ function Navbar() {
                     onClick={redirectMyVacancies}
                   >
                     <p className="nav-link">My Vacancies</p>
-                  </li>
-                  <li
-                    style={{ cursor: "pointer" }}
-                    className="nav-item me-3"
-                    onClick={redirectToAppliedVacancies}
-                  >
-                    <p className="nav-link">Applied Vacancies</p>
                   </li>
                   <li
                     style={{ cursor: "pointer" }}

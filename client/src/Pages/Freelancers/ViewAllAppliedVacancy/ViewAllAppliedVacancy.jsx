@@ -10,13 +10,13 @@ import {toast} from "react-hot-toast";
 export function ViewAllFreelancerAppliedVacancies() {
   const [appliedWorks, setAppliedWorks] = useState([]);
   const navigate = useNavigate();
-  const { userId } = useSelector((state) => state.auth);
+  const { userId , userType} = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!userId) {
+    if (!userId || userType !== "freelancer") {
       toast.error("Please login again..");
       setTimeout(() => {
-        navigate("../consultancy-login");
+        navigate("/freelancer-login");
       }, 0);
     } else {
       getAppliedWorksData();
@@ -26,10 +26,10 @@ export function ViewAllFreelancerAppliedVacancies() {
   const getAppliedWorksData = async () => {
     try {
       const res = await axiosInstance.get(
-        "/viewAllAppliedVacencyByFreelancerId/" + userId
+        "/getAllAppliedWorksByFreelancerId/" + userId
       );
       if (res.status === 200) {
-        const data = res.data?.data || [];
+        let data = res.data?.data || [];
         setAppliedWorks(data);
       } else {
         console.log("Error fetching applied works");
@@ -58,6 +58,7 @@ export function ViewAllFreelancerAppliedVacancies() {
                 <th>No</th>
                 <th>Vacancy Title</th>
                 <th>Vacancy Category</th>
+                <th>Salary</th>
                 <th>Consultancy Name</th>
                 <th>Consultancy Email</th>
                 <th>Consultancy Contact</th>
@@ -69,11 +70,12 @@ export function ViewAllFreelancerAppliedVacancies() {
                 return (
                   <tr key={work._id}>
                     <td>{index + 1}</td>
-                    <td>{work?.vacencyId?.title}</td>
-                    <td>{work?.vacencyId?.category}</td>
-                    <td>{work?.consultancyId?.name}</td>
-                    <td>{work?.consultancyId?.email}</td>
-                    <td>{work?.consultancyId?.contact}</td>
+                    <td>{work?.title}</td>
+                    <td>{work?.category}</td>
+                    <td>{work?.budget}</td>
+                    <td>{work?.conId?.name}</td>
+                    <td>{work?.conId?.email}</td>
+                    <td>{work?.conId?.contact}</td>
                   </tr>
                 );
               })}

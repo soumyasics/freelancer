@@ -15,7 +15,7 @@ function ViewAllAppliedWorks() {
   useEffect(() => {
     if (!userId) {
       toast.error("Please login again..");
-      navigate("../consultancy-login");
+      navigate("/freelancer-login");
       
     } else {
       getAppliedWorksData();
@@ -25,7 +25,7 @@ function ViewAllAppliedWorks() {
   const getAppliedWorksData = async () => {
     try {
       const res = await axiosInstance.get(
-        "/viewAllAppliedVacencyByConsultancyId/" + userId
+        "/getAllAppliedWorksByFreelancerId/" + userId
       );
       if (res.status === 200) {
         const data = res.data?.data || [];
@@ -47,9 +47,9 @@ function ViewAllAppliedWorks() {
       <Navbar />
       <div className="container-fluid bg-light" style={{ minHeight: "0" }}>
         <Container>
-          <h1 className="table-heading text-dark m-5 text-center mt-5">
+          <h3 className="table-heading text-dark m-5 text-center mt-5">
             Freelancer Applied Works
-          </h1>
+          </h3>
 
           <Table striped bordered hover>
             <thead className="text-center">
