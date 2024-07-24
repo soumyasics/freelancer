@@ -73,7 +73,7 @@ function Admin_ViewAllUsers() {
       <Table striped bordered hover > 
         <thead>
           <tr>
-            <th>#</th>
+            <th>No</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>

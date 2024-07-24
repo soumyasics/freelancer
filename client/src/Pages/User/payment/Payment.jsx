@@ -85,6 +85,8 @@ function Payment() {
       return;
     }
 
+    
+
     sendDataToServer();
   };
   const sendDataToServer = async () => {
