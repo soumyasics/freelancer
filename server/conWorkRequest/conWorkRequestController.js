@@ -93,7 +93,10 @@ const getWorkRequestById = async (req, res) => {
   try {
     const conWorkRequest = await ConsultancyVacencyRequestModel.findById(
       id
-    ).populate("conId");
+    ).populate("conId").populate({
+      path: "appliedFreelancers.freelancerId",
+      model: "freelancers"
+    })
     if (!conWorkRequest) {
       return res.status(404).json({ message: "Work request can't find" });
     }
