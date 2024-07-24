@@ -219,11 +219,11 @@ router.get(
 router.post("/scheduleInterview", inteviewRoutes.scheduleInterview);
 router.post("/getAllInterviews", inteviewRoutes.getAllInterviews);
 router.post("/getInterviewById/:id", inteviewRoutes.getInterviewById);
-router.post(
+router.get(
   "/getAllInterviewsByFreelancerId/:id",
   inteviewRoutes.getAllInterviewsByFreelancerId
 );
-router.post(
+router.get(
   "/getAllInterviewsByConsultancyId/:id",
   inteviewRoutes.getAllInterviewsByConsultancyId
 );
@@ -231,6 +231,10 @@ router.post(
   "/getAllInterviewsByVacencyId/:id",
   inteviewRoutes.getAllInterviewsByVacencyId
 );
+
+router.patch("/applicantAcceptScheduleById/:id", inteviewRoutes.applicantAcceptScheduleById);
+router.patch("/applicantRejectScheduleById/:id", inteviewRoutes.applicantRejectScheduleById);
+router.delete("/deleteScheduleById/:id", inteviewRoutes.deleteScheduleById);
 
 // chat consultancy freelancer
 

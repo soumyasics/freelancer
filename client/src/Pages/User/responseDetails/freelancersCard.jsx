@@ -3,11 +3,17 @@ import Card from "react-bootstrap/Card";
 import { BASE_URL } from "../../../apis/baseUrl";
 import placeholderImg from "../../../Assets/user-placeholder-img.jpg";
 import { formatDistanceToNow } from "date-fns";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { InterviewScheduleModal } from "./interviewModal";
+import { useParams } from "react-router-dom";
 export const FreelancersCard = ({ data, num }) => {
   const navigate = useNavigate();
+  const {id} = useParams()
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   let filename = data?.freelancerId?.profilepic?.filename || null;
   let profilePicUrl = placeholderImg;
   if (filename) {
@@ -25,7 +31,6 @@ export const FreelancersCard = ({ data, num }) => {
       toast.error("Freelancer not active");
     }
   };
-  console.log("data frr", data);
 
   const viewResume = () => {
     const resumePath = data?.resume || null;
@@ -39,6 +44,12 @@ export const FreelancersCard = ({ data, num }) => {
 
   return (
     <div>
+      <InterviewScheduleModal
+        show={show}
+        freelancerId={data?.freelancerId._id}
+        vacencyId={id}
+        handleClose={handleClose}
+      />
       <Card className="text-center">
         <Card.Header>Applicant {num}</Card.Header>
         <div className="w-100">
@@ -55,7 +66,10 @@ export const FreelancersCard = ({ data, num }) => {
             <Button variant="success" onClick={viewResume}>
               View Resume
             </Button>
-            <Button variant="dark">Schedule Interview </Button>
+            <Button variant="dark" onClick={handleShow}>
+              {" "}
+              Schedule Interview{" "}
+            </Button>
             <Button variant="primary" onClick={navigateToViewFreelancer}>
               View Details{" "}
             </Button>

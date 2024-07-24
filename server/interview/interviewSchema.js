@@ -34,6 +34,11 @@ const interviewSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    applicantStatus: {
+      type: String,
+      enum: ["Pending", "Accepted", "Rejected"],
+      default: "Pending",
+    },
     status: {
       type: String,
       enum: ["Pending", "Completed", "Cancelled"],

@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { addPayment } from "../../../redux/slices/paymentSlice";
 import vac2Img from "../../../Assets/new/vac-2.png";
 import { FreelancersCard } from "./freelancersCard";
-export const ViewVacancyDetails = () => {
+export const FreelancerViewVacancyDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -114,36 +114,7 @@ export const ViewVacancyDetails = () => {
           </div>
         </div>
 
-        <div className="shadow w-100 mx-auto p-3 mt-3">
-          {freelancers.length === 0 ? (
-            <div className="d-flex flex-column justify-content-center align-items-center">
-              <h5 className="mt-5 text-center">No one has applied yet. </h5>
-              <Image
-                className="w-25  mt-3"
-                src={noResponseImg}
-                alt="no-response"
-              />
-            </div>
-          ) : (
-            <div
-              style={{ overflowY: "scroll", height: "600px" }}
-              className="mt-4 "
-            >
-              <h3 className="my-5 text-center">Applicants details.</h3>
-
-              <ListGroup as="ul">
-                {freelancers.map((data, index) => {
-                  if (data.freelancerId === null) return null;
-                  return (
-                    <div key={index}>
-                      <FreelancersCard data={data} num={index + 1} />
-                    </div>
-                  );
-                })}
-              </ListGroup>
-            </div>
-          )}
-        </div>
+   
       </div>
 
       <div>

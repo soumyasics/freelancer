@@ -89,6 +89,7 @@ export function ViewAllFreelancerAppliedVacancies() {
                 <th>Consultancy Name</th>
                 <th>Consultancy Email</th>
                 <th>Consultancy Contact</th>
+                <th>View More</th>
               </tr>
             </thead>
             <tbody className="text-center">
@@ -103,6 +104,13 @@ export function ViewAllFreelancerAppliedVacancies() {
                     <td>{work?.conId?.name}</td>
                     <td>{work?.conId?.email}</td>
                     <td>{work?.conId?.contact}</td>
+                    <td>
+                      <Button onClick={() => {
+                        navigate(`/freelancer-view-vacancy-details/${work._id}`)
+                      }}>
+                        View More
+                      </Button>
+                    </td>
                   </tr>
                 );
               })}

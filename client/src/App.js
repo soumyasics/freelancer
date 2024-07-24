@@ -50,6 +50,9 @@ import { FreelancerViewWorkStatus } from "./Pages/User/viewWorkStatus/freelancer
 import { FreelancerChatDashboardWithId } from "./Pages/Freelancers/freelancersChat/userChatDashboard/freelancerChatDashboardId.jsx";
 import { UserCompletedWorks } from "./Pages/User/my_request/completedWorks.jsx";
 import { ViewVacancyDetails } from "./Pages/User/responseDetails/conResponseDetails.jsx";
+import { ConsScheduledInterviews } from "./Pages/consultancy/interview/interview.jsx";
+import { FreelancerScheduledInterviews } from "./Pages/Freelancers/interview/interview.jsx";
+import { FreelancerViewVacancyDetails } from "./Pages/User/responseDetails/freeViewVacDetails.jsx";
 
 function App() {
   return (
@@ -97,8 +100,10 @@ function App() {
           <Route path="/freelancer-view-consultancies" element={<FreelancerViewAllConsultancy />} />
           <Route path="/freelancer-my-works" element={<MyWorks />} />
           <Route path="/freelancer-completed-works" element={<MyCompletedWorks />} />
+          <Route path="/freelancer-scheduled-interviews" element={<FreelancerScheduledInterviews />} />
           <Route path="/freelancer-user-chat" element={<FreelancerChatDashboard />} />
           <Route path="/freelancer-user-chat/:id/:name" element={<FreelancerChatDashboardWithId />} />
+          <Route path="/freelancer-view-vacancy-details/:id" element={<FreelancerViewVacancyDetails />} />
           
           <Route
             path="/freelancer-applied-vacancies"
@@ -117,6 +122,7 @@ function App() {
           <Route path="/consultancy-forgot-password" element={<ConsultancyForgot_password />} />
           <Route path="/consultancy-my-vacancies" element={<MyVacanccies />} />
           <Route path="/consultancy-user-chat" element={<ConsultancyChatDashboard />} />
+          <Route path="/consultancy-scheduled-interviews" element={<ConsScheduledInterviews />} />
           <Route path="/viewVacancyDetails/:id" element={<ViewVacancyDetails />} />
           <Route
             path="/consultancy-vacancy-request"

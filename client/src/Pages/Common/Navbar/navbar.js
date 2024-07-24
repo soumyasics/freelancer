@@ -101,6 +101,10 @@ function Navbar() {
   const redirectToFreelancerAppliedVacancies = () => {
     navigate('/freelancer-applied-vacancies')
   }
+
+  const redirectToFreelancerScheduledInterviews = () => {
+    navigate('/freelancer-scheduled-interviews')
+  }
   const redirectToFreelancerWorks = () => {
     navigate('/freelancer-my-works')
   }
@@ -111,6 +115,10 @@ function Navbar() {
   const redirectUserRequestWork = () => {
     navigate("/user-request");
   };
+
+  const redirectToScheduledInterviews = () => {
+    navigate('/consultancy-scheduled-interviews')
+  }
 
   const navigateToChat = (e) => {
     const value = e.target.value;
@@ -212,6 +220,13 @@ function Navbar() {
                   <li
                     style={{ cursor: "pointer" }}
                     className="nav-item me-3"
+                    onClick={redirectToScheduledInterviews}
+                  >
+                    <p className="nav-link">Scheduled Interviews</p>
+                  </li>
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="nav-item me-3"
                     onClick={consChatWithUser}
                   >
                     <p className="nav-link">Chat</p>
@@ -247,6 +262,13 @@ function Navbar() {
                     onClick={redirectToFreelancerWorks}
                   >
                     <p className="nav-link">Works</p>
+                  </li>
+                  <li
+                    className="nav-item me-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={redirectToFreelancerScheduledInterviews}
+                  >
+                    <p className="nav-link">Scheduled Interviews</p>
                   </li>
                   <li
                     className="nav-item me-3"
