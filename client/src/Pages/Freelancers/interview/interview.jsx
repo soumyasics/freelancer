@@ -67,8 +67,22 @@ export function FreelancerScheduledInterviews() {
       console.log("Error on accept interviews", error);
     }
   };
+  const rejectInterview = async (id) => {
+    try {
+      const res = await axiosInstance.patch(
+        "/applicantRejectScheduleById/" + id
+      );
+      if (res.status === 200) {
+        toast.success("You rejected interview schedule successfully.");
+        getInterviewSchedule(userId);
+      } else {
+        console.log("Error on deleting interviews");
+      }
+    } catch (error) {
+      console.log("Error on accept interviews", error);
+    }
+  };
 
-  console.log("Intev", interviews);
   return (
     <>
       <Navbar />
@@ -99,9 +113,8 @@ export function FreelancerScheduledInterviews() {
                 <th>Mode</th>
                 <th>My response</th>
                 <th>More info</th>
-
-                <th>Accept</th>
-                <th>Reject</th>
+                <th>Interested</th>
+                <th>Not Interested</th>
                 <th>Vacancy details</th>
               </tr>
             </thead>
@@ -124,15 +137,18 @@ export function FreelancerScheduledInterviews() {
                           acceptInterview(req._id);
                         }}
                       >
-                        Accept
+                        Interested
                       </Button>
                     </td>
                     <td>
                       <Button
                         disabled={req.applicantStatus !== "Pending"}
                         variant="danger"
+                        onClick={() => {
+                          rejectInterview(req._id);
+                        }}
                       >
-                        Reject 
+                        Not Interested
                       </Button>
                     </td>
                     <td>

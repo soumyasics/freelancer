@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Freelancer_Profile.css";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { FaEdit, FaListAlt, FaTasks } from "react-icons/fa";
@@ -9,11 +9,14 @@ import profileIllu from "../../../Assets/depositphotos_68082973-stock-illustrati
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import placeholderImg from "../../../Assets/user-placeholder-img.jpg";
+import { BASE_URL } from "../../../apis/baseUrl";
 import { toast } from "react-hot-toast";
 import { FreelancereditProfileCard } from "../userEditProfileCard/userEditProfileCard";
 
 function Freelancer_Profile({ user }) {
   const navigate = useNavigate();
+  const [profilePicture, setProfilePicture] = useState({});
   const { userData, isUserLoggedIn } = useSelector((state) => state.auth);
   useEffect(() => {
     if (!isUserLoggedIn) {
@@ -27,6 +30,15 @@ function Freelancer_Profile({ user }) {
   const redirectToFreelancerAppliedVacancies = () => {
     navigate("/freelancer-applied-vacancies");
   };
+
+  useEffect(() => {
+    let filename = userData?.profilepic?.filename || null;
+        let profilePicUrl = placeholderImg;
+        if (filename) {
+          profilePicUrl = BASE_URL + filename;
+        }
+        setProfilePicture(profilePicUrl);
+  }, [userData])
   return (
     <>
       <Navbar />
@@ -82,7 +94,7 @@ function Freelancer_Profile({ user }) {
           </Col>
           <Col className="d-flex justify-content-center align-items-center">
             <Image
-              src={profileIllu}
+              src={profilePicture}
               alt="Profile Picture"
               className="m-3"
               width={300}
