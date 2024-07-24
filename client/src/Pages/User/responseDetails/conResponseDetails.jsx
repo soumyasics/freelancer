@@ -11,20 +11,19 @@ import noResponseImg from "../../../Assets/illustrations/no-response.jpg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addPayment } from "../../../redux/slices/paymentSlice";
-import vac2Img from "../../../Assets/new/vac-2.png"
+import vac2Img from "../../../Assets/new/vac-2.png";
+import { FreelancersCard } from "./freelancersCard";
 export const ViewVacancyDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState(null);
-  const [responses, setResponses] = useState([]);
+  const [freelancers, setFreelancers] = useState([]);
   useEffect(() => {
     if (id) {
       getRequestData(id);
     }
   }, []);
-
-  console.log("request data", requestData);
 
   const getRequestData = async (id) => {
     try {
@@ -32,7 +31,7 @@ export const ViewVacancyDetails = () => {
       let data = res?.data?.data || null;
       if (data) {
         setRequestData(data);
-        // setResponses(data?.freelancerResponses);
+        setFreelancers(data?.appliedFreelancers || []);
       }
     } catch (err) {
       console.log("Error on get request data", err);
@@ -51,8 +50,6 @@ export const ViewVacancyDetails = () => {
     navigate("/payment");
   };
 
-  console.log("request data", requestData)
-
   const redirectToWorkStatus = (id) => {
     navigate("/user-view-work-status/" + id);
   };
@@ -66,8 +63,6 @@ export const ViewVacancyDetails = () => {
         <h3 className="text-center">Vacancy Status</h3>
 
         <div className="d-flex gap-5 justify-content-between">
-        
-
           <div
             style={{ minHeight: "420px" }}
             className="d-flex justify-content-center align-items-center w-50"
@@ -118,12 +113,10 @@ export const ViewVacancyDetails = () => {
           </div>
         </div>
 
-        <div className="shadow w-75 mx-auto p-3 mt-3">
-          {responses.length === 0 ? (
+        <div className="shadow w-100 mx-auto p-3 mt-3">
+          {freelancers.length === 0 ? (
             <div className="d-flex flex-column justify-content-center align-items-center">
-              <h5 className="mt-5 text-center">
-                No one has applied yet.{" "}
-              </h5>
+              <h5 className="mt-5 text-center">No one has applied yet. </h5>
               <Image
                 className="w-25  mt-3"
                 src={noResponseImg}
@@ -132,57 +125,18 @@ export const ViewVacancyDetails = () => {
             </div>
           ) : (
             <div
-              style={{ overflowY: "scroll", height: "400px" }}
+              style={{ overflowY: "scroll", height: "600px" }}
               className="mt-4 "
             >
-              <h3 className="mt-5 text-center">Freelancer Responses.</h3>
+              <h3 className="mt-5 text-center">Applicants details.</h3>
 
               <ListGroup as="ul">
-                {responses.map((res, index) => {
+                {freelancers.map((data, index) => {
+                  if (data.freelancerId === null) return null;
                   return (
-                    <ListGroup.Item
-                      key={index}
-                      style={{ backgroundColor: "white", color: "black" }}
-                      as="li"
-                      active
-                      className="mb-3"
-                    >
-                      <Row className="d-flex justify-content-start">
-                        <Col className="d-flex align-items-center" md={5}>
-                          <FaUser />
-                          <span className="ms-2">{res?.message} </span>
-                        </Col>
-                        <Col className="d-flex align-items-center">
-                          <Button
-                            onClick={() => {
-                              redirectToViewFreelancer(res?.freelancerId);
-                            }}
-                            className="ms-5 text-light d-flex justify-content-center align-items-center"
-                            variant="info"
-                          >
-                            {" "}
-                            View Freelancer{" "}
-                          </Button>
-                        </Col>
-                        <Col>
-                          {!requestData?.assignedFreelancerId && (
-                            <Button
-                              onClick={() => {
-                                acceptOffer(
-                                  res?.freelancerId,
-                                  requestData?.budget
-                                );
-                              }}
-                              className="ms-5 m-3"
-                              variant="success"
-                            >
-                              {" "}
-                              Assign work{" "}
-                            </Button>
-                          )}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
+                    <div key={index}>
+                      <FreelancersCard data={data} num={index + 1} />
+                    </div>
                   );
                 })}
               </ListGroup>

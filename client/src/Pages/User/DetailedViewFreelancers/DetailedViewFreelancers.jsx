@@ -27,7 +27,6 @@ function DetailedViewFreelancers() {
     try {
       let res = await axiosInstance.post("getFreelancerById/" + id);
       let data = res?.data?.data || null;
-      console.log("==data", data);
       if (data) {
         setFreelancerData(data);
         let filename = data?.profilepic?.filename || null;
@@ -59,7 +58,7 @@ function DetailedViewFreelancers() {
 
       <div>
         <Container className="mt-5 ">
-          <h3 className="text-center m-5 text-dark">Freelancer Details</h3>
+          <h3 className="text-center m-5 text-dark">Details</h3>
 
           <ReviewModal show={showReview} handleClose={handleClose} id={id} />
           <Row
