@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/freelancers_marketplace/static/css/main.cbe57a64.css",
-    "main.js": "/freelancers_marketplace/static/js/main.a9fc7e5c.js",
+    "main.js": "/freelancers_marketplace/static/js/main.6c924ece.js",
     "static/js/787.6a9fceeb.chunk.js": "/freelancers_marketplace/static/js/787.6a9fceeb.chunk.js",
     "static/media/standard-quality-control-concept-m.jpg": "/freelancers_marketplace/static/media/standard-quality-control-concept-m.3996706ebdc5576bd982.jpg",
     "static/media/car-2.jpg": "/freelancers_marketplace/static/media/car-2.6dbd7b86351eca5fb99d.jpg",
@@ -35,11 +35,11 @@
     "static/media/consultative-sales-concept-illustration_114360-7388.avif": "/freelancers_marketplace/static/media/consultative-sales-concept-illustration_114360-7388.1073fcb74d91ca3a2463.avif",
     "index.html": "/freelancers_marketplace/index.html",
     "main.cbe57a64.css.map": "/freelancers_marketplace/static/css/main.cbe57a64.css.map",
-    "main.a9fc7e5c.js.map": "/freelancers_marketplace/static/js/main.a9fc7e5c.js.map",
+    "main.6c924ece.js.map": "/freelancers_marketplace/static/js/main.6c924ece.js.map",
     "787.6a9fceeb.chunk.js.map": "/freelancers_marketplace/static/js/787.6a9fceeb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cbe57a64.css",
-    "static/js/main.a9fc7e5c.js"
+    "static/js/main.6c924ece.js"
   ]
 }
