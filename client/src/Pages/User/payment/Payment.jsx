@@ -12,6 +12,7 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import { toast } from "react-hot-toast";
 function Payment() {
   const { userId } = useSelector((state) => state.auth);
+  const [today] = useState(new Date().toISOString().split("T")[0]);
   const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const { workId, freelancerId, amount } = useSelector(
@@ -23,8 +24,7 @@ function Payment() {
     cardNumber: "",
     accHolderName: "",
     cvc: "",
-    expYear: "",
-    expMonth: "",
+    expDate: "",
     amount: amount,
     userId: userId,
     workId: workId,
@@ -44,11 +44,10 @@ function Payment() {
     event.stopPropagation();
     setValidated(true);
     if (
+      !paymentDetails.cvc ||
+      !paymentDetails.expDate ||
       !paymentDetails.cardNumber ||
       !paymentDetails.accHolderName ||
-      !paymentDetails.cvc ||
-      !paymentDetails.expYear ||
-      !paymentDetails.expMonth ||
       !paymentDetails.amount ||
       !paymentDetails.userId ||
       !paymentDetails.workId ||
@@ -71,14 +70,7 @@ function Payment() {
       toast.error("CVC should be 3 digits");
       return;
     }
-    if (!monthPattern.test(paymentDetails.expMonth)) {
-      toast.error("Month should be 2 digits. eg: for jan 01");
-      return;
-    }
-    if (!yearPattern.test(paymentDetails.expYear)) {
-      toast.error("Year should be 4 digits.");
-      return;
-    }
+  
 
     if (paymentDetails.cvc.length !== 3) {
       toast.error("CVC should be 3 digits");
@@ -204,53 +196,26 @@ function Payment() {
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Row className="mt-3">
+                  
                       <Col>
-                        <Form.Group controlId="expMonth">
+                        <Form.Group>
                           <Form.Label className="text-white ms-3">
-                            Expiry Month
+                            Expiry Date
                           </Form.Label>
                           <Form.Control
                             required
-                            type="text"
-                            name="expMonth"
-                            placeholder="Enter expiry month Eg: 02"
+                            type="date"
                             className="ms-3"
-                            maxLength={2}
-                            minLength={2}
-                            pattern="[0-9]{2}"
-                            value={paymentDetails.expMonth}
+                            min={today}
+                            name="expDate"
+                            value={paymentDetails.expDate}
                             onChange={handleChanges}
                           />
                           <Form.Control.Feedback
                             type="invalid"
                             className="m-3 bg-light  p-2"
                           >
-                            Please provide a valid expiration month.
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Col>
-                      <Col>
-                        <Form.Group controlId="expYear">
-                          <Form.Label className="text-white ms-3">
-                            Expiry Year
-                          </Form.Label>
-                          <Form.Control
-                            required
-                            type="text"
-                            placeholder="Enter expiry year Eg: 2000"
-                            maxLength={4}
-                            minLength={4}
-                            pattern="[0-9]{4}"
-                            className="ms-3"
-                            name="expYear"
-                            value={paymentDetails.expYear}
-                            onChange={handleChanges}
-                          />
-                          <Form.Control.Feedback
-                            type="invalid"
-                            className="m-3 bg-light  p-2"
-                          >
-                            Please provide a valid expiration year.
+                            Please provide a valid expiry date.
                           </Form.Control.Feedback>
                         </Form.Group>
                       </Col>

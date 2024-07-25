@@ -38,8 +38,9 @@ function ViewAllUsersRequests() {
       const res = await axiosInstance.get("/getAllWorkRequest");
       if (res.status === 200) {
         let data = res.data?.data || [];
-        setFixedReq(data);
-        let revData = data.reverse();
+        const filterNotCompleted = data.filter((el) => el.status !== "completed");
+        let revData = filterNotCompleted.reverse();
+        setFixedReq(revData);
         setRequests(revData);
       } else {
         console.log("Error on getting requests");

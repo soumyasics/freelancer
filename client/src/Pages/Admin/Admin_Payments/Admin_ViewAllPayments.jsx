@@ -36,7 +36,7 @@ export const Admin_ViewAllPayments = () => {
             <th>Work Title</th>
             <th>Payment Amount</th>
             <th>Card Number</th>
-            <th>Date</th>
+            <th>Payment Date</th>
           </tr>
         </thead>
         <tbody>
