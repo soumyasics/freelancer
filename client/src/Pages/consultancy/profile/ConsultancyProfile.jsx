@@ -66,7 +66,7 @@ function ConsultancyProfile() {
             </Col>
             <Col className="d-flex justify-content-center align-items-center">
               <Image
-                src={defaultIllustration}
+                src={proPic}
                 alt="Profile Illustration"
                 className="m-3"
                 width={300}

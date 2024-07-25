@@ -25,6 +25,7 @@ import { FaUsers } from "react-icons/fa6";
 import AdminOverview from "../AdminOverview/adminOverview";
 import { Admin_ViewAllCompletedRequests } from "../Admin_ViewAllCompletedRequests/Admin_ViewAllCompletedRequests";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import { Admin_ViewAllPayments } from "../Admin_Payments/Admin_ViewAllPayments";
 function Admin_Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [activePage, setActivePage] = useState("overview");
@@ -147,6 +148,19 @@ function Admin_Dashboard() {
                 <Link
                   onClick={() => {
                     setShowSidebar(false);
+                    setActivePage("payments");
+                  }}
+                  className="nav-link m-3 d-flex align-items-center text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  <MdOutlineWorkHistory className="me-2" />
+                  Payments
+                </Link>
+              </li>
+              <li className="nav-item m-1 p-1">
+                <Link
+                  onClick={() => {
+                    setShowSidebar(false);
                     setActivePage("completed-requests");
                   }}
                   className="nav-link m-3 d-flex align-items-center text-decoration-none"
@@ -222,6 +236,7 @@ function Admin_Dashboard() {
             <Admin_ViewAllPendingFreelancers />
           )}
           {activePage === "requests" && <Admin_ViewAllRequests />}
+          {activePage === "payments" && <Admin_ViewAllPayments />}
           {activePage === "completed-requests" && (
             <Admin_ViewAllCompletedRequests />
           )}

@@ -68,7 +68,11 @@ const addPayment = async (req, res) => {
 
 const viewAllPayments = async (req, res) => {
   try {
-    const allPayments = await Payment.find({});
+    const allPayments = await Payment.find({})
+      .populate("userId")
+      .populate("workId")
+      .populate("freelancerId")
+      .exec();
 
     return res
       .status(200)
