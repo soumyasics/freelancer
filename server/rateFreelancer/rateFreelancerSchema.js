@@ -8,7 +8,7 @@ const RateFreelancerSchema = new mongoose.Schema(
     },
     freelancerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "freelancers",
+      ref: "freelancers", 
       required: true,
     },
     rating: {

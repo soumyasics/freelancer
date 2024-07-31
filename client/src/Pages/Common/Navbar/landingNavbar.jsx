@@ -33,6 +33,9 @@ export const LandingNavbar = () => {
   const redirectConsultancyLogin = () => {
     navigate("/consultancy-login");
   };
+  const redirectAdminLogin = () => {
+    navigate("/admin");
+  };
 
 
   return (
@@ -106,7 +109,13 @@ export const LandingNavbar = () => {
                     onClick={redirectConsultancyLogin}
                     style={{ cursor: "pointer" }}
                   >
-                    <p className="dropdown-item">Consultancy</p>
+                    <p className="m-0 dropdown-item">Consultancy</p>
+                  </li>
+                  <li
+                    onClick={redirectAdminLogin}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <p className="m-0 dropdown-item">Admin</p>
                   </li>
                   {/* <li>
                     <a className="dropdown-item" href="#">

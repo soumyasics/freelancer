@@ -45,7 +45,7 @@ const addRating = async (req, res) => {
       return acc + curr.rating;
     }, 0);
 
-    freelancer.rating = totalRates / prevRatings.length;;
+    freelancer.rating = totalRates / prevRatings.length;
     await freelancer.save();
     
 
