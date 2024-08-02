@@ -17,7 +17,6 @@ export const UserViewWorkStatus = () => {
   const [freelancerData, setFreelancerData] = useState({});
   const [profilePic, setProfilePic] = useState(placeholderImg);
   const navigate = useNavigate();
-  console.log("work request data", requestData);
   useEffect(() => {
     if (id) {
       getWorkRequestDetails();
@@ -92,7 +91,7 @@ export const UserViewWorkStatus = () => {
                     {freelancerData?.contact || "..."}
                   </p>
                   <p>
-                    <span className="fs-6 fw-bold">Qualification: </span> ₹{" "}
+                    <span className="fs-6 fw-bold">Qualification: </span> 
                     {freelancerData?.qualification || "..."}
                   </p>
                 </Col>

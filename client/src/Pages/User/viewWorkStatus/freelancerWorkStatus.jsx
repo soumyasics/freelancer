@@ -127,7 +127,7 @@ export const FreelancerViewWorkStatus = () => {
               {!isWorkCompleted && (
                 <Row className="mt-3 justify-content-center d-flex">
                   <button
-                    className="button-53"
+                    className="button-18"
                     style={{ width: "200px", fontSize: "18px" }}
                     role="button"
                     onClick={() => {
