@@ -99,26 +99,29 @@ function Navbar() {
     navigate("/view-all-applied-works");
   };
   const redirectToFreelancerAppliedVacancies = () => {
-    navigate('/freelancer-applied-vacancies')
-  }
+    navigate("/freelancer-applied-vacancies");
+  };
 
   const redirectToFreelancerScheduledInterviews = () => {
-    navigate('/freelancer-scheduled-interviews')
-  }
+    navigate("/freelancer-scheduled-interviews");
+  };
   const redirectToFreelancerWorks = () => {
-    navigate('/freelancer-my-works')
-  }
+    navigate("/freelancer-my-works");
+  };
   const consChatWithUser = () => {
     navigate("/consultancy-user-chat");
   };
 
+  const redirectAdminLogin = () => {
+    navigate("/admin");
+  };
   const redirectUserRequestWork = () => {
     navigate("/user-request");
   };
 
   const redirectToScheduledInterviews = () => {
-    navigate('/consultancy-scheduled-interviews')
-  }
+    navigate("/consultancy-scheduled-interviews");
+  };
 
   const navigateToChat = (e) => {
     const value = e.target.value;
@@ -191,7 +194,10 @@ function Navbar() {
                   >
                     <p className="nav-link">My Requests</p>
                   </li>
-                  <li style={{ cursor: "pointer" }} className="chat-drop-down nav-item me-3">
+                  <li
+                    style={{ cursor: "pointer" }}
+                    className="chat-drop-down nav-item me-3"
+                  >
                     <select onChange={navigateToChat}>
                       <option value=""> Chat </option>
                       <option value="freelancer-chat"> Freelancer</option>
@@ -330,7 +336,13 @@ function Navbar() {
                       onClick={redirectConsultancyLogin}
                       style={{ cursor: "pointer" }}
                     >
-                      <p className="dropdown-item">Consultancy</p>
+                      <p className="m-0 dropdown-item">Consultancy</p>
+                    </li>
+                    <li
+                      onClick={redirectAdminLogin}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <p className="m-0 dropdown-item">Admin</p>
                     </li>
                     {/* <li>
                     <a className="dropdown-item" href="#">

@@ -34,8 +34,8 @@ export const Admin_ViewAllFreelancersReviews = () => {
             <th>Reviewer email</th>
             <th>Freelancer name</th>
             <th>Freelancer email</th>
-            <th>Rating</th>
             <th>Review</th>
+            <th>Rating</th>
           </tr>
         </thead>
         <tbody>
