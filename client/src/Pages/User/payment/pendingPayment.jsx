@@ -53,7 +53,6 @@ export const PendingPayment = () => {
             amountPaid: amouontPaid,
           };
         });
-        console.log("result", data);
         setPaymentData(data);
       }
     } catch (error) {
@@ -105,7 +104,6 @@ export const PendingPayment = () => {
       let res = await axiosInstance.post(`/pendingPayment/${paymentData._id}`, {
         pendingAmount: paymentDetails.pendingAmount,
       });
-      console.log("respon", res);
       if (res.status === 200) {
         toast.success("Payment successfull");
       }
@@ -119,7 +117,28 @@ export const PendingPayment = () => {
       }
       console.log("Error on get request data", err);
     } finally {
-      navigate(`/view-responses/${id}`);
+      navigate(`/user-view-work-status/${id}`);
+    }
+  };
+  const sendDataToServer2 = async () => {
+    try {
+      let res = await axiosInstance.post(`/pendingPayment/${paymentData._id}`, {
+        pendingAmount: paymentDetails.pendingAmount,
+      });
+      if (res.status === 200) {
+        // toast.success("Payment successfull");
+      }
+    } catch (err) {
+      const status = err?.response?.status;
+      if (status === 401 || status === 400 || status === 403) {
+        toast.error(err?.response?.data?.message);
+        return;
+      } else {
+        toast.error("Something went wrong");
+      }
+      console.log("Error on get request data", err);
+    } finally {
+      navigate(`/user-view-work-status/${id}`);
     }
   };
 
@@ -127,7 +146,7 @@ export const PendingPayment = () => {
     <>
       <Navbar />
       <div className="container-fluid bg-color rounded">
-        {paymentData ? (
+        {paymentDetails.pendingAmount > 0 ? (
           <Container fluid>
             <Row className="mx-5">
               <h1 className="text-white mt-5 text-center">Payment</h1>
@@ -284,7 +303,7 @@ export const PendingPayment = () => {
                           The total amount for this work is{" "}
                           {paymentDetails.totalAmount} rupees. 50% of the
                           payment, which is {paymentDetails.amountPaid} rupees,
-                          has already been paid. The unsettled amount is{" "}
+                          has already you paid. The unsettled amount is{" "}
                           {paymentDetails.pendingAmount} rupees. The freelancer
                           completed the work within the deadline, so you should
                           pay the remaining {paymentDetails.pendingAmount}{" "}
@@ -295,14 +314,14 @@ export const PendingPayment = () => {
                           The total amount for this work is{" "}
                           {paymentDetails.totalAmount} rupees. 50% of the
                           payment, which is {paymentDetails.amountPaid} rupees,
-                          has already been paid. The unsettled amount is{" "}
+                          has already you paid. The unsettled amount is{" "}
                           {paymentDetails.totalAmount -
-                            paymentDetails.amountPaid}
+                            paymentDetails.amountPaid}{" "}
                           rupees. The freelancer has not completed the work
                           within the deadline and took{" "}
                           {paymentDetails.extraDays} extra days. The penalty
                           amount is {paymentDetails.lossOfPay} rupees, so you
-                          should pay the remaining
+                          should pay the remaining{" "}
                           {paymentDetails.pendingAmount} rupees.
                         </p>
                       )}
@@ -315,14 +334,27 @@ export const PendingPayment = () => {
         ) : (
           <div
             style={{ minHeight: "300px" }}
-            className="d-flex justify-content-center align-items-center flex-column"
+            className="d-flex justify-content-center align-items-center flex-column px-5"
           >
-            <h1 className="text-center text-white"> Payment Failed. </h1>
+            <h1 className="text-center text-white"> No payment required. </h1>
+
+            <p className="text-light mt-4 text-center">
+              The total amount for this work is {paymentDetails.totalAmount}{" "}
+              rupees. 50% of the payment, which is {paymentDetails.amountPaid}{" "}
+              rupees, has already been paid. The unsettled amount is{" "}
+              {paymentDetails.totalAmount - paymentDetails.amountPaid} rupees.
+              The freelancer has not completed the work within the deadline and
+              took {paymentDetails.extraDays} extra days. The penalty amount is{" "}
+              {paymentDetails.lossOfPay} rupees, so you shouldn't pay any
+              additional money.
+            </p>
+
             <div className="text-center">
               <Button
+                className="mt-3"
                 variant="warning"
                 onClick={() => {
-                  navigate("/user-myrequests");
+                  sendDataToServer2();
                 }}
               >
                 {" "}

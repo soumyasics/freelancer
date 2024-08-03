@@ -77,7 +77,10 @@ export const FreelancerViewWorkStatus = () => {
     days = Math.abs(days);
     const halfAmount = Math.round(totalAmount / 2);
     const fivePercentageAmount = Math.round(halfAmount * 0.05);
-    const penalty = Math.round(fivePercentageAmount * days);
+    let penalty = Math.round(fivePercentageAmount * days);
+    if (penalty > halfAmount) {
+      penalty = halfAmount;
+    }
     return { days, penalty };
   };
 
@@ -168,7 +171,7 @@ export const FreelancerViewWorkStatus = () => {
                 ) : (
                   <Row className="mt-3 justify-content-center d-flex">
                     <h6 className="text-success text-center">
-                      Payment pending
+                      {/* Full payment not completed yet. */}
                     </h6>
                   </Row>
                 )}

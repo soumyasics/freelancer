@@ -17,7 +17,6 @@ export const UserViewWorkStatus = () => {
   const [freelancerData, setFreelancerData] = useState({});
   const [paymentData, setPaymentData] = useState({});
   const [pendingAmount, setPendingAmount] = useState(0);
-  console.log("paym ", paymentData);
   const [profilePic, setProfilePic] = useState(placeholderImg);
   const navigate = useNavigate();
   useEffect(() => {
@@ -191,11 +190,11 @@ export const UserViewWorkStatus = () => {
                 </Col>
               </Row>
 
-              {requestData?.paymentCompleted ? (
+              {requestData?.paymentCompleted === true ?  (
                 <Row className="mt-3 justify-content-center d-flex">
                   <h6 className="text-success text-center">Full payment completed</h6>
                 </Row>
-              ) : (
+              ) : requestData?.status === "completed" ? (
                 <Row className="mt-3 justify-content-center d-flex">
                   <button
                     className="button-18"
@@ -208,7 +207,7 @@ export const UserViewWorkStatus = () => {
                     Pay Pending Amount
                   </button>
                 </Row>
-              )}
+              ): ""}
             </div>
           </div>
         </div>

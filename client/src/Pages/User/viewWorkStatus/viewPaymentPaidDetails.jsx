@@ -4,7 +4,9 @@ import { axiosInstance } from "../../../apis/axiosInstance";
 import { Col, Row } from "react-bootstrap";
 import moment from "moment-timezone";
 import paymentIllusImage from "../../../Assets/new/payment-illus.png";
+import { useSelector } from "react-redux";
 const PaymentPaidDetails = ({ workId }) => {
+  const { userType } = useSelector((state) => state.auth);
   const [paymentData, setPaymentData] = useState({});
   const [formattedDate, setFormattedDate] = useState("");
   const [formattedTime, setFormattedTime] = useState("");
@@ -16,7 +18,9 @@ const PaymentPaidDetails = ({ workId }) => {
 
   useEffect(() => {
     if (paymentData?.amountPaid) {
-      setUnsettledPayment(paymentData?.amount - paymentData?.amountPaid);
+      setUnsettledPayment(
+        paymentData?.amount - (paymentData?.amountPaid + paymentData?.lossOfPay)
+      );
     }
   }, [paymentData]);
   const getPaymentData = async () => {
@@ -53,20 +57,25 @@ const PaymentPaidDetails = ({ workId }) => {
         className="shadow mx-auto"
       >
         <Col>
-          <p>
+          {/* <p>
             <span className="fs-6 fw-bold">Card Number: </span>{" "}
             {paymentData?.cardNumber || "..."}
           </p>
           <p>
             <span className="fs-6 fw-bold">Account Holder Name: </span>
             {paymentData?.accHolderName || "..."}
-          </p>
+          </p> */}
           <p>
             <span className="fs-6 fw-bold">Total Work Amount: </span> ₹{" "}
             {paymentData?.amount || 0}
           </p>
           <p>
-            <span className="fs-6 fw-bold">Amount Received: </span> ₹{" "}
+            {userType === "user" ? (
+              <span className="fs-6 fw-bold">Amount Paid: </span>
+            ) : (
+              <span className="fs-6 fw-bold">Amount Received: </span>
+            )}
+            
             {paymentData?.amountPaid || 0}
           </p>
           <p>

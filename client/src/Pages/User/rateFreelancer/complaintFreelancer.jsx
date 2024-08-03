@@ -61,7 +61,7 @@ export const ComplaintFreelancer = ({ freelancerId }) => {
         }}
       >
         <div>
-          <h5 className="text-center ">Write your Complaint here </h5>
+          <h5 className="text-center ">Write your complaint here </h5>
         </div>
 
         <form

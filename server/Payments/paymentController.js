@@ -82,7 +82,8 @@ const pendingPayment = async (req, res) => {
     const id = req.params.id;
     const { pendingAmount } = req.body;
 
-    if (!pendingAmount) {
+    
+    if (!pendingAmount && pendingAmount !== 0) {
       return res
         .status(400)
         .json({ msg: "All fields are required", data: req.body });
