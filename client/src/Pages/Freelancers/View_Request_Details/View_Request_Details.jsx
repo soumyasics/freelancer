@@ -36,7 +36,6 @@ function View_Request_Details() {
     }
   };
 
-  console.log("req data", requestData);
   return (
     <>
       <Navbar />

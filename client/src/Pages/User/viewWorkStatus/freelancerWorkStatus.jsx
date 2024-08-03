@@ -17,6 +17,7 @@ export const FreelancerViewWorkStatus = () => {
   const [freelancerData, setFreelancerData] = useState({});
   const [profilePic, setProfilePic] = useState(placeholderImg);
   const [isWorkCompleted, setIsWorkCompleted] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (id) {
@@ -86,7 +87,6 @@ export const FreelancerViewWorkStatus = () => {
         requestData?.deadline,
         requestData.budget
       );
-      console.log(days, penalty);
       const res = await axiosInstance.patch("makeWorkRequestCompleted/" + id, {
         lossOfPay: penalty,
         extraDays: days,
@@ -156,6 +156,22 @@ export const FreelancerViewWorkStatus = () => {
                     {requestData?.description || "..."}
                   </p>
                 </Col>
+              </Row>
+
+              <Row>
+                {requestData?.paymentCompleted ? (
+                  <Row className="mt-3 justify-content-center d-flex">
+                    <h6 className="text-success text-center">
+                      Full payment completed
+                    </h6>
+                  </Row>
+                ) : (
+                  <Row className="mt-3 justify-content-center d-flex">
+                    <h6 className="text-success text-center">
+                      Payment pending
+                    </h6>
+                  </Row>
+                )}
               </Row>
 
               {!isWorkCompleted && (

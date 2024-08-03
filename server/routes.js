@@ -163,6 +163,7 @@ router.get(
 );
 //payments
 router.post("/addPayment", Payments.addPayment);
+router.post("/pendingPayment/:id", Payments.pendingPayment);
 router.get("/viewAllPayments", Payments.viewAllPayments);
 router.get("/viewPaymentById/:id", Payments.viewPayment);
 router.get(

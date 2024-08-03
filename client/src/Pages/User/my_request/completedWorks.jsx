@@ -23,7 +23,7 @@ export const UserCompletedWorks = () => {
       const res = await axiosInstance.get("/getWorkRequestsByUserId/" + userId);
       if (res.status === 200) {
         let data = res.data?.data || [];
-        let filterData = data.filter((el) => el.status === "completed");
+        let filterData = data.filter((el) => el.paymentCompleted === true);
         let revData = filterData.reverse();
         setRequests(revData);
         setFixedReqs(revData);
@@ -181,5 +181,4 @@ export const UserCompletedWorks = () => {
       </div>
     </>
   );
-}
-
+};

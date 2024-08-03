@@ -19,7 +19,6 @@ const PaymentPaidDetails = ({ workId }) => {
       setUnsettledPayment(paymentData?.amount - paymentData?.amountPaid);
     }
   }, [paymentData]);
-  console.log("paymerb", paymentData);
   const getPaymentData = async () => {
     try {
       const res = await axiosInstance.get("getPaymentDataByWorkId/" + workId);

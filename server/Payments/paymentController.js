@@ -77,7 +77,39 @@ const addPayment = async (req, res) => {
     res.status(500).json({ message: "Network Failed", error: "Server Error" });
   }
 };
+const pendingPayment = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { pendingAmount } = req.body;
 
+    if (!pendingAmount) {
+      return res
+        .status(400)
+        .json({ msg: "All fields are required", data: req.body });
+    }
+    const paymentData = await Payment.findById(id);
+    if (!paymentData) {
+      return res
+        .status(400)
+        .json({ msg: "Payment not found", data: paymentData });
+    }
+    const workReq = await WorkRequestModel.findById(paymentData.workId);
+    if (!workReq) {
+      return res
+        .status(400)
+        .json({ msg: "Work request not found", data: workReq });
+    }
+    paymentData.amountPaid += pendingAmount;
+    paymentData.paymentCompleted = true;
+    workReq.paymentCompleted = true;
+
+    await workReq.save();
+    await paymentData.save();
+    return res.status(200).json({ msg: "Full Payment completed", data: paymentData });
+  } catch (error) {
+    return res.status(500).json({ msg: "Server Error", error: error?.message });
+  }
+};
 const viewAllPayments = async (req, res) => {
   try {
     const allPayments = await Payment.find({})
@@ -158,6 +190,7 @@ const getPaymentDataByWorkId = async (req, res) => {
     })
       .populate("userId")
       .populate("freelancerId")
+      .populate("workId")
       .exec();
 
     if (!paymentDetails) {
@@ -182,4 +215,5 @@ module.exports = {
   viewAllPayments,
   getAllPaymentsByFreelancerId,
   getPaymentDataByWorkId,
+  pendingPayment,
 };

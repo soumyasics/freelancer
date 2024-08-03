@@ -152,7 +152,6 @@ const makeWorkRequestCompleted = async (req, res) => {
     }
     paymentData.lossOfPay = lossOfPay;
     paymentData.extraDays = extraDays;
-    paymentData.paymentCompleted = true;
     workRequest.status = "completed";
     await paymentData.save();
     await workRequest.save();

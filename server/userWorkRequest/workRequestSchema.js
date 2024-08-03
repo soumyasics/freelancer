@@ -49,6 +49,10 @@ const workRequestSchema = new Schema(
       enum: ["pending", "progress", "cancelled", "completed"],
       default: "pending",
     },
+    paymentCompleted: {
+      type: Boolean,
+      default: false,
+    },
     freelancerResponses: [
       {
         freelancerId: {

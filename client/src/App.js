@@ -53,6 +53,7 @@ import { ViewVacancyDetails } from "./Pages/User/responseDetails/conResponseDeta
 import { ConsScheduledInterviews } from "./Pages/consultancy/interview/interview.jsx";
 import { FreelancerScheduledInterviews } from "./Pages/Freelancers/interview/interview.jsx";
 import { FreelancerViewVacancyDetails } from "./Pages/User/responseDetails/freeViewVacDetails.jsx";
+import { PendingPayment } from "./Pages/User/payment/pendingPayment.jsx";
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
           />
           {/* <Route path='/detailed-view-freelancers' element={<DetailedViewFreelancers />} /> */}
           <Route path="/payment" element={<Payment />} />
+          <Route path="/pending-payment/:id" element={<PendingPayment />} />
           <Route path="/payment-details" element={<Payment_Details />} />
           <Route path="/freelancer" element={<ViewAllFreelancers />} />
           <Route path="/freelancer/:id" element={<DetailedViewFreelancers />} />

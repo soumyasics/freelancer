@@ -23,7 +23,7 @@ function MyRequests() {
       const res = await axiosInstance.get("/getWorkRequestsByUserId/" + userId);
       if (res.status === 200) {
         let data = res.data?.data || [];
-        const filterNotCompleted = data.filter((el) => el.status !== "completed");
+        const filterNotCompleted = data.filter((el) => el.paymentCompleted === false);
         let revData = filterNotCompleted.reverse();
         setRequests(revData);
         setFixedReqs(revData);
@@ -131,7 +131,6 @@ function MyRequests() {
               <tr>
                 <th>No</th>
                 <th>Title</th>
-
                 <th>Category</th>
                 <th>Budget</th>
                 <th>Deadline</th>

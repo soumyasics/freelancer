@@ -15,13 +15,41 @@ export const UserViewWorkStatus = () => {
   const { id } = useParams();
   const [requestData, setRequestData] = useState({});
   const [freelancerData, setFreelancerData] = useState({});
+  const [paymentData, setPaymentData] = useState({});
+  const [pendingAmount, setPendingAmount] = useState(0);
+  console.log("paym ", paymentData);
   const [profilePic, setProfilePic] = useState(placeholderImg);
   const navigate = useNavigate();
   useEffect(() => {
     if (id) {
       getWorkRequestDetails();
+      getPaymentData();
     }
   }, [id]);
+  useEffect(() => {
+    if (paymentData.amount) {
+      const totalAmt = paymentData.amount;
+      const amountPaid = paymentData.amountPaid;
+      const penalty = paymentData.lossOfPay;
+      const pendingPayment = totalAmt - (amountPaid + penalty);
+      setPendingAmount(pendingPayment);
+    }
+  }, [paymentData]);
+
+  const getPaymentData = async () => {
+    try {
+      const res = await axiosInstance.get("getPaymentDataByWorkId/" + id);
+      if (res.status === 200) {
+        const data = res?.data?.data;
+        setPaymentData(data);
+      }
+    } catch (error) {
+      console.log("Error on get payment data", error);
+    }
+  };
+  const redirectToPaymentPage = (id) => {
+    navigate("/pending-payment/" + id);
+  }
 
   const getWorkRequestDetails = async () => {
     try {
@@ -91,7 +119,7 @@ export const UserViewWorkStatus = () => {
                     {freelancerData?.contact || "..."}
                   </p>
                   <p>
-                    <span className="fs-6 fw-bold">Qualification: </span> 
+                    <span className="fs-6 fw-bold">Qualification: </span>
                     {freelancerData?.qualification || "..."}
                   </p>
                 </Col>
@@ -162,11 +190,28 @@ export const UserViewWorkStatus = () => {
                   </p>
                 </Col>
               </Row>
-            
+
+              {requestData?.paymentCompleted ? (
+                <Row className="mt-3 justify-content-center d-flex">
+                  <h6 className="text-success text-center">Full payment completed</h6>
+                </Row>
+              ) : (
+                <Row className="mt-3 justify-content-center d-flex">
+                  <button
+                    className="button-18"
+                    style={{ width: "200px", fontSize: "18px" }}
+                    role="button"
+                    onClick={() => {
+                      redirectToPaymentPage(requestData._id);
+                    }}
+                  >
+                    Pay Pending Amount
+                  </button>
+                </Row>
+              )}
             </div>
           </div>
         </div>
-
 
         <div>
           <PaymentPaidDetails workId={id} />
@@ -179,7 +224,6 @@ export const UserViewWorkStatus = () => {
             <ComplaintFreelancer freelancerId={freelancerData._id} />
           </Col>
         </Row>
-
       </div>
       <div className="mt-5">
         <Footer />
