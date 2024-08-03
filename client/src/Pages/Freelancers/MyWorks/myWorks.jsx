@@ -147,7 +147,6 @@ export function MyWorks() {
                 <th>Client Name</th>
                 <th>Client Email</th>
                 <th>Work Title</th>
-                <th>Amount Received</th>
                 <th>Deadline</th>
                 <th>Category</th>
                 <th>View More</th>
@@ -162,7 +161,6 @@ export function MyWorks() {
                     <td>{payment?.userId?.firstName}</td>
                     <td>{payment?.userId?.email}</td>
                     <td>{payment?.workId?.title}</td>
-                    <td>{payment?.workId?.amountPaid}</td>
                     <td>{payment?.workId?.deadline?.substring(0, 10)}</td>
                     <td>{payment?.workId?.category}</td>
                     <td>
