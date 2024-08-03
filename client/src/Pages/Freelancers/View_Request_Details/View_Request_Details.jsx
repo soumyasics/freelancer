@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Row, Col, Image } from "react-bootstrap";
+import { Container, Card, Row, Col, Image, Button } from "react-bootstrap";
 import Navbar from "../../Common/Navbar/navbar";
 import Footer from "../../Common/Footer/footer";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { useParams } from "react-router-dom";
 import placeholderImg from "../../../Assets/istockphoto-955148158-612x612-removebg-preview.png";
 import "./View_Request_Details.css";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function View_Request_Details() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [requestData, setRequestData] = useState(null);
-
+  const { userId } = useSelector((state) => state.auth);
   useEffect(() => {
     if (id) {
       getRequestData();
     }
   }, [id]);
 
+  const navigateToWorkStatus = (id) => {
+    navigate("/freelancer-view-work-status/" + id);
+  };
   const getRequestData = async () => {
     try {
       const res = await axiosInstance.get(`/getWorkRequestById/${id}`);
@@ -31,6 +36,7 @@ function View_Request_Details() {
     }
   };
 
+  console.log("req data", requestData);
   return (
     <>
       <Navbar />
@@ -61,7 +67,7 @@ function View_Request_Details() {
                   <span className="fw-bold me-2">Deadline:</span>
                   {requestData?.deadline?.substring(0, 10)}
                 </Card.Text>
-           
+
                 <Card.Text className="m-3">
                   <span className="fw-bold me-2">Client Name:</span>
                   {requestData?.userId?.firstName}{" "}
@@ -75,6 +81,27 @@ function View_Request_Details() {
                   <span className="fw-bold me-2">Description:</span>
                   {requestData?.description}
                 </Card.Text>
+                <div className="d-flex justify-content-center">
+                  {requestData?.assignedFreelancerId === userId ? (
+                    <Button
+                      onClick={() => {
+                        navigateToWorkStatus(requestData?._id);
+                      }}
+                    >
+                      Work Status
+                    </Button>
+                  ) : requestData?.assignedFreelancerId === null ? (
+                    <span>
+                      {" "}
+                      Client is not yet assigned any freelancer for this work
+                    </span>
+                  ) : (
+                    <span>
+                      {" "}
+                      Client is assigned another freelancer for this work
+                    </span>
+                  )}
+                </div>
               </Card.Body>
             </Card>
           </Col>

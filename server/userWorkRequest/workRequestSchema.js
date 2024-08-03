@@ -36,7 +36,7 @@ const workRequestSchema = new Schema(
       type: Number,
       default: 0,
     },
-    deductedAmount: {
+    lossOfPay: {
       type: Number,
       default: 0,
     },

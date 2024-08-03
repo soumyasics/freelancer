@@ -65,16 +65,45 @@ export const FreelancerViewWorkStatus = () => {
     navigate(`/freelancer-user-chat/${id}/${encodeURIComponent(name)}`);
   };
 
+  const findPenalty = (deadline, totalAmount) => {
+    const deadlineDate = new Date(deadline);
+    const currentDate = new Date();
+    const difference = deadlineDate.getTime() - currentDate.getTime();
+    let days = Math.ceil(difference / (1000 * 3600 * 24));
+    if (days >= 0) {
+      return { days: 0, penalty: 0 };
+    }
+    days = Math.abs(days);
+    const halfAmount = Math.round(totalAmount / 2);
+    const fivePercentageAmount = Math.round(halfAmount * 0.05);
+    const penalty = Math.round(fivePercentageAmount * days);
+    return { days, penalty };
+  };
+
   const freelancerworkCompleted = async (id) => {
     try {
-      const res = await axiosInstance.patch("makeWorkRequestCompleted/" + id);
+      const { days, penalty } = findPenalty(
+        requestData?.deadline,
+        requestData.budget
+      );
+      console.log(days, penalty);
+      const res = await axiosInstance.patch("makeWorkRequestCompleted/" + id, {
+        lossOfPay: penalty,
+        extraDays: days,
+      });
       if (res.status === 200) {
-        toast.success("Work Completed");
+        if (days > 0) {
+          toast.error(
+            `You are ${days} days late from the deadline. This will affect your unsettled payment.`
+          );
+        } else {
+          toast.success("Work Completed");
+        }
         getWorkRequestDetails();
       }
     } catch (error) {
       console.log("Error on get freelancer work completed", error);
-      toast.error("Network Error");
+      toast.error("Please login again. ");
     }
   };
   return (

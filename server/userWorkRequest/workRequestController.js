@@ -1,5 +1,5 @@
 const WorkRequestModel = require("./workRequestSchema");
-
+const PaymentModel = require("../Payments/paymentSchema");
 const createWorkRequest = async (req, res) => {
   try {
     const { userId, title, description, category, budget, deadline } = req.body;
@@ -133,17 +133,28 @@ const makeWorkRequestProgress = async (req, res) => {
 };
 
 const makeWorkRequestCompleted = async (req, res) => {
-  const id = req.params.id;
-  if (!id) {
-    return res.status(401).json({ message: "Id is required" });
-  }
-
   try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(401).json({ message: "Id is required" });
+    }
+    const { lossOfPay, extraDays } = req.body;
+    
+
     const workRequest = await WorkRequestModel.findById(id);
+    const paymentData = await PaymentModel.findOne({ workId: id });
+
+    if (!paymentData) {
+      return res.status(404).json({ message: "Payment can't find" });
+    }
     if (!workRequest) {
       return res.status(404).json({ message: "Work request can't find" });
     }
+    paymentData.lossOfPay = lossOfPay;
+    paymentData.extraDays = extraDays;
+    paymentData.paymentCompleted = true;
     workRequest.status = "completed";
+    await paymentData.save();
     await workRequest.save();
     return res
       .status(200)
@@ -252,10 +263,14 @@ const deleteUserWorkRequestById = async (req, res) => {
       return res.status(404).json({ message: "Work request can't find" });
     }
     const status = await WorkRequestModel.findByIdAndDelete(id);
-    console.log("status", status)
-    return res.status(200).json({ message: "Work request deleted successfully", data: status });
+    console.log("status", status);
+    return res
+      .status(200)
+      .json({ message: "Work request deleted successfully", data: status });
   } catch (error) {
-    return res.status(500).json({ error: error.message, message: "Error on delete request" });
+    return res
+      .status(500)
+      .json({ error: error.message, message: "Error on delete request" });
   }
 };
 
@@ -270,5 +285,5 @@ module.exports = {
   workRequestFreelancerResponse,
   workRequestUserReplay,
   getWorkRequestByUserId,
-  deleteUserWorkRequestById
+  deleteUserWorkRequestById,
 };

@@ -23,6 +23,10 @@ const schema = new Schema(
       type: Number,
       default: 0,
     },
+    extraDays: {
+      type: Number,
+      default: 0,
+    },
     workId: {
       type: Schema.Types.ObjectId,
       required: true,
@@ -44,6 +48,10 @@ const schema = new Schema(
     date: {
       type: Date,
       default: new Date(),
+    },
+    paymentCompleted: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

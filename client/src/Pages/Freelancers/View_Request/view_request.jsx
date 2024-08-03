@@ -38,7 +38,9 @@ function ViewAllUsersRequests() {
       const res = await axiosInstance.get("/getAllWorkRequest");
       if (res.status === 200) {
         let data = res.data?.data || [];
-        const filterNotCompleted = data.filter((el) => el.status !== "completed");
+        const filterNotCompleted = data.filter(
+          (el) => el.status !== "completed"
+        );
         let revData = filterNotCompleted.reverse();
         setFixedReq(revData);
         setRequests(revData);
@@ -124,7 +126,7 @@ function ViewAllUsersRequests() {
 
   const navigateToReqDetails = (id) => {
     navigate("/view-request/" + id);
-  }
+  };
   return (
     <>
       <Navbar />
@@ -238,21 +240,18 @@ function ViewAllUsersRequests() {
                             Send a Message
                           </Button>
                         ) : (
-                          <Button
-                            onClick={() => {
-                              viewRequestStatus(req);
-                            }}
-                            variant="warning"
-                          >
-                            View Status
-                          </Button>
+                          <span>Already responded</span>
                         )}
                       </td>
                     )}
                     <td>
-                      <Button onClick={() => {
-                        navigateToReqDetails(req._id)
-                      }}>View More</Button>
+                      <Button
+                        onClick={() => {
+                          navigateToReqDetails(req._id);
+                        }}
+                      >
+                        View More
+                      </Button>
                     </td>
                   </tr>
                 );

@@ -162,7 +162,7 @@ export function MyWorks() {
                     <td>{payment?.userId?.firstName}</td>
                     <td>{payment?.userId?.email}</td>
                     <td>{payment?.workId?.title}</td>
-                    <td>{payment?.workId?.budget}</td>
+                    <td>{payment?.workId?.amountPaid}</td>
                     <td>{payment?.workId?.deadline?.substring(0, 10)}</td>
                     <td>{payment?.workId?.category}</td>
                     <td>
