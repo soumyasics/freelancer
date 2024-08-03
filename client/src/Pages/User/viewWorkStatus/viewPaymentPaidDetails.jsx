@@ -2,16 +2,23 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { axiosInstance } from "../../../apis/axiosInstance";
 import { Col, Row } from "react-bootstrap";
-import moment from "moment-timezone"
+import moment from "moment-timezone";
 import paymentIllusImage from "../../../Assets/new/payment-illus.png";
 const PaymentPaidDetails = ({ workId }) => {
   const [paymentData, setPaymentData] = useState({});
   const [formattedDate, setFormattedDate] = useState("");
   const [formattedTime, setFormattedTime] = useState("");
+  const [unsettledPayment, setUnsettledPayment] = useState(0);
+
   useEffect(() => {
     getPaymentData();
   }, [workId]);
 
+  useEffect(() => {
+    if (paymentData?.amountPaid) {
+      setUnsettledPayment(paymentData?.amount - paymentData?.amountPaid);
+    }
+  }, [paymentData]);
   console.log("paymerb", paymentData);
   const getPaymentData = async () => {
     try {
@@ -39,7 +46,7 @@ const PaymentPaidDetails = ({ workId }) => {
   return (
     <Row className="mt-5">
       <div className="text-center">
-        <h3>Transaction Details</h3>
+        <h3>Payment Details</h3>
       </div>
 
       <Row
@@ -52,21 +59,24 @@ const PaymentPaidDetails = ({ workId }) => {
             {paymentData?.cardNumber || "..."}
           </p>
           <p>
-            <span className="fs-6 fw-bold">Account Holder Name </span> ₹{" "}
+            <span className="fs-6 fw-bold">Account Holder Name: </span>
             {paymentData?.accHolderName || "..."}
           </p>
           <p>
-            <span className="fs-6 fw-bold">Amount </span> ₹{" "}
-            {paymentData?.amount || "..."}
-          </p>
-
-          <p>
-            <span className="fs-6 fw-bold"> Date of payment</span>{" "}
-            {formattedDate || "..."}
+            <span className="fs-6 fw-bold">Total Work Amount: </span> ₹{" "}
+            {paymentData?.amount || 0}
           </p>
           <p>
-            <span className="fs-6 fw-bold"> Transaction time</span>{" "}
-            {formattedTime || "..."}
+            <span className="fs-6 fw-bold">Amount Received: </span> ₹{" "}
+            {paymentData?.amountPaid || 0}
+          </p>
+          <p>
+            <span className="fs-6 fw-bold">Late penalty: </span> ₹{" "}
+            {paymentData?.lossOfPay === 0 ? "0" : paymentData?.lossOfPay || 0}
+          </p>
+          <p>
+            <span className="fs-6 fw-bold">Unsettled payment: </span> ₹{" "}
+            {unsettledPayment || 0}
           </p>
         </Col>
         <Col>

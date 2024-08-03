@@ -5,8 +5,16 @@ const WorkRequestModel = require("../userWorkRequest/workRequestSchema");
 // Function to add a payment
 const addPayment = async (req, res) => {
   try {
-    const { freelancerId, workId, userId, amount, accHolderName, cardNumber } =
-      req.body;
+    const {
+      freelancerId,
+      workId,
+      userId,
+      halfAmount,
+      amountPaid,
+      amount,
+      accHolderName,
+      cardNumber,
+    } = req.body;
 
     if (
       !freelancerId ||
@@ -14,7 +22,9 @@ const addPayment = async (req, res) => {
       !userId ||
       !amount ||
       !accHolderName ||
-      !cardNumber
+      !cardNumber ||
+      !halfAmount ||
+      !amountPaid
     ) {
       return res
         .status(400)
@@ -53,6 +63,8 @@ const addPayment = async (req, res) => {
       amount,
       accHolderName,
       cardNumber,
+      halfAmount,
+      amountPaid,
     });
 
     await payment.save();

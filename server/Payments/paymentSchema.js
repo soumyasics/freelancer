@@ -11,6 +11,18 @@ const schema = new Schema(
       type: Number,
       required: true,
     },
+    halfAmount: {
+      type: Number,
+      required: true
+    },
+    amountPaid: {
+      type: Number,
+      default: 0,
+    },
+    lossOfPay: {
+      type: Number,
+      default: 0,
+    },
     workId: {
       type: Schema.Types.ObjectId,
       required: true,

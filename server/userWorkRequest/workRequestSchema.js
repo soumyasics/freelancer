@@ -32,7 +32,18 @@ const workRequestSchema = new Schema(
       type: Number,
       required: true,
     },
-
+    amountPaid: {
+      type: Number,
+      default: 0,
+    },
+    deductedAmount: {
+      type: Number,
+      default: 0,
+    },
+    amountYetToPay: {
+      type: Number,
+      default: 0,
+    },
     status: {
       type: String,
       enum: ["pending", "progress", "cancelled", "completed"],

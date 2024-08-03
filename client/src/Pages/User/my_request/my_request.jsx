@@ -136,7 +136,7 @@ function MyRequests() {
                 <th>Budget</th>
                 <th>Deadline</th>
                 <th>View Responses</th>
-                <th>Delete Request</th>
+                {/* <th>Delete Request</th> */}
               </tr>
             </thead>
             <tbody className="text-center">
@@ -159,7 +159,7 @@ function MyRequests() {
                         View Responses
                       </Button>
                     </td>
-                    <td>
+                    {/* <td>
                       <Button
                         variant="danger"
                         onClick={() => {
@@ -168,7 +168,7 @@ function MyRequests() {
                       >
                         Delete Request
                       </Button>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}

@@ -93,7 +93,6 @@ const UserRequest = () => {
     });
   };
 
-  console.log("req work", requestData);
 
   return (
     <>

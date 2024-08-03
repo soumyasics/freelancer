@@ -172,7 +172,7 @@ export const ViewResponseDetails = () => {
                               variant="success"
                             >
                               {" "}
-                              Assign work{" "}
+                              Pay advance{" "}
                             </Button>
                           )}
                         </Col>

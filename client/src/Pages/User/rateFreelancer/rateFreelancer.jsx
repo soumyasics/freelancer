@@ -20,7 +20,6 @@ export const FreelancerRating = ({ freelancerId }) => {
     });
   }, [userId, freelancerId]);
 
-  console.log("review ", reviewData)
   const changeReview = (e) => {
     const { name, value } = e.target;
     setReviewData({ ...reviewData, [name]: value });

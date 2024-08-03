@@ -57,7 +57,7 @@ export const ReviewModal = ({ show, id, handleClose }) => {
             </thead>
             <tbody>
               {review.map((rev) => (
-                <tr>
+                <tr key={rev._id}>
                   <td>{rev?.userId?.firstName}</td>
                   <td>{rev?.rating}</td>
                   <td>{rev?.review}</td>

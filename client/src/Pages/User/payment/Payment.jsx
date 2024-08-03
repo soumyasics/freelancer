@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Payment.css";
 import Navbar from "../../Common/Navbar/navbar";
 import { Container, Form, Row, Col, Image, Button } from "react-bootstrap";
@@ -18,7 +18,6 @@ function Payment() {
   const { workId, freelancerId, amount } = useSelector(
     (state) => state.payment
   );
-  console.log("amount", amount)
 
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: "",
@@ -26,10 +25,21 @@ function Payment() {
     cvc: "",
     expDate: "",
     amount: amount,
+    halfAmount:0,
+    amountPaid: 0,
     userId: userId,
     workId: workId,
     freelancerId: freelancerId,
   });
+
+  useEffect(() => {
+    if (amount) {
+      const amt = Math.round(amount / 2);
+      setPaymentDetails((prevData) => {
+        return { ...prevData, halfAmount: amt, amountPaid: amt };
+      });
+    }
+  }, [amount]);
 
   const handleChanges = (event) => {
     const { name, value } = event.target;
@@ -70,14 +80,11 @@ function Payment() {
       toast.error("CVC should be 3 digits");
       return;
     }
-  
 
     if (paymentDetails.cvc.length !== 3) {
       toast.error("CVC should be 3 digits");
       return;
     }
-
-    
 
     sendDataToServer();
   };
@@ -87,7 +94,6 @@ function Payment() {
       console.log("respon", res);
       if (res.status === 201) {
         toast.success("Payment successfull");
-        //TODO navigate to my acitivy page.
       }
     } catch (err) {
       const status = err?.response?.status;
@@ -98,8 +104,8 @@ function Payment() {
         toast.error("Something went wrong");
       }
       console.log("Error on get request data", err);
-    }finally {
-      navigate(`/view-responses/${workId}`)
+    } finally {
+      navigate(`/view-responses/${workId}`);
     }
   };
 
@@ -116,21 +122,22 @@ function Payment() {
               </Row>
               <Row className="justify-content-center mx-5">
                 {/* <h5 className="text-white mx-5">Please provide your payment details here.</h5> */}
-                <Col xl={4} className="text-center">
-                  <Image
-                    src={creditCard}
-                    rounded
-                    fluid
-                    className="m-5 "
-                    style={{ maxWidth: "300px" }}
-                  />
-                </Col>
+
                 <Col xl={4} className="text-center">
                   <Image
                     src={paypal}
                     rounded
                     fluid
                     className="m-5"
+                    style={{ maxWidth: "300px" }}
+                  />
+                </Col>
+                <Col xl={4} className="text-center">
+                  <Image
+                    src={creditCard}
+                    rounded
+                    fluid
+                    className="m-5 "
                     style={{ maxWidth: "300px" }}
                   />
                 </Col>
@@ -196,7 +203,6 @@ function Payment() {
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Row className="mt-3">
-                  
                       <Col>
                         <Form.Group>
                           <Form.Label className="text-white ms-3">
@@ -253,9 +259,16 @@ function Payment() {
                           className="my-5 mx-auto"
                           size="lg"
                         >
-                          Pay ₹{amount}
+                          Pay ₹{paymentDetails.halfAmount}
                         </Button>
                       </Col>
+                    </Row>
+                    <Row>
+                      <p className="text-white text-center">
+                        The total amount for this work is ₹{amount}. You should
+                        pay half of the amount in advance, which is ₹
+                        {paymentDetails.halfAmount}.
+                      </p>
                     </Row>
                   </Form>
                 </Col>

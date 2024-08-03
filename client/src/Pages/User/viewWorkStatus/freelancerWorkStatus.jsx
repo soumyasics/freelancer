@@ -89,6 +89,11 @@ export const FreelancerViewWorkStatus = () => {
           <div className="d-flex gap-5  justify-content-between">
             <div className="p-4 w-50 shadow">
               <h4 className="text-center"> Work Details</h4>
+              <span className="text-center  ">
+                Note: If you do not complete your work before the deadline, a
+                late penalty will be applied based on the number of days you are
+                late.
+              </span>
               <Row className="mt-3">
                 <Col>
                   <p>
@@ -174,7 +179,6 @@ export const FreelancerViewWorkStatus = () => {
               </Row>
 
               <Row className="mt-3 justify-content-center d-flex">
-
                 <ComplaintUser userId={requestData?.userId?._id} />
                 {/* <button
                   className="button-50"
