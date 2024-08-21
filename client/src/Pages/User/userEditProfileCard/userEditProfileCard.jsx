@@ -50,6 +50,15 @@ export const UsereditProfileCard = () => {
       toast.error("Lastname name field can't be empty");
       return false;
     }
+    
+    if (!/^[a-zA-Z ]+$/.test(firstName)) {
+      toast.error("First name should not contain special characters");
+      return;
+    }
+    if (!/^[a-zA-Z ]+$/.test(lastName)) {
+      toast.error("Last name should not contain special characters");
+      return;
+    }
     if (!email) {
       toast.error("Email field can't be empty");
       return false;
@@ -60,6 +69,7 @@ export const UsereditProfileCard = () => {
       toast.error("Please enter a valid email address");
       return false;
     }
+
 
     return true;
   };

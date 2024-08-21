@@ -19,18 +19,18 @@ const Footer = () => {
       <div>
         <Stack>
           <h4 className="footer-logo"> FreelanceFlow </h4>
-          <InputGroup style={{width: "240px"}} className="footer-mail">
+          {/* <InputGroup style={{width: "240px"}} className="footer-mail">
             <InputGroup.Text>
               <AiOutlineMail />
             </InputGroup.Text>
             <Form.Control  type="text" placeholder="Enter Your Email" />
-          </InputGroup>
-          <div className="socialmedia-icons">
+          </InputGroup> */}
+          {/* <div className="socialmedia-icons">
             <FaSquareInstagram style={iconStyle} />
             <AiFillFacebook style={iconStyle} />
             <AiFillTwitterSquare style={iconStyle} />
             <AiFillGoogleCircle style={iconStyle} />
-          </div>
+          </div> */}
         </Stack>
         <Stack className="my-stack ms-3">
             <p>Contact us</p>
@@ -63,7 +63,7 @@ const Footer = () => {
        
         </>
 
-        <Stack className="download-app-stack my-stack ms-5">
+        {/* <Stack className="download-app-stack my-stack ms-5">
           <p>Download App</p>
           <img
             src="https://pbs.twimg.com/media/F8K8X3_XMAAKWYp?format=jpg&name=small"
@@ -73,14 +73,14 @@ const Footer = () => {
             src="https://pbs.twimg.com/media/F8K9Y0mXUAA7itL?format=png&name=small"
             alt="play-store"
           />
-        </Stack>
+        </Stack> */}
       </div>
       <div className="footer-credit">
         <p>©2024 FreelanceFlow</p>
-        <div>
+        {/* <div>
           <p>Terms of Service</p>
           <p>Privacy Policy</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

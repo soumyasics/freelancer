@@ -39,6 +39,14 @@ function User_register() {
       toast.error("Please Enter Valid Email");
       return;
     }
+    if (!/^[a-zA-Z ]+$/.test(firstName)) {
+      toast.error("First name should not contain special characters");
+      return;
+    }
+    if (!/^[a-zA-Z ]+$/.test(lastName)) {
+      toast.error("Last name should not contain special characters");
+      return;
+    }
     sendDataToServer();
   };
 

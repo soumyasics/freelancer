@@ -39,9 +39,12 @@ export function ConsultancyRegister() {
     let { name, email, password, contact, licenseId, address, profilepic } =
       consultancyData;
 
-    console.log("consul data", consultancyData);
     if (!name || !email || !password || !contact || !licenseId || !address) {
       toast.error("Please Fill All Details");
+      return;
+    }
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+      toast.error("Name should not contain special characters");
       return;
     }
     if (!isEmailValid(email)) {

@@ -58,6 +58,12 @@ function Freelancer_register() {
       return;
     }
 
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+      toast.error("Name should not contain special characters");
+      return;
+    }
+
+
     sendDataToServer();
   };
 
