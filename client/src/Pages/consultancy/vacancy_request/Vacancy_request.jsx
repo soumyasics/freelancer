@@ -70,6 +70,10 @@ const Vacancy_request = () => {
       toast.error("Salary should be between 0 to 100000000");
       return;
     }
+    if (!/^[a-zA-Z ]+$/.test(requestData.title)) {
+      toast.error("Title should not contain numbers or special characters");
+      return;
+    }
 
     if (requestData.description.length < 50) {
       toast.error("Description should be at least 50 characters");

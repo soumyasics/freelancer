@@ -57,6 +57,11 @@ export const FreelancereditProfileCard = () => {
       return false;
     }
 
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+      toast.error("Name should not contain special characters");
+      return;
+    }
+
     if (!contact) {
       toast.error("Contact field can't be empty");
       return false;
@@ -123,9 +128,13 @@ export const FreelancereditProfileCard = () => {
         toast.success("Update successfull");
       }
     } catch (error) {
+      const errCode = error?.response?.data?.code || 0;
+      
       const status = error?.response?.status;
       if (status === 404) {
         toast.error("Please login again");
+      } else if (errCode === 11000) {
+        toast.error("Email already exists");
       } else {
         toast.error("Network error");
       }

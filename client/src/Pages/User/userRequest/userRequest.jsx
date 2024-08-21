@@ -63,6 +63,11 @@ const UserRequest = () => {
       toast.error("Description should be at least 50 characters");
       return;
     }
+    
+    if (!/^[a-zA-Z ]+$/.test(requestData.title)) {
+      toast.error("Title should not contain numbers and special characters");
+      return;
+    }
 
     sendDataToServer();
   };

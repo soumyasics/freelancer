@@ -78,10 +78,10 @@ export const ViewVacancyDetails = () => {
               <span className="fs-6 fw-bold">Title: </span>{" "}
               {requestData?.title || "..."}
             </p>
-            <p>
+            {/* <p>
               <span className="fs-6 fw-bold">Category: </span>{" "}
               {requestData?.category || "..."}
-            </p>
+            </p> */}
             <p>
               <span className="fs-6 fw-bold">Budget: </span> ₹{" "}
               {requestData?.budget || "..."}

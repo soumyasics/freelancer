@@ -164,6 +164,7 @@ const editFreelancerById = async (req, res) => {
     return res.status(500).json({
       error: error.message,
       message: "Server error",
+      code: error?.code
     });
   }
 };

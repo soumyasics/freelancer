@@ -10,7 +10,7 @@ import { InterviewScheduleModal } from "./interviewModal";
 import { useParams } from "react-router-dom";
 export const FreelancersCard = ({ data, num }) => {
   const navigate = useNavigate();
-  const {id} = useParams()
+  const { id } = useParams();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -76,7 +76,7 @@ export const FreelancersCard = ({ data, num }) => {
           </div>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Appled on: {formattedDate}{" "}
+          Applied on: {data.appliedAt.substring(0, 10)}{" "}
         </Card.Footer>
       </Card>
     </div>

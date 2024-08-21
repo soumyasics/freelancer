@@ -25,7 +25,7 @@ function Payment() {
     cvc: "",
     expDate: "",
     amount: amount,
-    halfAmount:0,
+    halfAmount: 0,
     amountPaid: 0,
     userId: userId,
     workId: workId,
@@ -69,11 +69,13 @@ function Payment() {
 
     const cardNumberPattern = /^[0-9]{16}$/;
     const cvcPattern = /^[0-9]{3}$/;
-    const monthPattern = /^[0-9]{2}$/;
-    const yearPattern = /^[0-9]{4}$/;
 
     if (!cardNumberPattern.test(paymentDetails.cardNumber)) {
       toast.error("Card number should be 16 digits");
+      return;
+    }
+    if (!/^[a-zA-Z ]+$/.test(paymentDetails.accHolderName)) {
+      toast.error("Name should not contain special characters");
       return;
     }
     if (!cvcPattern.test(paymentDetails.cvc)) {
@@ -85,6 +87,28 @@ function Payment() {
       toast.error("CVC should be 3 digits");
       return;
     }
+
+    const currentDate = new Date();
+    const selectedDate = new Date(paymentDetails.expDate);
+    // Set both times to midnight for accurate comparison
+    currentDate.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    // Check if the selected date is in the past
+    if (selectedDate < currentDate) {
+      toast.error("Card expiry date is invalid.");
+      return;
+    }
+
+    // Check if the selected date is too far in the future (e.g., more than 10 years)
+    const maxAllowedDate = new Date();
+    maxAllowedDate.setFullYear(currentDate.getFullYear() + 20);
+
+    if (selectedDate > maxAllowedDate) {
+      toast.error("Card expiry date is invalid.");
+      return;
+    }
+
 
     sendDataToServer();
   };

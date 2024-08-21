@@ -26,7 +26,7 @@ export default function ViewAllVacancies() {
       const res = await axiosInstance.get("/con-getAllWorkRequest");
       if (res.status === 200) {
         let data = res.data?.data || [];
-        data.reverse()
+        data.reverse();
         setRequests(data);
       } else {
         console.log("Error on getting vacancy requests");
@@ -60,37 +60,58 @@ export default function ViewAllVacancies() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!resume) {
-      toast.error("Please upload your resume.")
+      toast.error("Please upload your resume.");
       return;
     }
-    sendDataToServer()
-  }
+    sendDataToServer();
+  };
   const sendDataToServer = async () => {
     const formData = new FormData();
     formData.append("resume", resume);
     formData.append("freelancerId", userId);
     try {
-      let res = await axiosMultipartInstance.post(`applyConVacancy/${clickedVac._id}`,formData);
+      let res = await axiosMultipartInstance.post(
+        `applyConVacancy/${clickedVac._id}`,
+        formData
+      );
       if (res.status === 200) {
         toast.success("Applied successfully");
-        navigate('/freelancer-applied-vacancies')
+        navigate("/freelancer-applied-vacancies");
       }
     } catch (error) {
       const stauts = error?.response?.status;
-      if (stauts === 401 || stauts === 400 || stauts === 404 || stauts === 500) {
+      if (
+        stauts === 401 ||
+        stauts === 400 ||
+        stauts === 404 ||
+        stauts === 500
+      ) {
         toast.error(error?.response?.data?.message || "Something went wrong");
       } else {
         toast.error("Something went wrong");
       }
       console.log("Error on applying vacency", error);
-    }finally {
+    } finally {
       setResume(null);
       setClickedVac({});
       getVacanciesData();
     }
-  }
+  };
 
-  console.log("resu", resume)
+  const isAlreadyApplied = (vacancy) => {
+    const applied = vacancy?.appliedFreelancers?.find((freelancer) => {
+      console.log("che", freelancer.freelancerId, userId);
+      if (freelancer.freelancerId === userId) {
+        return true;
+      }
+      return false;
+    });
+    if (applied) {
+      return true;
+    }
+    return false;
+  };
+  console.log("resu", resume);
   return (
     <>
       <Navbar />
@@ -112,31 +133,35 @@ export default function ViewAllVacancies() {
               </tr>
             </thead>
             <tbody className="text-center">
-              {requests.map(
-                (vacancy, index) => (
-                  (
-                    <tr key={vacancy._id}>
-                      <td>{index + 1}</td>
-                      <td>{vacancy.title}</td>
-                      <td>{vacancy.category}</td>
-                      <td>{vacancy.budget}</td>
-                      <td>{vacancy.deadline?.substring(0, 10)}</td>
-                      <td>{vacancy.consultancyPhoneNumber}</td>
-                      <td>
-                        {clickedVac._id === vacancy._id ? (
-                          <form className="d-flex flex-column m-3">
-                            <label> Upload your resume</label>
-                            <input
-                              className="my-3"
-                              type="file"
-                              accept="application/pdf"
-                              onChange={(e) => {
-                                setResume(e.target.files[0]);
-                              }}
-                            />
-                            <input type="submit" onClick={handleSubmit} value="Submit" />
-                          </form>
-                        ) : (
+              {requests.map((vacancy, index) => (
+                <tr key={vacancy._id}>
+                  <td>{index + 1}</td>
+                  <td>{vacancy.title}</td>
+                  <td>{vacancy.category}</td>
+                  <td>{vacancy.budget}</td>
+                  <td>{vacancy.deadline?.substring(0, 10)}</td>
+                  <td>{vacancy.consultancyPhoneNumber}</td>
+                  <td>
+                    {clickedVac._id === vacancy._id ? (
+                      <form className="d-flex flex-column m-3">
+                        <label> Upload your resume</label>
+                        <input
+                          className="my-3"
+                          type="file"
+                          accept="application/pdf"
+                          onChange={(e) => {
+                            setResume(e.target.files[0]);
+                          }}
+                        />
+                        <input
+                          type="submit"
+                          onClick={handleSubmit}
+                          value="Submit"
+                        />
+                      </form>
+                    ) : (
+                      <>
+                        {!isAlreadyApplied(vacancy) ? (
                           <Button
                             onClick={() => {
                               setClickedVac(vacancy);
@@ -145,12 +170,14 @@ export default function ViewAllVacancies() {
                           >
                             Apply
                           </Button>
+                        ) : (
+                          <h6 className="text-success">Applied</h6>
                         )}
-                      </td>
-                    </tr>
-                  )
-                )
-              )}
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Container>

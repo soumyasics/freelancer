@@ -59,7 +59,7 @@ function Freelancer_register() {
     }
 
     if (!/^[a-zA-Z ]+$/.test(name)) {
-      toast.error("Name should not contain special characters");
+      toast.error("Name should not contain numbers and special characters");
       return;
     }
 

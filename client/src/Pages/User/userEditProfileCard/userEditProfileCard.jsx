@@ -52,11 +52,11 @@ export const UsereditProfileCard = () => {
     }
     
     if (!/^[a-zA-Z ]+$/.test(firstName)) {
-      toast.error("First name should not contain special characters");
+      toast.error("First name should not contain numbers and special characters");
       return;
     }
     if (!/^[a-zA-Z ]+$/.test(lastName)) {
-      toast.error("Last name should not contain special characters");
+      toast.error("Last name should not contain numbers and special characters");
       return;
     }
     if (!email) {

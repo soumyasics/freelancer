@@ -90,10 +90,10 @@ export const FreelancerViewVacancyDetails = () => {
               <span className="fs-6 fw-bold">Deadline: </span>{" "}
               {requestData?.deadline?.substring(0, 10) || "..."}
             </p>
-            <p>
+            {/* <p>
               <span className="fs-6 fw-bold">Current Status :</span>{" "}
               {requestData?.status}
-            </p>
+            </p> */}
             <p style={{ maxHeight: "200px", overflowY: "auto" }}>
               <span className="fs-6 fw-bold">Description: </span>{" "}
               {requestData?.description || "..."}

@@ -56,6 +56,10 @@ export const ConsultancyeditProfileCard = () => {
       return false;
     }
 
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+      toast.error("Name should not contain numbers and special characters");
+      return;
+    }
     if (!contact) {
       toast.error("Contact field can't be empty");
       return false;
@@ -73,6 +77,10 @@ export const ConsultancyeditProfileCard = () => {
 
     if (!licenseId) {
       toast.error("License field can't be empty");
+      return false;
+    }
+    if (licenseId.length > 10) {
+      toast.error("License should not contain more than 10 characters");
       return false;
     }
 
@@ -105,7 +113,6 @@ export const ConsultancyeditProfileCard = () => {
         edit
       );
       if (res.status === 200) {
-        console.log("res daa", res.data.data);
         let data = res?.data?.data || null;
         if (data && data._id) {
           let obj = {
