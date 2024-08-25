@@ -34,9 +34,10 @@ export const Admin_ViewAllPayments = () => {
             <th>User Name</th>
             <th>Freelancer Name</th>
             <th>Work Title</th>
-            <th>Payment Amount</th>
-            <th>Card Number</th>
-            <th>Payment Date</th>
+            <th>Total Amount</th>
+            <th>Amount Paid</th>
+            <th>Penalty</th>
+            <th>Payment Status</th>
           </tr>
         </thead>
         <tbody>
@@ -50,8 +51,9 @@ export const Admin_ViewAllPayments = () => {
               <td>{request.freelancerId?.name}</td>
               <td>{request?.workId?.title}</td>
               <td>{request.amount}</td>
-              <td>{request.cardNumber}</td>
-              <td>{request.date?.substring(0, 10)}</td>
+              <td>{request.amountPaid}</td>
+              <td>{request.lossOfPay}</td>
+              <td>{request.paymentCompleted === true ? "Completed" : "Pending"}</td>
             </tr>
           ))}
         </tbody>
